@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mettre en avant mon œuvre — ArtCanvas</title>
+  <meta name="description" content="Boostez la visibilité de votre œuvre sur ArtCanvas. Choisissez la formule qui vous convient : Visibilité, Spotlight ou Premium.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Visibilité artiste</div>
+    <h1>Donnez de la visibilité<br>à votre œuvre</h1>
+    <p>Atteignez plus d'acheteurs. Trois formules simples, sans abonnement.</p>
+  </div>
+</section>
+
+<!-- FORMULES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">Tarifs</div>
+      <h2>Choisissez votre formule</h2>
+      <p>Paiement sécurisé par Stripe. Confirmation par email immédiate.</p>
+    </div>
+
+    <div class="formules-grid fade-in">
+
+      <!-- Formule Visibilité -->
+      <div class="formule-card">
+        <div class="formule-card__icon">🔍</div>
+        <div class="formule-card__name">Visibilité</div>
+        <div class="formule-card__price">9€<span>/formule</span></div>
+        <div class="formule-card__duration">7 jours de mise en avant</div>
+        <ul class="formule-card__features">
+          <li>Positionnement en tête de galerie</li>
+          <li>Visible par tous les visiteurs</li>
+          <li>Confirmation email immédiate</li>
+          <li>Statistiques de vues incluses</li>
+        </ul>
+        <a href="#stripe-visibilite" class="btn-primary" style="width:100%;display:block;text-align:center;box-sizing:border-box">
+          Choisir Visibilité
+        </a>
+      </div>
+
+      <!-- Formule Spotlight (recommandée) -->
+      <div class="formule-card formule-card--recommended">
+        <div class="formule-card__popular">Populaire</div>
+        <div class="formule-card__icon">⭐</div>
+        <div class="formule-card__name">Spotlight</div>
+        <div class="formule-card__price">19€<span>/formule</span></div>
+        <div class="formule-card__duration">14 jours de mise en avant</div>
+        <ul class="formule-card__features">
+          <li>Positionnement en tête de galerie</li>
+          <li>Badge "À découvrir" sur votre œuvre</li>
+          <li>Mise en avant dans les résultats de recherche</li>
+          <li>Confirmation email immédiate</li>
+          <li>Statistiques de vues incluses</li>
+        </ul>
+        <a href="#stripe-spotlight" class="btn-primary" style="width:100%;display:block;text-align:center;box-sizing:border-box">
+          Choisir Spotlight
+        </a>
+      </div>
+
+      <!-- Formule Premium -->
+      <div class="formule-card">
+        <div class="formule-card__icon">🏆</div>
+        <div class="formule-card__name">Premium</div>
+        <div class="formule-card__price">39€<span>/formule</span></div>
+        <div class="formule-card__duration">30 jours de mise en avant</div>
+        <ul class="formule-card__features">
+          <li>Positionnement en tête de galerie</li>
+          <li>Badge "À découvrir" sur votre œuvre</li>
+          <li>Encart sur la page d'accueil</li>
+          <li>Inclusion dans la newsletter mensuelle</li>
+          <li>Confirmation email immédiate</li>
+          <li>Rapport de performance complet</li>
+        </ul>
+        <a href="#stripe-premium" class="btn-primary" style="width:100%;display:block;text-align:center;box-sizing:border-box">
+          Choisir Premium
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Note Stripe -->
+    <div class="security-badge fade-in" style="max-width:520px;margin:40px auto 0">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 1.667L2.5 5v5c0 4.583 3.167 8.875 7.5 9.917C14.333 18.875 17.5 14.583 17.5 10V5L10 1.667z" stroke="#34d399" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span>Paiement 100% sécurisé par <strong>Stripe</strong>. Vous recevez un email de confirmation dès que votre paiement est validé. Aucun abonnement — paiement unique par formule.</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMENT ÇA MARCHE -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">Simple & rapide</div>
+      <h2>Comment ça marche ?</h2>
+    </div>
+    <div class="etapes-grid fade-in">
+      <div class="etape-item">
+        <div class="etape-item__num">1</div>
+        <div class="etape-item__title">Choisissez une formule</div>
+        <div class="etape-item__desc">Sélectionnez la durée et les options qui correspondent à vos objectifs de visibilité.</div>
+      </div>
+      <div class="etape-item">
+        <div class="etape-item__num">2</div>
+        <div class="etape-item__title">Payez en toute sécurité</div>
+        <div class="etape-item__desc">Stripe traite votre paiement de façon sécurisée. Carte bancaire ou autres méthodes acceptées.</div>
+      </div>
+      <div class="etape-item">
+        <div class="etape-item__num">3</div>
+        <div class="etape-item__title">Votre œuvre est mise en avant</div>
+        <div class="etape-item__desc">Dès confirmation, votre œuvre gagne en visibilité et vous recevez un email récapitulatif.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container fade-in">
+    <div class="section-tag" style="margin:0 auto 20px">Des questions ?</div>
+    <h2>Besoin d'aide ?</h2>
+    <p>Notre équipe répond sous 24h pour vous accompagner dans votre démarche.</p>
+    <div class="cta-band__btns">
+      <a href="communaute.html" class="btn-secondary">Retour à la communauté</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="mise-en-avant.html">Mettre en avant</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
