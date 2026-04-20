@@ -77,6 +77,20 @@
   </div>
 </section>
 
+<!-- ŒUVRES DE LA SEMAINE -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">Chaque lundi</div>
+      <h2>Œuvres de la semaine</h2>
+      <p>Les 3 œuvres les plus vues cette semaine sur ArtCanvas.</p>
+    </div>
+    <div class="oeuvres-semaine-grid fade-in" id="oeuvresSemaineGrid">
+      <!-- Rempli par JS -->
+    </div>
+  </div>
+</section>
+
 <!-- DISCUSSIONS RÉCENTES -->
 <section class="section" id="discussions-recentes">
   <div class="container">
@@ -804,6 +818,55 @@ document.addEventListener('DOMContentLoaded', () => {
   if (collabGrid && window.innerWidth < 768) {
     collabGrid.style.gridTemplateColumns = '1fr';
   }
+
+  /* ──────────────────────────────────────────────
+     5. ŒUVRES DE LA SEMAINE (rotation hebdo)
+  ────────────────────────────────────────────── */
+  const OEUVRES_POOL = [
+    { titre:'Lumière d\'automne', artiste:'Thomas Girard', vues:1247, emoji:'🍂' },
+    { titre:'Mandala solaire', artiste:'Sofia Herrera', vues:1189, emoji:'☀️' },
+    { titre:'Forêt de bouleau', artiste:'Hugo Lambert', vues:1034, emoji:'🌲' },
+    { titre:'Série Fibonacci', artiste:'Elena Marcov', vues:987, emoji:'🌀' },
+    { titre:'Éclats de mer', artiste:'Camille Roux', vues:912, emoji:'🌊' },
+    { titre:'Bouquet de pivoine', artiste:'Marie Fleur', vues:876, emoji:'🌸' },
+    { titre:'Architecture oubliée', artiste:'Nadia Solis', vues:834, emoji:'🏛️' },
+    { titre:'Composition en or', artiste:'Marius Dent', vues:798, emoji:'✨' },
+    { titre:'Harmonie végétale', artiste:'Ryo Tanaka', vues:751, emoji:'🌿' },
+  ];
+
+  function getWeekSet() {
+    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+    const weekNum = Math.floor((Date.now() - 3 * 24 * 3600 * 1000) / msPerWeek);
+    const start = (weekNum % 3) * 3;
+    return OEUVRES_POOL.slice(start, start + 3);
+  }
+
+  function renderOeuvresSemaine() {
+    const grid = document.getElementById('oeuvresSemaineGrid');
+    if (!grid) return;
+    getWeekSet().forEach(o => {
+      const card = document.createElement('div');
+      card.className = 'oeuvre-semaine-card fade-in';
+      card.innerHTML = `
+        <div class="oeuvre-semaine-card__thumb">
+          ${o.emoji}
+          <span class="badge badge--gold oeuvre-semaine-card__badge" style="font-size:.7rem">Tendance cette semaine</span>
+        </div>
+        <div class="oeuvre-semaine-card__body">
+          <div class="oeuvre-semaine-card__title">${o.titre}</div>
+          <div class="oeuvre-semaine-card__artist">par ${o.artiste}</div>
+          <div class="oeuvre-semaine-card__views">👁 ${o.vues.toLocaleString('fr-FR')} vues</div>
+        </div>`;
+      grid.appendChild(card);
+    });
+
+    const io2 = new IntersectionObserver(e => e.forEach(x => {
+      if (x.isIntersecting) { x.target.classList.add('visible'); io2.unobserve(x.target); }
+    }), { threshold: 0.1 });
+    grid.querySelectorAll('.fade-in').forEach(el => io2.observe(el));
+  }
+
+  renderOeuvresSemaine();
 
   /* ──────────────────────────────────────────────
      4. THREAD MODAL
