@@ -530,6 +530,17 @@
   </div>
 </footer>
 
+<!-- THREAD MODAL -->
+<div class="thread-modal-overlay" id="threadModalOverlay" role="dialog" aria-modal="true">
+  <div class="thread-modal" id="threadModal">
+    <div class="thread-modal__header">
+      <div class="thread-modal__title" id="threadModalTitle"></div>
+      <button class="thread-modal__close" id="threadModalClose" aria-label="Fermer">✕</button>
+    </div>
+    <div id="threadModalReplies"></div>
+  </div>
+</div>
+
 <script>
 /* =========================================================
    ArtCanvas — Communauté interactive (localStorage)
@@ -793,6 +804,123 @@ document.addEventListener('DOMContentLoaded', () => {
   if (collabGrid && window.innerWidth < 768) {
     collabGrid.style.gridTemplateColumns = '1fr';
   }
+
+  /* ──────────────────────────────────────────────
+     4. THREAD MODAL
+  ────────────────────────────────────────────── */
+  const THREAD_DATA = {
+    7: {
+      title: 'Comment fixer le prix de mon tableau ?',
+      replies: [
+        { author:'Sophie Blanc', time:'il y a 3h', text:'Je divise généralement par le format : (hauteur + largeur) × 2 × ton tarif horaire. Pour débuter, entre 50 et 80€/heure selon ton expérience.' },
+        { author:'Ryo Tanaka', time:'il y a 2h', text:'Regarde aussi les prix des artistes similaires sur la plateforme. La cohérence du marché est importante surtout au début.' },
+        { author:'Elena M.', time:'il y a 1h', text:'N\'oublie pas de compter les matériaux ! Beaucoup d\'artistes les oublient et sous-évaluent leur travail.' },
+      ]
+    },
+    8: {
+      title: 'Première vente hier, je n\'y crois pas encore...',
+      replies: [
+        { author:'Camille Roux', time:'il y a 6h', text:'Félicitations ! La première vente est toujours la plus émouvante. Comment tu te sens ?' },
+        { author:'Marius Dent', time:'il y a 5h', text:'C\'est le début d\'une belle aventure. La première vente prouve que ton travail a de la valeur aux yeux des autres.' },
+        { author:'Léa Morvan', time:'il y a 4h', text:'Bravo ! Tu te souviens comment l\'acheteur t\'a trouvé ? Via la galerie ou les discussions ?' },
+        { author:'Thomas Girard', time:'il y a 3h', text:'Via la galerie ! Il a vu mon tableau "Lumière d\'automne" et m\'a contacté directement. Encore sous le choc 😊' },
+      ]
+    },
+    9: {
+      title: 'Quelles techniques pour photographier ses œuvres ?',
+      replies: [
+        { author:'Julien Fabre', time:'il y a 9h', text:'Lumière naturelle diffuse, jamais en plein soleil. Place l\'œuvre près d\'une grande fenêtre le matin.' },
+        { author:'Naomi K.', time:'il y a 8h', text:'J\'utilise deux panneaux LED 5500K de chaque côté pour éviter les ombres. Résultat très propre et reproductible.' },
+        { author:'Amara Diallo', time:'il y a 6h', text:'Application "Snapseed" pour corriger la balance des blancs après. Attention à ne pas trop saturer les couleurs.' },
+      ]
+    },
+    10: {
+      title: 'Aquarelle vs huile — le grand débat',
+      replies: [
+        { author:'Sofia H.', time:'il y a 1j', text:'Aquarelle pour la spontanéité et la légèreté, huile pour la profondeur et la durabilité. Les deux ont leur âme.' },
+        { author:'Hugo L.', time:'il y a 23h', text:'L\'huile se travaille sur des semaines, l\'aquarelle en quelques heures. Tout dépend de ce que tu veux exprimer.' },
+        { author:'Elena M.', time:'il y a 20h', text:'Et les prix de vente sont très différents ! Les huiles se vendent généralement beaucoup plus cher, même à format égal.' },
+        { author:'Pierre Fontaine', time:'il y a 18h', text:'Personnellement je pratique les deux selon la saison : aquarelle en plein air l\'été, huile en atelier l\'hiver.' },
+      ]
+    },
+    11: {
+      title: 'Mon exposition virtuelle, venez voir !',
+      replies: [
+        { author:'Ryo Tanaka', time:'il y a 1j', text:'Magnifique travail ! La série sur les architectures abandonnées est particulièrement saisissante.' },
+        { author:'Camille Roux', time:'il y a 22h', text:'J\'adore la cohérence de ta palette. Comment tu as choisi les tons ?' },
+        { author:'Nadia Solis', time:'il y a 20h', text:'Merci ! J\'ai travaillé sur une palette désaturée pour renforcer le sentiment de nostalgie. Contente que ça se ressente !' },
+      ]
+    },
+    12: {
+      title: 'Comment attirer ses premiers acheteurs ?',
+      replies: [
+        { author:'Marius Dent', time:'il y a 2j', text:'Soigne ton profil artiste en priorité : photo pro, bio courte et percutante, portfolio cohérent.' },
+        { author:'Julien Fabre', time:'il y a 2j', text:'Participe activement aux discussions de la communauté. Les acheteurs regardent les profils des artistes actifs.' },
+        { author:'Hugo L.', time:'il y a 1j', text:'Et n\'hésite pas à partager tes coulisses — le processus créatif attire autant que le résultat final.' },
+      ]
+    },
+    13: {
+      title: 'Je cherche des artistes sculpteurs pour collaborer',
+      replies: [
+        { author:'Elena M.', time:'il y a 2j', text:'Quel type de collaboration tu envisages ? Exposition commune, pièce hybride peinture/sculpture ?' },
+        { author:'Yasmine Berri', time:'il y a 2j', text:'Je pense à une installation où mes céramiques seraient accompagnées de toiles peintes. Je contacte en MP !' },
+        { author:'Sofia H.', time:'il y a 1j', text:'Super projet ! Il y a aussi Hugo et Camille qui travaillent la sculpture sur ce forum.' },
+      ]
+    },
+    14: {
+      title: 'Mes 3 conseils pour bien débuter sur la plateforme',
+      replies: [
+        { author:'Léa Morvan', time:'il y a 3j', text:'Très bonne initiative ! J\'ajouterais : répondre rapidement aux messages des acheteurs potentiels.' },
+        { author:'Amara Diallo', time:'il y a 3j', text:'Conseil n°4 de ma part : utiliser des mots-clés précis dans les titres des œuvres pour être trouvé plus facilement.' },
+        { author:'Thomas Girard', time:'il y a 2j', text:'Et photographier ses œuvres sur fond neutre (blanc ou gris clair). Ça fait vraiment la différence dans la galerie.' },
+        { author:'Marc Vidal', time:'il y a 2j', text:'Exactement ! J\'ai vu mon taux de vues tripler après avoir refait toutes mes photos sur fond blanc.' },
+      ]
+    },
+  };
+
+  /* Ouvrir la modale */
+  function openThreadModal(threadId) {
+    const data = THREAD_DATA[threadId];
+    if (!data) return;
+    document.getElementById('threadModalTitle').textContent = data.title;
+    const repliesEl = document.getElementById('threadModalReplies');
+    repliesEl.innerHTML = data.replies.map(r => `
+      <div class="thread-modal__reply">
+        <div class="thread-modal__reply-avatar">
+          <svg width="40" height="40" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="#1a2035"/><ellipse cx="20" cy="16" rx="8" ry="9" fill="#c9a84c" opacity=".6"/><path d="M4 40 Q4 28 20 28 Q36 28 36 40 Z" fill="#c9a84c" opacity=".4"/></svg>
+        </div>
+        <div class="thread-modal__reply-body">
+          <div class="thread-modal__reply-meta">
+            <span class="thread-modal__reply-author">${r.author}</span>
+            <span>${r.time}</span>
+          </div>
+          <div class="thread-modal__reply-text">${r.text}</div>
+        </div>
+      </div>`).join('');
+    document.getElementById('threadModalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  /* Fermer la modale */
+  function closeThreadModal() {
+    document.getElementById('threadModalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('threadModalClose').addEventListener('click', closeThreadModal);
+  document.getElementById('threadModalOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeThreadModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeThreadModal(); });
+
+  /* Attacher les clics sur les threads 7–14 */
+  document.querySelectorAll('.thread-item[data-thread]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const id = parseInt(el.dataset.thread);
+      openThreadModal(id);
+    });
+  });
 });
 </script>
 <script src="js/main.js"></script>
