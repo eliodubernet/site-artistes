@@ -291,3 +291,38 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   margin: 0 auto 48px;
   line-height: 1.8;
 }
+
+/* ----- Countdown ---------------------------------------- */
+.ch-countdown {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ch-countdown__block {
+  min-width: 80px;
+  padding: 16px 12px;
+  text-align: center;
+}
+
+.ch-countdown__num {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.ch-countdown__label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ch-accent);
+  font-weight: 400;
+}
