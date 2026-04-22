@@ -18,7 +18,7 @@
   --ch-text:        rgba(255,220,130,0.8);
   --ch-accent:      #7bb8f0;
   --ch-gradient:    linear-gradient(135deg, var(--ch-gold-1), var(--ch-gold-2), var(--ch-gold-3), var(--ch-gold-4));
-  --ch-radius:      .25s ease;
+  --ch-trans:       .25s ease;
   --ch-max-w:       1200px;
 }
 
