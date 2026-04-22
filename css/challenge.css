@@ -54,6 +54,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   line-height: 1.2;
 }
 
+@media (forced-colors: active) {
+  .ch-display {
+    -webkit-text-fill-color: unset;
+    background: none;
+    color: CanvasText;
+  }
+}
+
 .ch-accent-text { color: var(--ch-accent); }
 .ch-body { color: var(--ch-text); }
 .ch-italic { font-style: italic; font-weight: 300; }
@@ -255,6 +263,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px);
   margin-bottom: 32px;
   animation: ch-pulse-border 2s ease-in-out infinite;
+  will-change: box-shadow, border-color;
 }
 
 @keyframes ch-pulse-border {
