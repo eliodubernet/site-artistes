@@ -200,8 +200,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .ch-nav__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  width: 28px;
+  width: 40px;
+  height: 40px;
   padding: 4px;
 }
 
