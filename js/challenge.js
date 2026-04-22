@@ -30,7 +30,7 @@
 
 /* ── Countdown ───────────────────────────────────────────── */
 (function initCountdown() {
-  const deadline = new Date('2026-04-30T23:59:59');
+  const deadline = new Date('2026-04-30T23:59:59+02:00');
   const container = document.getElementById('chCountdown');
   if (!container) return;
 
@@ -54,11 +54,15 @@
     </div>
   `;
 
+  const pad = n => String(n).padStart(2, '0');
+  let intervalId;
+
   function tick() {
     const now  = new Date();
     const diff = deadline - now;
 
     if (diff <= 0) {
+      clearInterval(intervalId);
       container.innerHTML = '<p class="ch-accent-text" style="font-size:1.2rem;letter-spacing:2px;">SOUMISSIONS CLOSES</p>';
       return;
     }
@@ -68,7 +72,6 @@
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
 
-    const pad = n => String(n).padStart(2, '0');
     document.getElementById('cdDays').textContent    = pad(d);
     document.getElementById('cdHours').textContent   = pad(h);
     document.getElementById('cdMinutes').textContent = pad(m);
@@ -76,7 +79,7 @@
   }
 
   tick();
-  setInterval(tick, 1000);
+  intervalId = setInterval(tick, 1000);
 })();
 
 /* ── Burger mobile ───────────────────────────────────────── */
@@ -84,8 +87,9 @@
   const burger = document.getElementById('chBurger');
   const nav    = document.getElementById('chNav');
   if (!burger || !nav) return;
+  burger.setAttribute('aria-expanded', 'false');
   burger.addEventListener('click', () => {
     const isOpen = nav.classList.toggle('nav-open');
-    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    burger.setAttribute('aria-expanded', String(isOpen));
   });
 })();
