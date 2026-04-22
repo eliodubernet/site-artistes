@@ -437,3 +437,95 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
     height: 100%;
   }
 }
+
+/* ----- Theme Card --------------------------------------- */
+.ch-theme { background: rgba(10,20,50,0.3); }
+
+.ch-theme__grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 32px;
+  align-items: start;
+}
+
+.ch-theme__label {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ch-accent);
+  margin-bottom: 16px;
+}
+
+.ch-theme__title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 20px;
+  line-height: 1.05;
+}
+
+.ch-theme__desc {
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--ch-accent);
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.ch-theme__rules-title {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ch-gold-3);
+  margin-bottom: 16px;
+}
+
+.ch-theme__rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 24px;
+}
+
+.ch-theme__rule {
+  font-size: 0.95rem;
+  color: var(--ch-text);
+  display: flex;
+  gap: 8px;
+}
+
+.ch-theme__rule::before {
+  content: '→';
+  color: var(--ch-gold-4);
+  flex-shrink: 0;
+  font-style: normal;
+}
+
+/* Sidebar */
+.ch-theme__sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+.ch-info-block {
+  padding: 16px 20px;
+}
+
+.ch-info-block__label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ch-accent);
+  margin-bottom: 6px;
+}
+
+.ch-info-block__value {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 900px) {
+  .ch-theme__grid { grid-template-columns: 1fr; }
+  .ch-theme__rules { grid-template-columns: 1fr; }
+  .ch-theme__sidebar { flex-direction: row; flex-wrap: wrap; }
+  .ch-info-block { flex: 1; min-width: 140px; }
+}
