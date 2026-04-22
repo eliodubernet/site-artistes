@@ -125,3 +125,107 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 .ch-page > * { position: relative; z-index: 1; }
+
+/* ----- Navigation --------------------------------------- */
+.ch-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10,22,40,0.85);
+  border-bottom: 1px solid var(--ch-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ch-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: var(--ch-max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.ch-nav__logo {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+}
+
+.ch-nav__links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.ch-nav__links a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ch-accent);
+  letter-spacing: 0.5px;
+  transition: color var(--ch-trans);
+  position: relative;
+}
+
+.ch-nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0; right: 0;
+  height: 1px;
+  background: var(--ch-gradient);
+  transform: scaleX(0);
+  transition: transform var(--ch-trans);
+}
+
+.ch-nav__links a:hover::after,
+.ch-nav__links a.active::after { transform: scaleX(1); }
+
+.ch-nav__links a.active {
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ch-nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 28px;
+  padding: 4px;
+}
+
+.ch-nav__burger span {
+  display: block;
+  height: 2px;
+  background: var(--ch-gold-2);
+  transition: transform var(--ch-trans), opacity var(--ch-trans);
+}
+
+/* Mobile drawer */
+.ch-nav.nav-open .ch-nav__links {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(10,22,40,0.97);
+  padding: 24px;
+  gap: 20px;
+  border-bottom: 1px solid var(--ch-border);
+}
+
+@media (max-width: 768px) {
+  .ch-nav__links { display: none; }
+  .ch-nav__burger { display: flex; }
+}
