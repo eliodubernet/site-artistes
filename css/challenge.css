@@ -55,7 +55,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 }
 
 @media (forced-colors: active) {
-  .ch-display {
+  .ch-display,
+  .ch-info-block__value {
     -webkit-text-fill-color: unset;
     background: none;
     color: CanvasText;
@@ -447,6 +448,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   gap: 32px;
   align-items: start;
 }
+
+.ch-theme__grid > .ice-block { padding: 40px; }
 
 .ch-theme__label {
   font-size: 0.75rem;
