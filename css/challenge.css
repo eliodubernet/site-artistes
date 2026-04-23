@@ -56,11 +56,17 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 @media (forced-colors: active) {
   .ch-display,
-  .ch-info-block__value {
+  .ch-info-block__value,
+  .ch-criteria__icon,
+  .ch-criteria__name,
+  .ch-criteria__badge,
+  .ch-gallery__artwork,
+  .ch-reward-card__title {
     -webkit-text-fill-color: unset;
     background: none;
     color: CanvasText;
   }
+  .ch-criteria__badge { clip-path: none; }
 }
 
 .ch-accent-text { color: var(--ch-accent); }
@@ -880,4 +886,20 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-size: 0.85rem;
   color: rgba(122,184,255,0.5);
   font-style: italic;
+}
+.ch-footer a { color: var(--ch-gold-3); }
+
+@media (hover: none) {
+  .ch-gallery__overlay {
+    opacity: 1;
+    background: rgba(10,22,40,0.6);
+  }
+}
+
+/* ----- Focus outlines (clipped elements) ---------------- */
+.ch-btn-primary:focus-visible,
+.ch-btn-secondary:focus-visible,
+.ch-gallery__vote:focus-visible {
+  outline: 2px solid var(--ch-gold-1);
+  outline-offset: -3px;
 }
