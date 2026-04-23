@@ -532,3 +532,86 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   .ch-theme__sidebar { flex-direction: row; flex-wrap: wrap; }
   .ch-info-block { flex: 1; min-width: 140px; }
 }
+
+/* ----- Criteria Grid ------------------------------------ */
+.ch-criteria__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.ch-criteria__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ch-accent);
+  margin-bottom: 12px;
+}
+
+.ch-criteria__title { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+
+.ch-criteria__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.ch-criteria__card {
+  padding: 28px 20px;
+  text-align: center;
+  transition: transform 0.25s ease;
+  position: relative;
+}
+
+.ch-criteria__card:hover { transform: translateY(-4px); }
+
+.ch-criteria__icon {
+  font-size: 2rem;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.ch-criteria__name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.75rem;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.ch-criteria__desc {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ch-accent);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.ch-criteria__badge {
+  display: inline-block;
+  padding: 4px 12px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--ch-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  border: 1px solid var(--ch-border-gold);
+  clip-path: polygon(6px 0%, calc(100% - 6px) 0%, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0% calc(100% - 6px), 0% 6px);
+}
+
+@media (max-width: 900px) {
+  .ch-criteria__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .ch-criteria__grid { grid-template-columns: 1fr; }
+}
