@@ -795,3 +795,89 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 @media (max-width: 768px) {
   .ch-rewards__grid { grid-template-columns: 1fr; }
 }
+
+/* ----- CTA ---------------------------------------------- */
+.ch-cta {
+  background: rgba(10,20,50,0.3);
+  text-align: center;
+}
+
+.ch-cta__card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 40px;
+}
+
+.ch-cta__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ch-accent);
+  margin-bottom: 16px;
+}
+
+.ch-cta__title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: 16px;
+}
+
+.ch-cta__sub {
+  font-style: italic;
+  color: var(--ch-accent);
+  margin-bottom: 36px;
+  font-size: 1.05rem;
+}
+
+.ch-cta__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.ch-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--ch-gold-2), var(--ch-gold-3), var(--ch-gold-4));
+  color: #0d1628;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  transition: opacity var(--ch-trans), transform var(--ch-trans);
+}
+
+.ch-btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+
+.ch-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 32px;
+  border: 1px solid var(--ch-border-gold);
+  color: var(--ch-gold-2);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  clip-path: polygon(10px 0%, calc(100% - 10px) 0%, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0% calc(100% - 10px), 0% 10px);
+  transition: background var(--ch-trans), transform var(--ch-trans);
+}
+
+.ch-btn-secondary:hover { background: rgba(240,165,0,0.1); transform: translateY(-2px); }
+
+/* Footer */
+.ch-footer {
+  border-top: 1px solid var(--ch-border);
+  padding: 32px 0;
+  text-align: center;
+}
+
+.ch-footer p {
+  font-size: 0.85rem;
+  color: rgba(122,184,255,0.5);
+  font-style: italic;
+}
