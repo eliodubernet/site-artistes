@@ -401,9 +401,11 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Soumission finale ── */
   document.getElementById('inscriptionForm').addEventListener('submit', async e => {
     e.preventDefault();
-    if (!validateStep(3)) return;
+    console.log('[submit] handler déclenché');
+    if (!validateStep(3)) { console.log('[submit] bloqué par validateStep(3)'); return; }
     const cgu = document.getElementById('cgu');
     if (!cgu.checked) {
+      console.log('[submit] bloqué : CGU non cochée');
       document.getElementById('cgu-error').style.display = 'block';
       return;
     }
