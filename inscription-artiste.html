@@ -238,7 +238,7 @@
             <div class="confirm-icon" style="animation:pulse 2s ease-in-out infinite">✓</div>
             <h2>Profil créé !</h2>
             <p>Votre profil artiste a été enregistré avec succès.</p>
-            <p id="sendWarning" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(255,200,0,.1);border:1px solid rgba(255,200,0,.3);font-size:.85rem;color:var(--text-mid)">
+            <p id="sendWarning" role="alert" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(255,200,0,.1);border:1px solid rgba(255,200,0,.3);font-size:.85rem;color:var(--text-mid)">
               ⚠️ Envoi en attente — si vous ne recevez pas de confirmation, contactez-nous.
             </p>
             <p style="margin-top:12px"><strong style="color:var(--gold)">Il sera visible dans quelques instants</strong> sur la page Artistes.</p>
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── Soumission finale ── */
-  document.getElementById('inscriptionForm').addEventListener('submit', e => {
+  document.getElementById('inscriptionForm').addEventListener('submit', async e => {
     e.preventDefault();
     if (!validateStep(3)) return;
     const cgu = document.getElementById('cgu');
@@ -426,6 +426,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     localStorage.setItem('artcanvas_profil', JSON.stringify(profil));
 
+    /* Envoi webhook Make */
+    let sendFailed = false;
+    try {
+      await fetch('https://hook.eu1.make.com/fze48mahni8qp4qtcfat82xwvxw2blp6', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profil)
+      });
+    } catch {
+      sendFailed = true;
+    }
+
     /* Récap confirmation */
     const recap = document.getElementById('confirmRecap');
     if (recap) {
@@ -437,6 +449,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ${profil.shopify ? `<li><strong>Shopify :</strong> ${profil.shopify}</li>` : ''}
       `;
     }
+
+    const warning = document.getElementById('sendWarning');
+    if (warning) warning.style.display = sendFailed ? 'block' : 'none';
+
     showStep(4);
   });
 
