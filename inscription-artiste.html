@@ -426,14 +426,18 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     localStorage.setItem('artcanvas_profil', JSON.stringify(profil));
 
+    const submitBtn = document.getElementById('submitBtn');
+    if (submitBtn) submitBtn.disabled = true;
+
     /* Envoi webhook Make */
     let sendFailed = false;
     try {
-      await fetch('https://hook.eu1.make.com/fze48mahni8qp4qtcfat82xwvxw2blp6', {
+      const res = await fetch('https://hook.eu1.make.com/fze48mahni8qp4qtcfat82xwvxw2blp6', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(profil)
       });
+      if (!res.ok) sendFailed = true;
     } catch {
       sendFailed = true;
     }
