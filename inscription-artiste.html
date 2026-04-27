@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription artiste — ArtCanvas</title>
+  <meta name="description" content="Créez votre profil artiste complet sur ArtCanvas : informations, portfolio, personnalisation et liens.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Onboarding artiste</div>
+    <h1>Créez votre profil</h1>
+    <p>Configurez votre espace personnel en 3 étapes · Visible immédiatement</p>
+    <div style="display:flex;justify-content:center;gap:28px;margin-top:20px;flex-wrap:wrap;">
+      <span style="font-size:.85rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Gratuit</span>
+      <span style="font-size:.85rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Page personnalisée</span>
+      <span style="font-size:.85rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Lien Shopify intégré</span>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="section">
+  <div class="container">
+    <div class="form-wrapper">
+
+      <!-- Progression -->
+      <div class="form-progress" id="formProgress">
+        <div class="form-progress__step active" id="step-dot-1">
+          <div class="form-progress__dot">1</div>
+          <div class="form-progress__label">Infos de base</div>
+        </div>
+        <div class="form-progress__line" id="line-1"></div>
+        <div class="form-progress__step" id="step-dot-2">
+          <div class="form-progress__dot">2</div>
+          <div class="form-progress__label">Portfolio & style</div>
+        </div>
+        <div class="form-progress__line" id="line-2"></div>
+        <div class="form-progress__step" id="step-dot-3">
+          <div class="form-progress__dot">3</div>
+          <div class="form-progress__label">Liens & aperçu</div>
+        </div>
+      </div>
+
+      <form id="inscriptionForm" novalidate>
+
+        <!-- ══ ÉTAPE 1 — Infos de base ══════════════════════ -->
+        <div class="form-step active" id="step1">
+          <h2 style="margin-bottom:8px;font-size:1.5rem">Vos informations de base</h2>
+          <p style="margin-bottom:28px;font-size:.9rem">Ces données constituent votre fiche publique.</p>
+
+          <div class="form-row">
+            <div class="form-group" id="fg-prenom">
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Elena" required>
+              <div class="form-error">Champ requis.</div>
+            </div>
+            <div class="form-group" id="fg-nom">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" placeholder="Marcov" required>
+              <div class="form-error">Champ requis.</div>
+            </div>
+          </div>
+
+          <div class="form-group" id="fg-email">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+            <div class="form-error">E-mail invalide.</div>
+          </div>
+
+          <div class="form-group" id="fg-tel">
+            <label for="tel">Téléphone (affiché sur votre profil) *</label>
+            <input type="tel" id="tel" name="tel" placeholder="+33 6 12 34 56 78" required>
+            <div class="form-error">Champ requis.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group" id="fg-ville">
+              <label for="ville">Ville *</label>
+              <input type="text" id="ville" name="ville" placeholder="Paris" required>
+              <div class="form-error">Champ requis.</div>
+            </div>
+            <div class="form-group" id="fg-specialite">
+              <label for="specialite">Spécialité *</label>
+              <select id="specialite" name="specialite" required>
+                <option value="">-- Choisissez --</option>
+                <option value="Peintre">Peintre</option>
+                <option value="Photographe">Photographe</option>
+                <option value="Sculpteur">Sculpteur</option>
+                <option value="Illustrateur">Illustrateur / Illustratrice</option>
+                <option value="Artiste digital">Artiste digital</option>
+                <option value="Impressions florales">Impressions florales</option>
+                <option value="Objets personnalisables">Objets personnalisables</option>
+                <option value="Autre">Autre</option>
+              </select>
+              <div class="form-error">Champ requis.</div>
+            </div>
+          </div>
+
+          <div class="form-nav">
+            <span></span>
+            <button type="button" class="btn-primary" id="next1">Étape suivante →</button>
+          </div>
+        </div>
+
+        <!-- ══ ÉTAPE 2 — Portfolio & personnalisation ════════ -->
+        <div class="form-step" id="step2">
+          <h2 style="margin-bottom:8px;font-size:1.5rem">Portfolio & personnalisation</h2>
+          <p style="margin-bottom:28px;font-size:.9rem">Donnez un visage à votre espace.</p>
+
+          <!-- Upload photos portfolio -->
+          <div class="form-group">
+            <label>Photos de vos œuvres (optionnel)</label>
+            <div class="upload-zone">
+              <input type="file" id="portfolio" name="portfolio" accept="image/*" multiple>
+              <div class="upload-zone__icon">🖼️</div>
+              <div class="upload-zone__label">Glissez vos photos ici ou cliquez pour sélectionner</div>
+              <div class="upload-zone__sub">JPG, PNG, WebP · max 5 Mo par fichier</div>
+            </div>
+            <div id="portfolioPreview" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;"></div>
+          </div>
+
+          <!-- Bio longue -->
+          <div class="form-group" id="fg-bio">
+            <label for="bio">Biographie détaillée *</label>
+            <textarea id="bio" name="bio" rows="5" placeholder="Parlez de votre parcours, vos influences, votre technique…" required></textarea>
+            <div class="form-error">Champ requis.</div>
+          </div>
+
+          <!-- Couleur dominante -->
+          <div class="form-group">
+            <label>Couleur dominante de votre page *</label>
+            <p style="font-size:.82rem;color:var(--text-dim);margin-bottom:8px">Elle sera utilisée pour votre bannière et vos boutons.</p>
+            <div class="color-picker-row" id="colorPicker">
+              <div class="color-swatch active" data-color="#c9a84c" style="background:#c9a84c" title="Or"></div>
+              <div class="color-swatch" data-color="#8b2fc9" style="background:#8b2fc9" title="Violet"></div>
+              <div class="color-swatch" data-color="#2dd4bf" style="background:#2dd4bf" title="Teal"></div>
+              <div class="color-swatch" data-color="#60a5fa" style="background:#60a5fa" title="Bleu"></div>
+              <div class="color-swatch" data-color="#34d399" style="background:#34d399" title="Vert"></div>
+              <div class="color-swatch" data-color="#f87171" style="background:#f87171" title="Rouge"></div>
+              <div class="color-swatch" data-color="#f59e0b" style="background:#f59e0b" title="Ambre"></div>
+              <div class="color-swatch" data-color="#a78bfa" style="background:#a78bfa" title="Lavande"></div>
+            </div>
+            <input type="hidden" id="couleurDominante" name="couleurDominante" value="#c9a84c">
+          </div>
+
+          <!-- Aperçu live -->
+          <div class="preview-card">
+            <h4>Aperçu de votre profil</h4>
+            <div class="preview-banner" id="previewBanner" style="background:linear-gradient(135deg,#c9a84c33,#c9a84c08)"></div>
+            <div class="preview-name" id="previewName">Votre Nom</div>
+            <div class="preview-sub" id="previewSub">Votre spécialité · Votre ville</div>
+          </div>
+
+          <div class="form-nav">
+            <button type="button" class="btn-secondary" id="prev2">← Retour</button>
+            <button type="button" class="btn-primary"   id="next2">Étape suivante →</button>
+          </div>
+        </div>
+
+        <!-- ══ ÉTAPE 3 — Liens + prévisualisation ═══════════ -->
+        <div class="form-step" id="step3">
+          <h2 style="margin-bottom:8px;font-size:1.5rem">Liens & finalisation</h2>
+          <p style="margin-bottom:28px;font-size:.9rem">Connectez vos réseaux et prévisualisez votre page.</p>
+
+          <div class="form-group">
+            <label for="instagram">Instagram (optionnel)</label>
+            <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/votre_compte">
+          </div>
+
+          <div class="form-group" id="fg-emailPublic">
+            <label for="emailPublic">E-mail public affiché sur votre profil *</label>
+            <input type="email" id="emailPublic" name="emailPublic" placeholder="contact@votre-site.com" required>
+            <div class="form-error">E-mail invalide.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="shopify">URL Shopify (si vous avez une boutique)</label>
+            <input type="url" id="shopify" name="shopify" placeholder="https://votreboutique.myshopify.com">
+            <div style="font-size:.78rem;color:var(--text-dim);margin-top:4px">
+              Si renseigné, un bouton "Acheter sur Shopify" apparaîtra sur vos œuvres.
+            </div>
+          </div>
+
+          <!-- Prévisualisation complète -->
+          <div class="preview-card" style="margin-bottom:24px">
+            <h4>Prévisualisation de votre page publique</h4>
+            <div id="fullPreview" style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+              <!-- Bandeau -->
+              <div id="prevBanner2" style="height:60px;"></div>
+              <!-- Infos -->
+              <div style="padding:16px;background:var(--bg2)">
+                <div id="prevName2" style="font-family:Georgia,serif;font-size:1.1rem;color:var(--text)">Votre Nom</div>
+                <div id="prevSub2" style="font-size:.8rem;color:var(--text-dim);margin-bottom:8px">Spécialité · Ville</div>
+                <div id="prevBio2" style="font-size:.82rem;color:var(--text-mid);margin-bottom:12px">Votre biographie apparaîtra ici…</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <div id="prevBtn" style="display:inline-flex;align-items:center;padding:8px 16px;border-radius:50px;font-size:.8rem;font-weight:700;color:#0d0d0d;background:#c9a84c">Contactez-moi</div>
+                  <div id="prevShopifyBtn" style="display:none;align-items:center;padding:7px 15px;border-radius:50px;font-size:.8rem;color:var(--gold);border:1.5px solid var(--gold)">Boutique Shopify ↗</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-checkbox">
+            <input type="checkbox" id="cgu" name="cgu" required>
+            <label for="cgu">J'accepte les <a href="#">conditions d'utilisation</a> d'ArtCanvas et autorise la publication de mon profil.</label>
+          </div>
+          <div class="form-error" id="cgu-error" style="display:none;margin-top:4px">Veuillez accepter les conditions.</div>
+
+          <div class="form-nav" style="margin-top:28px">
+            <button type="button" class="btn-secondary" id="prev3">← Retour</button>
+            <button type="submit" class="btn-primary" id="submitBtn">Créer mon profil ✓</button>
+          </div>
+        </div>
+
+        <!-- ══ CONFIRMATION ═══════════════════════════════════ -->
+        <div class="form-step" id="stepConfirm">
+          <div class="confirm-box">
+            <div class="confirm-icon" style="animation:pulse 2s ease-in-out infinite">✓</div>
+            <h2>Profil créé !</h2>
+            <p>Votre profil artiste a été enregistré avec succès.</p>
+            <p id="sendWarning" style="display:none;margin-top:12px;padding:10px 14px;border-radius:8px;background:rgba(255,200,0,.1);border:1px solid rgba(255,200,0,.3);font-size:.85rem;color:var(--text-mid)">
+              ⚠️ Envoi en attente — si vous ne recevez pas de confirmation, contactez-nous.
+            </p>
+            <p style="margin-top:12px"><strong style="color:var(--gold)">Il sera visible dans quelques instants</strong> sur la page Artistes.</p>
+            <ul class="confirm-recap" id="confirmRecap"></ul>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap">
+              <a href="artistes.html" class="btn-primary">Voir mon profil</a>
+              <a href="index.html" class="btn-secondary">Retour à l'accueil</a>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Navigation multi-étapes ── */
+  let currentStep = 1;
+  const totalSteps = 3;
+
+  function showStep(n) {
+    for (let i = 1; i <= totalSteps + 1; i++) {
+      const id  = i === totalSteps + 1 ? 'stepConfirm' : 'step' + i;
+      const el  = document.getElementById(id);
+      if (el) el.classList.toggle('active', i === n);
+    }
+    for (let i = 1; i <= totalSteps; i++) {
+      const dot = document.getElementById('step-dot-' + i);
+      if (!dot) continue;
+      dot.classList.remove('active', 'done');
+      if (i < n)  dot.classList.add('done');
+      if (i === n) dot.classList.add('active');
+    }
+    for (let i = 1; i < totalSteps; i++) {
+      const line = document.getElementById('line-' + i);
+      if (line) line.classList.toggle('done', i < n);
+    }
+    currentStep = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep(n) {
+    const required = {
+      1: ['fg-prenom','fg-nom','fg-email','fg-tel','fg-ville','fg-specialite'],
+      2: ['fg-bio'],
+      3: ['fg-emailPublic']
+    };
+    let valid = true;
+    (required[n] || []).forEach(id => {
+      const g = document.getElementById(id);
+      if (!g) return;
+      const inp = g.querySelector('input,select,textarea');
+      if (!inp) return;
+      const empty   = !inp.value.trim();
+      const badMail = inp.type === 'email' && inp.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inp.value);
+      const invalid = empty || badMail;
+      g.classList.toggle('has-error', invalid);
+      if (invalid) valid = false;
+    });
+    return valid;
+  }
+
+  /* Supprime l'erreur à la saisie */
+  document.querySelectorAll('input,select,textarea').forEach(inp => {
+    inp.addEventListener('input', () => inp.closest('.form-group')?.classList.remove('has-error'));
+  });
+
+  document.getElementById('next1').addEventListener('click', () => { if (validateStep(1)) showStep(2); });
+  document.getElementById('next2').addEventListener('click', () => { if (validateStep(2)) showStep(3); });
+  document.getElementById('prev2').addEventListener('click', () => showStep(1));
+  document.getElementById('prev3').addEventListener('click', () => showStep(2));
+
+  /* ── Sélection couleur dominante ── */
+  let couleurChoisie = '#c9a84c';
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      sw.classList.add('active');
+      couleurChoisie = sw.dataset.color;
+      document.getElementById('couleurDominante').value = couleurChoisie;
+      updatePreview();
+    });
+  });
+
+  /* ── Aperçu live ── */
+  function updatePreview() {
+    const prenom    = document.getElementById('prenom')?.value  || '';
+    const nom       = document.getElementById('nom')?.value     || '';
+    const ville     = document.getElementById('ville')?.value   || 'Ville';
+    const spec      = document.getElementById('specialite')?.value || 'Spécialité';
+    const bio       = document.getElementById('bio')?.value     || '';
+    const shopifyV  = document.getElementById('shopify')?.value || '';
+    const c         = couleurChoisie;
+    const bannerBg  = `linear-gradient(135deg,${c}44,${c}11)`;
+
+    /* Étape 2 — aperçu compact */
+    const banner = document.getElementById('previewBanner');
+    if (banner) banner.style.background = bannerBg;
+    const pName = document.getElementById('previewName');
+    if (pName) pName.textContent = (prenom + ' ' + nom).trim() || 'Votre Nom';
+    const pSub = document.getElementById('previewSub');
+    if (pSub) pSub.textContent = `${spec} · ${ville}`;
+
+    /* Étape 3 — aperçu complet */
+    const b2 = document.getElementById('prevBanner2');
+    if (b2) b2.style.background = bannerBg;
+    const n2 = document.getElementById('prevName2');
+    if (n2) n2.textContent = (prenom + ' ' + nom).trim() || 'Votre Nom';
+    const s2 = document.getElementById('prevSub2');
+    if (s2) s2.textContent = `${spec} · ${ville}`;
+    const bio2 = document.getElementById('prevBio2');
+    if (bio2) bio2.textContent = bio || 'Votre biographie apparaîtra ici…';
+    const btn = document.getElementById('prevBtn');
+    if (btn) btn.style.background = c;
+    const shopifyBtn = document.getElementById('prevShopifyBtn');
+    if (shopifyBtn) {
+      shopifyBtn.style.display = shopifyV ? 'inline-flex' : 'none';
+      shopifyBtn.style.color   = c;
+      shopifyBtn.style.borderColor = c;
+    }
+  }
+
+  /* Écoute les champs pour l'aperçu live */
+  ['prenom','nom','ville','specialite','bio','shopify'].forEach(id => {
+    document.getElementById(id)?.addEventListener('input', updatePreview);
+  });
+
+  /* ── Preview photos portfolio ── */
+  document.getElementById('portfolio')?.addEventListener('change', function() {
+    const container = document.getElementById('portfolioPreview');
+    container.innerHTML = '';
+    Array.from(this.files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid var(--border)';
+        container.appendChild(img);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+
+  /* ── Soumission finale ── */
+  document.getElementById('inscriptionForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validateStep(3)) return;
+    const cgu = document.getElementById('cgu');
+    if (!cgu.checked) {
+      document.getElementById('cgu-error').style.display = 'block';
+      return;
+    }
+    document.getElementById('cgu-error').style.display = 'none';
+
+    /* Sauvegarde dans localStorage */
+    const profil = {
+      prenom:    document.getElementById('prenom').value,
+      nom:       document.getElementById('nom').value,
+      email:     document.getElementById('email').value,
+      tel:       document.getElementById('tel').value,
+      ville:     document.getElementById('ville').value,
+      specialite:document.getElementById('specialite').value,
+      bio:       document.getElementById('bio').value,
+      couleur:   couleurChoisie,
+      instagram: document.getElementById('instagram').value,
+      emailPublic:document.getElementById('emailPublic').value,
+      shopify:   document.getElementById('shopify').value,
+      createdAt: new Date().toISOString()
+    };
+    localStorage.setItem('artcanvas_profil', JSON.stringify(profil));
+
+    /* Récap confirmation */
+    const recap = document.getElementById('confirmRecap');
+    if (recap) {
+      recap.innerHTML = `
+        <li><strong>Nom :</strong> ${profil.prenom} ${profil.nom}</li>
+        <li><strong>Spécialité :</strong> ${profil.specialite}</li>
+        <li><strong>Ville :</strong> ${profil.ville}</li>
+        <li><strong>E-mail :</strong> ${profil.emailPublic}</li>
+        ${profil.shopify ? `<li><strong>Shopify :</strong> ${profil.shopify}</li>` : ''}
+      `;
+    }
+    showStep(4);
+  });
+
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  if (burger && navLinks) burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+});
+</script>
+</body>
+</html>
