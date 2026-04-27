@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>S'inscrire — ArtCanvas</title>
+  <meta name="description" content="Rejoignez ArtCanvas en tant qu'artiste ou acheteur.">
+  <link rel="canonical" href="https://artcanvas.fr/choisir.html">
+  <meta property="og:site_name" content="ArtCanvas">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="S'inscrire — ArtCanvas">
+  <meta property="og:description" content="Rejoignez ArtCanvas en tant qu'artiste ou acheteur.">
+  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    @media (max-width: 640px) {
+      .choice-grid { grid-template-columns: 1fr; }
+    }
+    .choice-card {
+      background: var(--card-bg, rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 20px;
+      padding: 48px 36px;
+      text-align: center;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .choice-card:hover {
+      border-color: var(--gold, #c9a227);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,.3);
+    }
+    .choice-card__icon {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .choice-card__title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main, #fff);
+      margin: 0;
+    }
+    .choice-card__desc {
+      font-size: .9rem;
+      color: var(--text-mid, rgba(255,255,255,.6));
+      line-height: 1.6;
+      margin: 0;
+    }
+    .choice-card__perks {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      text-align: left;
+      width: 100%;
+    }
+    .choice-card__perks li {
+      font-size: .85rem;
+      color: var(--text-mid, rgba(255,255,255,.6));
+      padding: 4px 0;
+    }
+    .choice-card__perks li::before {
+      content: "✓";
+      color: var(--gold, #c9a227);
+      margin-right: 8px;
+    }
+    .choice-card__btn {
+      margin-top: 8px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Inscription</div>
+    <h1>Comment souhaitez-vous<br>rejoindre ArtCanvas ?</h1>
+    <p>Choisissez votre profil pour accéder au formulaire adapté</p>
+  </div>
+</section>
+
+<!-- CHOIX -->
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="choice-grid">
+
+      <!-- Artiste -->
+      <a href="inscription-artiste.html" class="choice-card">
+        <div class="choice-card__icon">🎨</div>
+        <h2 class="choice-card__title">Je veux vendre<br>mes œuvres</h2>
+        <p class="choice-card__desc">Créez votre profil artiste, publiez vos créations et connectez-vous avec des acheteurs passionnés.</p>
+        <ul class="choice-card__perks">
+          <li>Profil public personnalisé</li>
+          <li>Galerie illimitée</li>
+          <li>10% de commission sur les ventes</li>
+          <li>Accès à la communauté</li>
+        </ul>
+        <span class="btn-primary choice-card__btn" style="display:inline-flex;justify-content:center;">Créer mon profil artiste →</span>
+      </a>
+
+      <!-- Acheteur -->
+      <a href="inscription.html" class="choice-card">
+        <div class="choice-card__icon">🖼️</div>
+        <h2 class="choice-card__title">Je veux découvrir<br>et acheter</h2>
+        <p class="choice-card__desc">Explorez des œuvres uniques, suivez vos artistes favoris et trouvez la pièce qui vous inspire.</p>
+        <ul class="choice-card__perks">
+          <li>Accès gratuit à la galerie</li>
+          <li>Favoris &amp; alertes nouveautés</li>
+          <li>Inscription en 30 secondes</li>
+          <li>Aucun engagement</li>
+        </ul>
+        <span class="btn-secondary choice-card__btn" style="display:inline-flex;justify-content:center;">Créer mon compte →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="inscription-artiste.html">Profil artiste</a></li><li><a href="#">Commission 10%</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
