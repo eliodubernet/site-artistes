@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Rejoindre ArtCanvas — Exposez votre art sur notre plateforme</title>
+  <meta name="description" content="Créez votre profil artiste sur ArtCanvas. Publiez vos œuvres, vendez-les et connectez-vous avec une communauté de créateurs passionnés.">
+  <link rel="canonical" href="https://artcanvas.fr/rejoindre.html">
+  <meta property="og:site_name" content="ArtCanvas">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rejoindre ArtCanvas">
+  <meta property="og:description" content="Créez votre profil artiste et exposez vos œuvres sur ArtCanvas.">
+  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Inscription</div>
+    <h1>Rejoindre ArtCanvas</h1>
+    <p>Gratuit · <strong style="color:var(--gold)">10% de commission sur les ventes seulement</strong></p>
+    <!-- Arguments -->
+    <div style="display:flex;justify-content:center;gap:32px;margin-top:28px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Profil visible immédiatement</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Galerie personnelle illimitée</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:.9rem;color:var(--text-mid)"><span style="color:var(--gold)">✓</span> Accès à la communauté</div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULAIRE -->
+<section class="section">
+  <div class="container">
+    <div class="form-wrapper">
+
+      <!-- Indicateur de progression -->
+      <div class="form-progress" id="formProgress">
+        <div class="form-progress__step active" id="step-dot-1">
+          <div class="form-progress__dot">1</div>
+          <div class="form-progress__label">Identité</div>
+        </div>
+        <div class="form-progress__line" id="line-1"></div>
+        <div class="form-progress__step" id="step-dot-2">
+          <div class="form-progress__dot">2</div>
+          <div class="form-progress__label">Présentation</div>
+        </div>
+        <div class="form-progress__line" id="line-2"></div>
+        <div class="form-progress__step" id="step-dot-3">
+          <div class="form-progress__dot">3</div>
+          <div class="form-progress__label">Premières œuvres</div>
+        </div>
+      </div>
+
+      <form id="joinForm" novalidate>
+
+        <!-- ÉTAPE 1 — Identité -->
+        <div class="form-step active" id="step1">
+          <h2 style="margin-bottom:8px;font-size:1.5rem;">Votre identité</h2>
+          <p style="margin-bottom:28px;font-size:.9rem;">Ces informations apparaîtront sur votre profil public.</p>
+
+          <div class="form-row">
+            <div class="form-group" id="fg-prenom">
+              <label for="prenom">Prénom *</label>
+              <input type="text" id="prenom" name="prenom" placeholder="ex : Elena" required>
+              <div class="form-error">Veuillez saisir votre prénom.</div>
+            </div>
+            <div class="form-group" id="fg-nom">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" placeholder="ex : Marcov" required>
+              <div class="form-error">Veuillez saisir votre nom.</div>
+            </div>
+          </div>
+          <div class="form-group" id="fg-email">
+            <label for="email">Adresse e-mail *</label>
+            <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+            <div class="form-error">Veuillez saisir une adresse e-mail valide.</div>
+          </div>
+          <div class="form-group" id="fg-ville">
+            <label for="ville">Ville *</label>
+            <input type="text" id="ville" name="ville" placeholder="Paris, Bruxelles, Tokyo…" required>
+            <div class="form-error">Veuillez indiquer votre ville.</div>
+          </div>
+          <div class="form-group" id="fg-discipline">
+            <label for="discipline">Discipline principale *</label>
+            <select id="discipline" name="discipline" required>
+              <option value="">-- Choisissez --</option>
+              <option value="peinture">Peinture</option>
+              <option value="photographie">Photographie</option>
+              <option value="sculpture">Sculpture</option>
+              <option value="illustration">Illustration</option>
+              <option value="digital">Art digital</option>
+              <option value="autre">Autre</option>
+            </select>
+            <div class="form-error">Veuillez sélectionner votre discipline.</div>
+          </div>
+          <div class="form-nav">
+            <span></span>
+            <button type="button" class="btn-primary" id="next1">Étape suivante →</button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 2 — Présentation -->
+        <div class="form-step" id="step2">
+          <h2 style="margin-bottom:8px;font-size:1.5rem;">Votre présentation</h2>
+          <p style="margin-bottom:28px;font-size:.9rem;">Parlez aux acheteurs et aux artistes de qui vous êtes.</p>
+
+          <div class="form-group" id="fg-bio">
+            <label for="bio">Biographie *</label>
+            <textarea id="bio" name="bio" rows="4" placeholder="Qui êtes-vous ? Qu'est-ce qui vous a amené à l'art ? Quelles sont vos influences ?" required></textarea>
+            <div class="form-error">Veuillez écrire une courte biographie.</div>
+          </div>
+          <div class="form-group" id="fg-site">
+            <label for="site">Site web ou Instagram (optionnel)</label>
+            <input type="url" id="site" name="site" placeholder="https://monsite.com ou @moncompte">
+          </div>
+          <div class="form-group" id="fg-style">
+            <label for="style">Style artistique *</label>
+            <textarea id="style" name="style" rows="3" placeholder="Comment décririez-vous votre style ? Abstrait, réaliste, surréaliste, minimaliste…" required></textarea>
+            <div class="form-error">Veuillez décrire votre style artistique.</div>
+          </div>
+          <div class="form-group" id="fg-motivation">
+            <label for="motivation">Pourquoi rejoindre ArtCanvas ? *</label>
+            <textarea id="motivation" name="motivation" rows="3" placeholder="Vendre vos œuvres, rencontrer d'autres artistes, exposer votre travail…" required></textarea>
+            <div class="form-error">Veuillez indiquer votre motivation.</div>
+          </div>
+          <div class="form-nav">
+            <button type="button" class="btn-secondary" id="prev2">← Retour</button>
+            <button type="button" class="btn-primary"   id="next2">Étape suivante →</button>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 3 — Premières œuvres -->
+        <div class="form-step" id="step3">
+          <h2 style="margin-bottom:8px;font-size:1.5rem;">Vos premières œuvres</h2>
+          <p style="margin-bottom:28px;font-size:.9rem;">Donnez-nous un aperçu de ce que vous souhaitez exposer.</p>
+
+          <div class="form-group" id="fg-oeuvre1">
+            <label for="oeuvre1">Titre de votre première œuvre *</label>
+            <input type="text" id="oeuvre1" name="oeuvre1" placeholder="ex : Spirales cosmiques" required>
+            <div class="form-error">Veuillez indiquer le titre de votre première œuvre.</div>
+          </div>
+          <div class="form-group" id="fg-oeuvre2">
+            <label for="oeuvre2">Titre de votre deuxième œuvre (optionnel)</label>
+            <input type="text" id="oeuvre2" name="oeuvre2" placeholder="ex : Nuit dorée">
+          </div>
+          <div class="form-row">
+            <div class="form-group" id="fg-prix">
+              <label for="prix">Prix indicatif (€) *</label>
+              <input type="number" id="prix" name="prix" placeholder="350" min="1" required>
+              <div class="form-error">Veuillez indiquer un prix.</div>
+            </div>
+            <div class="form-group">
+              <label for="fichier">Fichier (optionnel)</label>
+              <input type="file" id="fichier" name="fichier" accept="image/*" style="padding:9px 12px;">
+            </div>
+          </div>
+          <div class="form-group" id="fg-desc-oeuvre">
+            <label for="descOeuvre">Description de l'œuvre *</label>
+            <textarea id="descOeuvre" name="descOeuvre" rows="3" placeholder="Technique, dimensions, matériaux, inspiration…" required></textarea>
+            <div class="form-error">Veuillez décrire votre œuvre.</div>
+          </div>
+          <div class="form-group">
+            <div class="form-checkbox" id="fg-cgu">
+              <input type="checkbox" id="cgu" name="cgu" required>
+              <label for="cgu">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a> d'ArtCanvas.</label>
+            </div>
+            <div class="form-error" id="cgu-error" style="display:none">Vous devez accepter les conditions d'utilisation.</div>
+          </div>
+          <div class="form-nav">
+            <button type="button" class="btn-secondary" id="prev3">← Retour</button>
+            <button type="submit" class="btn-primary">Envoyer ma candidature ✓</button>
+          </div>
+        </div>
+
+        <!-- CONFIRMATION -->
+        <div class="form-step" id="stepConfirm">
+          <div class="confirm-box">
+            <div class="confirm-icon" style="animation:pulse 2s ease-in-out infinite">✓</div>
+            <h2>Candidature envoyée !</h2>
+            <p>Merci pour votre intérêt. Nous examinons chaque candidature avec attention.</p>
+            <p style="margin-top:12px"><strong style="color:var(--gold)">Nous vous contacterons sous 48h</strong> à l'adresse e-mail indiquée.</p>
+            <ul class="confirm-recap" id="confirmRecap"></ul>
+            <a href="index.html" class="btn-primary" style="margin-top:28px;display:inline-flex">Retour à l'accueil</a>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

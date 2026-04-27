@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Artistes — ArtCanvas | Rencontrez les créateurs de la plateforme</title>
+  <meta name="description" content="Découvrez les profils des artistes indépendants sur ArtCanvas : peintres, photographes, sculpteurs, illustrateurs et artistes digitaux.">
+  <link rel="canonical" href="https://artcanvas.fr/artistes.html">
+  <meta property="og:site_name" content="ArtCanvas">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Artistes — ArtCanvas">
+  <meta property="og:description" content="Découvrez les profils des artistes indépendants sur ArtCanvas.">
+  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html" class="active">Artistes</a></li>
+      <li><a href="challenge.html">Défi Mensuel</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Artistes</div>
+    <h1>Rencontrez les créateurs</h1>
+    <p>Peintres, photographes, sculpteurs, illustrateurs et artistes digitaux — des talents du monde entier réunis sur ArtCanvas.</p>
+  </div>
+</section>
+
+<!-- ARTISTES -->
+<section class="section">
+  <div class="container">
+    <!-- Filtres -->
+    <div class="filters fade-in" id="artistFilters">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="peintre">Peintre</button>
+      <button class="filter-btn" data-filter="photographe">Photographe</button>
+      <button class="filter-btn" data-filter="sculpteur">Sculpteur</button>
+      <button class="filter-btn" data-filter="illustrateur">Illustrateur</button>
+      <button class="filter-btn" data-filter="digital">Artiste digital</button>
+      <button class="filter-btn" data-filter="floral">Floral</button>
+      <button class="filter-btn" data-filter="custom">Objets custom</button>
+    </div>
+
+    <!-- Grille artistes — les cartes sont générées dynamiquement depuis artistes.js -->
+    <div class="grid grid--4" id="artistsGrid"></div><!-- /grid -->
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container fade-in">
+    <div class="section-tag" style="margin:0 auto 20px;">Vous êtes artiste ?</div>
+    <h2>Rejoignez la communauté ArtCanvas</h2>
+    <p>Créez votre profil, publiez vos œuvres et touchez des acheteurs du monde entier.</p>
+    <div class="cta-band__btns">
+      <a href="rejoindre.html" class="btn-primary">Créer mon profil</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script src="js/artistes.js"></script>
+<script>
+/* ── Génère les cartes artistes depuis ARTISTES[] ── */
+(function() {
+  /* Correspondance discipline → data-category pour les filtres */
+  const disciplineToFilter = {
+    'Peintre':               'peintre',
+    'Photographe':           'photographe',
+    'Sculpteur':             'sculpteur',
+    'Illustrateur':          'illustrateur',
+    'Illustratrice':         'illustrateur',
+    'Artiste digital':       'digital',
+    'Impressions florales':  'floral',
+    'Objets personnalisables':'custom'
+  };
+
+  const grid = document.getElementById('artistsGrid');
+  if (!grid || typeof ARTISTES === 'undefined') return;
+
+  ARTISTES.forEach(a => {
+    const cat = disciplineToFilter[a.discipline] || 'autre';
+    const hasShopify = a.shopify ? `<a href="${a.shopify}" target="_blank" rel="noopener" class="btn-secondary" style="font-size:.75rem;padding:6px 14px;">Shopify ↗</a>` : '';
+
+    /* SVG avatar générique coloré par la couleur dominante de l'artiste */
+    const svg = `<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <rect width="80" height="80" fill="#1a2035"/>
+      <ellipse cx="40" cy="32" rx="15" ry="17" fill="${a.couleur}" opacity=".7"/>
+      <path d="M10 80 Q10 54 40 54 Q70 54 70 80 Z" fill="${a.couleur}" opacity=".5"/>
+    </svg>`;
+
+    const card = document.createElement('div');
+    card.className = 'card artist-card tilt-card grid-item fade-in';
+    card.dataset.category = cat;
+    card.innerHTML = `
+      <div class="artist-card__avatar">${svg}</div>
+      <div class="artist-card__name">${a.nom}</div>
+      <span class="badge ${a.badgeClass} mb-8">${a.discipline}</span>
+      <div class="artist-card__city">📍 ${a.ville}</div>
+      <div class="artist-card__bio">${a.bio}</div>
+      <div class="artist-card__meta">${a.nbOeuvres} œuvres publiées</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+        <a href="artiste.html?slug=${a.slug}" class="btn-secondary" style="font-size:.8rem;padding:8px 18px;">Voir le profil</a>
+        ${hasShopify}
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  /* ── Réinit les filtres (le HTML est maintenant dans le DOM) ── */
+  const filterBtns = document.querySelectorAll('#artistFilters .filter-btn');
+  const items      = grid.querySelectorAll('.grid-item');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      items.forEach(item => item.classList.toggle('hidden', f !== 'all' && item.dataset.category !== f));
+    });
+  });
+
+  /* ── Réinit fade-in pour les nouvelles cartes ── */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  grid.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+})();
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

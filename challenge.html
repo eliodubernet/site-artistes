@@ -3,284 +3,670 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Défi des Artisans — ArtisanForge</title>
-  <meta name="description" content="Le défi mensuel ArtisanForge — Avril 2026 : Le Temps Suspendu. Soumettez votre œuvre et rejoignez la compétition artistique.">
-  <link rel="stylesheet" href="css/challenge.css">
+  <title>Défi Mensuel — ArtCanvas</title>
+  <meta name="description" content="Le défi mensuel ArtCanvas — Avril 2026 : Le Temps Suspendu. Soumettez votre œuvre et disputez-vous le titre de Maître Artisan.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Challenge hero ─────────────────────────────────── */
+    .ch-hero {
+      padding: 80px 0 64px;
+      background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .ch-badge {
+      display: inline-block;
+      padding: 6px 22px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      animation: badge-pulse 2s ease-in-out infinite;
+    }
+    @keyframes badge-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(181,135,44,0); }
+      50%      { box-shadow: 0 0 18px 4px rgba(181,135,44,.2); }
+    }
+    .ch-hero h1 { margin-bottom: 10px; }
+    .ch-hero__sub {
+      font-style: italic;
+      color: var(--text-mid);
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+    .ch-hero__desc { max-width: 560px; margin: 0 auto 40px; }
+
+    /* ── Countdown ──────────────────────────────────────── */
+    .ch-countdown {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .ch-cd-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      min-width: 82px;
+      text-align: center;
+    }
+    .ch-cd-num {
+      font-family: Georgia, serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      display: block;
+    }
+    .ch-cd-label {
+      font-size: .68rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ── Timeline ───────────────────────────────────────── */
+    .ch-timeline { padding: 56px 0 40px; }
+    .ch-timeline__title {
+      text-align: center;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+    }
+    .ch-timeline__track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 0 8px;
+    }
+    .ch-phase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 96px;
+      position: relative;
+    }
+    .ch-phase:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 11px;
+      left: calc(50% + 14px);
+      right: calc(-50% + 14px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--border));
+      z-index: 0;
+    }
+    .ch-dot {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
+    }
+    .ch-phase--past  .ch-dot { background: var(--gold); border-color: var(--gold); opacity: .5; }
+    .ch-phase--active .ch-dot {
+      background: var(--gold);
+      border-color: var(--gold-d);
+      box-shadow: 0 0 0 4px rgba(181,135,44,.2), 0 0 16px rgba(181,135,44,.3);
+      animation: dot-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dot-pulse {
+      0%,100% { box-shadow: 0 0 0 4px rgba(181,135,44,.2), 0 0 12px rgba(181,135,44,.25); }
+      50%      { box-shadow: 0 0 0 8px rgba(181,135,44,.1), 0 0 24px rgba(181,135,44,.4); }
+    }
+    .ch-phase__name { font-size: .78rem; letter-spacing: .04em; text-align: center; color: var(--text-mid); }
+    .ch-phase--past   .ch-phase__name { opacity: .5; }
+    .ch-phase--active .ch-phase__name { color: var(--gold); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      .ch-timeline__track { flex-direction: column; align-items: flex-start; gap: 0; padding: 0 16px; }
+      .ch-phase { flex-direction: row; gap: 14px; min-width: unset; width: 100%; padding: 8px 0; }
+      .ch-phase:not(:last-child)::after {
+        top: calc(50% + 11px); left: 11px; right: unset;
+        width: 2px; height: 100%;
+        background: linear-gradient(180deg, var(--gold), var(--border));
+      }
+    }
+
+    /* ── Theme section ──────────────────────────────────── */
+    .ch-theme-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .ch-theme-grid { grid-template-columns: 1fr; } }
+
+    .ch-rules {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      margin-top: 20px;
+    }
+    .ch-rule {
+      display: flex;
+      gap: 8px;
+      font-size: .88rem;
+      color: var(--text-mid);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ch-rule::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+    @media (max-width: 540px) { .ch-rules { grid-template-columns: 1fr; } }
+
+    .ch-sidebar { display: flex; flex-direction: column; gap: 14px; }
+    @media (max-width: 900px) { .ch-sidebar { flex-direction: row; flex-wrap: wrap; } }
+
+    .ch-info {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      flex: 1;
+      min-width: 120px;
+    }
+    .ch-info__label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .ch-info__value { font-family: Georgia, serif; font-size: 1.15rem; font-weight: 700; color: var(--gold); }
+
+    /* ── Criteria ───────────────────────────────────────── */
+    .ch-criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 1024px) { .ch-criteria-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 580px)  { .ch-criteria-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 380px)  { .ch-criteria-grid { grid-template-columns: 1fr; } }
+
+    .ch-crit-card { padding: 26px 18px; text-align: center; }
+    .ch-crit-icon { font-size: 1.7rem; color: var(--gold); display: block; margin-bottom: 12px; }
+    .ch-crit-name { font-family: Georgia, serif; font-size: .92rem; color: var(--text); margin-bottom: 8px; }
+    .ch-crit-desc { font-style: italic; font-size: .82rem; color: var(--text-mid); margin-bottom: 14px; line-height: 1.5; }
+    .ch-crit-pct  {
+      display: inline-block;
+      padding: 3px 14px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ── Gallery ────────────────────────────────────────── */
+    .ch-gal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) { .ch-gal-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .ch-gal-grid { grid-template-columns: 1fr; } }
+
+    .ch-gal-card {
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform var(--trans), box-shadow var(--trans), border-color var(--trans);
+    }
+    .ch-gal-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(181,135,44,.3); }
+    .ch-gal-thumb { width: 100%; height: 100%; display: block; }
+    .ch-gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,24,18,.82);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity var(--trans);
+      padding: 20px;
+      text-align: center;
+    }
+    .ch-gal-card:hover .ch-gal-overlay { opacity: 1; }
+    .ch-gal-artist { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .ch-gal-title  { font-family: Georgia, serif; font-size: 1rem; color: #f0ece4; }
+    .ch-gal-vote {
+      margin-top: 6px;
+      padding: 8px 22px;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 700;
+      transition: background var(--trans), color var(--trans);
+    }
+    .ch-gal-vote:hover { background: var(--gold); color: #0d0d0d; }
+    .ch-gal-vote:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    @media (hover: none) {
+      .ch-gal-overlay { opacity: 1; background: rgba(28,24,18,.6); }
+    }
+
+    /* ── Rewards ────────────────────────────────────────── */
+    .ch-rewards-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .ch-rewards-grid { grid-template-columns: 1fr; } }
+
+    .ch-reward { padding: 32px 26px; }
+    .ch-reward--gold { border-top: 3px solid var(--gold) !important; }
+    .ch-reward__rank  { font-size: 1.8rem; display: block; margin-bottom: 12px; }
+    .ch-reward__title { font-family: Georgia, serif; font-size: 1rem; color: var(--gold); margin-bottom: 18px; display: block; }
+    .ch-reward__list  { display: flex; flex-direction: column; gap: 0; }
+    .ch-reward__item  {
+      display: flex;
+      gap: 8px;
+      font-size: .88rem;
+      color: var(--text-mid);
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ch-reward__item:last-child { border-bottom: none; }
+    .ch-reward__item::before { content: '◆'; color: var(--gold); font-size: .55rem; flex-shrink: 0; margin-top: 5px; }
+
+    /* ── Gallery header util ─────────────────────────────── */
+    .ch-section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .ch-count { font-style: italic; color: var(--text-dim); font-size: .9rem; }
+  </style>
 </head>
-<body class="ch-page">
+<body>
 
-  <!-- Fond animé -->
-  <div class="ch-bg-layer" aria-hidden="true">
-    <div class="ch-grid-lines"></div>
-    <div class="ch-radial"></div>
-    <div class="ch-particles" id="chParticles"></div>
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="challenge.html" class="active">Défi Mensuel</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+</nav>
 
-  <nav class="ch-nav" id="chNav">
-    <div class="ch-nav__inner">
-      <a href="#" class="ch-nav__logo">ArtisanForge</a>
-      <ul class="ch-nav__links">
-        <li><a href="galerie.html">Galerie</a></li>
-        <li><a href="challenge.html" class="active">Défi Mensuel</a></li>
-        <li><a href="artistes.html">Artistes</a></li>
-        <li><a href="#recompenses">Récompenses</a></li>
-        <li><a href="#apropos">À Propos</a></li>
-      </ul>
-      <button class="ch-nav__burger" id="chBurger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-  <section class="ch-hero">
-    <div class="ch-hero__inner">
-      <div class="ch-hero__badge"><span aria-hidden="true">◆</span> Avril 2026 <span aria-hidden="true">◆</span></div>
-      <h1 class="ch-display ch-hero__title">Défi des Artisans</h1>
-      <p class="ch-hero__subtitle">Mensuel · Thématique · Compétitif</p>
-      <p class="ch-hero__desc">
-        Chaque mois, un thème. Chaque artisan, une vision. Soumettez votre œuvre,
-        faites voter la communauté, et disputez-vous le titre de Maître Artisan.
-      </p>
-      <!-- Countdown added in Task 4 -->
-      <div id="chCountdown"></div>
-    </div>
-  </section>
-  <div class="ch-container">
-    <div class="ch-timeline">
-      <p class="ch-timeline__title">◆ Phases du défi ◆</p>
-      <div class="ch-timeline__track" role="list">
-        <div class="ch-timeline__phase ch-timeline__phase--past" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Annonce</span>
-        </div>
-        <div class="ch-timeline__phase ch-timeline__phase--active" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Création</span>
-        </div>
-        <div class="ch-timeline__phase" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Soumissions</span>
-        </div>
-        <div class="ch-timeline__phase" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Vote Public</span>
-        </div>
-        <div class="ch-timeline__phase" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Jury</span>
-        </div>
-        <div class="ch-timeline__phase" role="listitem">
-          <div class="ch-timeline__dot"></div>
-          <span class="ch-timeline__name">Couronnement</span>
-        </div>
+<!-- ===== HERO ===== -->
+<section class="ch-hero">
+  <div class="container">
+    <div class="ch-badge">◆ Avril 2026 ◆</div>
+    <h1>Défi des Artisans</h1>
+    <p class="ch-hero__sub">Mensuel · Thématique · Compétitif</p>
+    <p class="ch-hero__desc">Chaque mois, un thème. Chaque artiste, une vision. Soumettez votre œuvre, faites voter la communauté, et disputez-vous le titre de Maître Artisan.</p>
+    <div class="ch-countdown">
+      <div class="ch-cd-block">
+        <span class="ch-cd-num" id="cdDays">--</span>
+        <span class="ch-cd-label">Jours</span>
+      </div>
+      <div class="ch-cd-block">
+        <span class="ch-cd-num" id="cdHours">--</span>
+        <span class="ch-cd-label">Heures</span>
+      </div>
+      <div class="ch-cd-block">
+        <span class="ch-cd-num" id="cdMinutes">--</span>
+        <span class="ch-cd-label">Minutes</span>
+      </div>
+      <div class="ch-cd-block">
+        <span class="ch-cd-num" id="cdSeconds">--</span>
+        <span class="ch-cd-label">Secondes</span>
       </div>
     </div>
   </div>
-  <section class="ch-section ch-theme">
-    <div class="ch-container">
-      <div class="ch-theme__grid">
-        <div class="ice-block ice-block--lg ice-block--gold-top">
-          <p class="ch-theme__label"><span aria-hidden="true">◆</span> Thème du mois</p>
-          <h2 class="ch-display ch-theme__title">Le Temps<br>Suspendu</h2>
-          <p class="ch-theme__desc">
-            Capturez l'instant figé, l'entre-deux silencieux où le temps retient son souffle.
-            Horloges immobiles, gouttes pétrifiées, regards suspendus entre deux battements.
-            Explorez l'éternité dans l'éphémère.
-          </p>
-          <p class="ch-theme__rules-title">Règles du défi</p>
-          <ul class="ch-theme__rules">
-            <li class="ch-theme__rule">Œuvre originale inédite</li>
-            <li class="ch-theme__rule">Une soumission par artisan</li>
-            <li class="ch-theme__rule">Tous médiums acceptés</li>
-            <li class="ch-theme__rule">Fichier ≤ 20 Mo (JPG, PNG, PDF)</li>
-            <li class="ch-theme__rule">Titre + description obligatoires</li>
-            <li class="ch-theme__rule">Pas de violence ni contenu 18+</li>
-            <li class="ch-theme__rule">Soumission avant le 30 avril</li>
-            <li class="ch-theme__rule">Droits d'auteur conservés</li>
-          </ul>
-        </div>
-        <div class="ch-theme__sidebar">
-          <div class="ice-block ch-info-block">
-            <p class="ch-info-block__label">Médiums</p>
-            <p class="ch-info-block__value">Tous</p>
-          </div>
-          <div class="ice-block ch-info-block">
-            <p class="ch-info-block__label">Participants</p>
-            <p class="ch-info-block__value">247</p>
-          </div>
-          <div class="ice-block ch-info-block">
-            <p class="ch-info-block__label">Deadline</p>
-            <p class="ch-info-block__value">30 Avril</p>
-          </div>
-          <div class="ice-block ch-info-block">
-            <p class="ch-info-block__label">Jury</p>
-            <p class="ch-info-block__value">5 Membres</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="ch-section" id="criteres" aria-labelledby="chCriteriaTitle">
-    <div class="ch-container">
-      <div class="ch-criteria__header">
-        <p class="ch-criteria__eyebrow"><span aria-hidden="true">◆</span> Barème de notation</p>
-        <h2 class="ch-display ch-criteria__title" id="chCriteriaTitle">Critères d'Évaluation</h2>
-      </div>
-      <div class="ch-criteria__grid">
-        <div class="ice-block ice-block--gold-top ch-criteria__card">
-          <span class="ch-criteria__icon" aria-hidden="true">◆</span>
-          <span class="ch-criteria__name">Originalité</span>
-          <p class="ch-criteria__desc">Unicité de la vision et de l'approche créative</p>
-          <span class="ch-criteria__badge">30%</span>
-        </div>
-        <div class="ice-block ice-block--gold-top ch-criteria__card">
-          <span class="ch-criteria__icon" aria-hidden="true">◈</span>
-          <span class="ch-criteria__name">Maîtrise Technique</span>
-          <p class="ch-criteria__desc">Qualité d'exécution et savoir-faire du médium</p>
-          <span class="ch-criteria__badge">25%</span>
-        </div>
-        <div class="ice-block ice-block--gold-top ch-criteria__card">
-          <span class="ch-criteria__icon" aria-hidden="true">❋</span>
-          <span class="ch-criteria__name">Cohérence Thématique</span>
-          <p class="ch-criteria__desc">Fidélité et profondeur dans l'interprétation du thème</p>
-          <span class="ch-criteria__badge">20%</span>
-        </div>
-        <div class="ice-block ice-block--gold-top ch-criteria__card">
-          <span class="ch-criteria__icon" aria-hidden="true">◉</span>
-          <span class="ch-criteria__name">Impact Visuel</span>
-          <p class="ch-criteria__desc">Puissance émotionnelle et esthétique de l'œuvre</p>
-          <span class="ch-criteria__badge">15%</span>
-        </div>
-        <div class="ice-block ice-block--gold-top ch-criteria__card">
-          <span class="ch-criteria__icon" aria-hidden="true">⬡</span>
-          <span class="ch-criteria__name">Vote Communauté</span>
-          <p class="ch-criteria__desc">Appréciation et soutien de la communauté ArtisanForge</p>
-          <span class="ch-criteria__badge">10%</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="ch-section ch-gallery">
-    <div class="ch-container">
-      <div class="ch-gallery__header">
-        <div>
-          <p class="ch-gallery__eyebrow"><span aria-hidden="true">◆</span> Soumissions du mois</p>
-          <h2 class="ch-display ch-gallery__title">Œuvres en Compétition</h2>
-        </div>
-        <span class="ch-gallery__count">247 soumissions · Vote ouvert</span>
-      </div>
-      <div class="ch-gallery__grid">
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #0d2060 0%, #1a0a40 50%, #0a1628 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Élise Morneau</span>
-            <span class="ch-gallery__artwork">L'Horloge Silencieuse</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour L'Horloge Silencieuse"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #1a0a40 0%, #0d2060 60%, #2a1060 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Marcus Delacroix</span>
-            <span class="ch-gallery__artwork">Entre Deux Battements</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour Entre Deux Battements"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #0a2040 0%, #1a3060 50%, #0d1640 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Saoirse Brennan</span>
-            <span class="ch-gallery__artwork">La Goutte Pétrifiée</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour La Goutte Pétrifiée"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #200a30 0%, #0a1060 50%, #1a0a50 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Théo Vanlande</span>
-            <span class="ch-gallery__artwork">Mélodie Suspendue</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour Mélodie Suspendue"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #0a1628 0%, #162040 50%, #0d2050 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Amara Diallo</span>
-            <span class="ch-gallery__artwork">Éternité Fragmentée</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour Éternité Fragmentée"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-        <div class="ice-block ch-gallery__card">
-          <div class="ch-gallery__placeholder" style="background: linear-gradient(135deg, #1a2040 0%, #0a1030 50%, #201040 100%);"></div>
-          <div class="ch-gallery__overlay">
-            <span class="ch-gallery__artist">Yuki Tanaka</span>
-            <span class="ch-gallery__artwork">Le Regard Figé</span>
-            <button class="ch-gallery__vote" aria-label="Voter pour Le Regard Figé"><span aria-hidden="true">♥</span> Voter</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="ch-section" id="recompenses">
-    <div class="ch-container">
-      <div class="ch-rewards__header">
-        <p class="ch-rewards__eyebrow"><span aria-hidden="true">◆</span> Prix &amp; Distinctions</p>
-        <h2 class="ch-display ch-rewards__title">Récompenses</h2>
-      </div>
-      <div class="ch-rewards__grid">
-        <div class="ice-block ice-block--lg ch-reward-card ch-reward-card--first">
-          <span class="ch-reward-card__rank" aria-hidden="true">✦</span>
-          <span class="ch-reward-card__title">Maître Artisan</span>
-          <ul class="ch-reward-card__list">
-            <li class="ch-reward-card__item">Profil mis en avant 1 mois complet</li>
-            <li class="ch-reward-card__item">Badge exclusif « Maître Artisan »</li>
-            <li class="ch-reward-card__item">Article dédié sur le blog ArtisanForge</li>
-            <li class="ch-reward-card__item">Rôle de juré au défi suivant</li>
-            <li class="ch-reward-card__item">Couverture de la newsletter mensuelle</li>
-          </ul>
-        </div>
-        <div class="ice-block ch-reward-card">
-          <span class="ch-reward-card__rank" aria-hidden="true">◈</span>
-          <span class="ch-reward-card__title">Artisan Émérite</span>
-          <ul class="ch-reward-card__list">
-            <li class="ch-reward-card__item">Profil mis en avant 2 semaines</li>
-            <li class="ch-reward-card__item">Badge « Artisan Émérite »</li>
-            <li class="ch-reward-card__item">Mention dans la newsletter</li>
-            <li class="ch-reward-card__item">Accès anticipé au thème suivant</li>
-          </ul>
-        </div>
-        <div class="ice-block ch-reward-card">
-          <span class="ch-reward-card__rank" aria-hidden="true">◆</span>
-          <span class="ch-reward-card__title">Artisan Reconnu</span>
-          <ul class="ch-reward-card__list">
-            <li class="ch-reward-card__item">Profil mis en avant 1 semaine</li>
-            <li class="ch-reward-card__item">Badge « Artisan Reconnu »</li>
-            <li class="ch-reward-card__item">Galerie Top 3 permanente</li>
-            <li class="ch-reward-card__item">Votes bonus au prochain défi</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="ch-section ch-cta">
-    <div class="ch-container">
-      <div class="ice-block ice-block--lg ch-cta__card">
-        <p class="ch-cta__eyebrow"><span aria-hidden="true">◆</span> Rejoignez le défi</p>
-        <h2 class="ch-display ch-cta__title">Prêt à Créer ?</h2>
-        <p class="ch-cta__sub">Soumettez votre vision du Temps Suspendu avant le 30 avril 2026.</p>
-        <div class="ch-cta__actions">
-          <a href="#" class="ch-btn-primary">Soumettre mon œuvre</a>
-          <a href="#" class="ch-btn-secondary">Voir toutes les règles</a>
-        </div>
-      </div>
-    </div>
-  </section>
+</section>
 
-  <footer class="ch-footer" id="apropos">
-    <div class="ch-container">
-      <p>© 2026 ArtisanForge — Tous droits réservés · <a href="#">Contact</a></p>
+<!-- ===== TIMELINE ===== -->
+<div class="ch-timeline">
+  <div class="container">
+    <p class="ch-timeline__title">◆ Phases du défi ◆</p>
+    <div class="ch-timeline__track" role="list">
+      <div class="ch-phase ch-phase--past" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Annonce</span>
+      </div>
+      <div class="ch-phase ch-phase--active" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Création</span>
+      </div>
+      <div class="ch-phase" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Soumissions</span>
+      </div>
+      <div class="ch-phase" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Vote Public</span>
+      </div>
+      <div class="ch-phase" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Jury</span>
+      </div>
+      <div class="ch-phase" role="listitem">
+        <div class="ch-dot"></div>
+        <span class="ch-phase__name">Couronnement</span>
+      </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <script src="js/challenge.js"></script>
+<!-- ===== THÈME ===== -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="ch-theme-grid">
+      <div class="card" style="padding:40px;">
+        <div class="section-tag" style="margin-bottom:16px;">◆ Thème du mois</div>
+        <h2 style="margin-bottom:16px;">Le Temps<br>Suspendu</h2>
+        <p style="font-style:italic;">Capturez l'instant figé, l'entre-deux silencieux où le temps retient son souffle. Horloges immobiles, gouttes pétrifiées, regards suspendus entre deux battements. Explorez l'éternité dans l'éphémère.</p>
+        <p style="margin-top:28px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);">Règles du défi</p>
+        <ul class="ch-rules">
+          <li class="ch-rule">Œuvre originale inédite</li>
+          <li class="ch-rule">Une soumission par artiste</li>
+          <li class="ch-rule">Tous médiums acceptés</li>
+          <li class="ch-rule">Fichier ≤ 20 Mo (JPG, PNG, PDF)</li>
+          <li class="ch-rule">Titre + description obligatoires</li>
+          <li class="ch-rule">Pas de violence ni contenu 18+</li>
+          <li class="ch-rule">Soumission avant le 30 avril</li>
+          <li class="ch-rule">Droits d'auteur conservés</li>
+        </ul>
+      </div>
+      <div class="ch-sidebar">
+        <div class="ch-info">
+          <p class="ch-info__label">Médiums</p>
+          <p class="ch-info__value">Tous</p>
+        </div>
+        <div class="ch-info">
+          <p class="ch-info__label">Participants</p>
+          <p class="ch-info__value">247</p>
+        </div>
+        <div class="ch-info">
+          <p class="ch-info__label">Deadline</p>
+          <p class="ch-info__value">30 Avril</p>
+        </div>
+        <div class="ch-info">
+          <p class="ch-info__label">Jury</p>
+          <p class="ch-info__value">5 Membres</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CRITÈRES ===== -->
+<section class="section" id="criteres">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">◆ Barème de notation</div>
+      <h2>Critères d'Évaluation</h2>
+    </div>
+    <div class="ch-criteria-grid">
+      <div class="card ch-crit-card fade-in">
+        <span class="ch-crit-icon">◆</span>
+        <p class="ch-crit-name">Originalité</p>
+        <p class="ch-crit-desc">Unicité de la vision et de l'approche créative</p>
+        <span class="ch-crit-pct">30%</span>
+      </div>
+      <div class="card ch-crit-card fade-in">
+        <span class="ch-crit-icon">◈</span>
+        <p class="ch-crit-name">Maîtrise Technique</p>
+        <p class="ch-crit-desc">Qualité d'exécution et savoir-faire du médium</p>
+        <span class="ch-crit-pct">25%</span>
+      </div>
+      <div class="card ch-crit-card fade-in">
+        <span class="ch-crit-icon">❋</span>
+        <p class="ch-crit-name">Cohérence Thématique</p>
+        <p class="ch-crit-desc">Fidélité et profondeur dans l'interprétation du thème</p>
+        <span class="ch-crit-pct">20%</span>
+      </div>
+      <div class="card ch-crit-card fade-in">
+        <span class="ch-crit-icon">◉</span>
+        <p class="ch-crit-name">Impact Visuel</p>
+        <p class="ch-crit-desc">Puissance émotionnelle et esthétique de l'œuvre</p>
+        <span class="ch-crit-pct">15%</span>
+      </div>
+      <div class="card ch-crit-card fade-in">
+        <span class="ch-crit-icon">⬡</span>
+        <p class="ch-crit-name">Vote Communauté</p>
+        <p class="ch-crit-desc">Appréciation et soutien de la communauté ArtCanvas</p>
+        <span class="ch-crit-pct">10%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="ch-section-head fade-in">
+      <div>
+        <div class="section-tag">◆ Soumissions du mois</div>
+        <h2>Œuvres en Compétition</h2>
+      </div>
+      <span class="ch-count">247 soumissions · Vote ouvert</span>
+    </div>
+    <div class="ch-gal-grid">
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#1a2035 0%,#111827 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Élise Morneau</span>
+          <span class="ch-gal-title">L'Horloge Silencieuse</span>
+          <button class="ch-gal-vote" aria-label="Voter pour L'Horloge Silencieuse">♥ Voter</button>
+        </div>
+      </div>
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#1a0a40 0%,#0d1b4b 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Marcus Delacroix</span>
+          <span class="ch-gal-title">Entre Deux Battements</span>
+          <button class="ch-gal-vote" aria-label="Voter pour Entre Deux Battements">♥ Voter</button>
+        </div>
+      </div>
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#0a2040 0%,#1a3060 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Saoirse Brennan</span>
+          <span class="ch-gal-title">La Goutte Pétrifiée</span>
+          <button class="ch-gal-vote" aria-label="Voter pour La Goutte Pétrifiée">♥ Voter</button>
+        </div>
+      </div>
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#200a30 0%,#0a1060 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Théo Vanlande</span>
+          <span class="ch-gal-title">Mélodie Suspendue</span>
+          <button class="ch-gal-vote" aria-label="Voter pour Mélodie Suspendue">♥ Voter</button>
+        </div>
+      </div>
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#0a1628 0%,#162040 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Amara Diallo</span>
+          <span class="ch-gal-title">Éternité Fragmentée</span>
+          <button class="ch-gal-vote" aria-label="Voter pour Éternité Fragmentée">♥ Voter</button>
+        </div>
+      </div>
+
+      <div class="ch-gal-card fade-in">
+        <div class="ch-gal-thumb" style="background:linear-gradient(135deg,#1a2040 0%,#201040 100%);height:100%;"></div>
+        <div class="ch-gal-overlay">
+          <span class="ch-gal-artist">Yuki Tanaka</span>
+          <span class="ch-gal-title">Le Regard Figé</span>
+          <button class="ch-gal-vote" aria-label="Voter pour Le Regard Figé">♥ Voter</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== RÉCOMPENSES ===== -->
+<section class="section" id="recompenses">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">◆ Prix & Distinctions</div>
+      <h2>Récompenses</h2>
+      <p>Les trois meilleurs artisans du mois sont mis à l'honneur sur toute la plateforme.</p>
+    </div>
+    <div class="ch-rewards-grid fade-in">
+
+      <div class="card ch-reward ch-reward--gold">
+        <span class="ch-reward__rank">✦</span>
+        <span class="ch-reward__title">Maître Artisan</span>
+        <ul class="ch-reward__list">
+          <li class="ch-reward__item">Profil mis en avant 1 mois complet</li>
+          <li class="ch-reward__item">Badge exclusif « Maître Artisan »</li>
+          <li class="ch-reward__item">Article dédié sur le blog ArtCanvas</li>
+          <li class="ch-reward__item">Rôle de juré au défi suivant</li>
+          <li class="ch-reward__item">Couverture de la newsletter mensuelle</li>
+        </ul>
+      </div>
+
+      <div class="card ch-reward">
+        <span class="ch-reward__rank">◈</span>
+        <span class="ch-reward__title">Artisan Émérite</span>
+        <ul class="ch-reward__list">
+          <li class="ch-reward__item">Profil mis en avant 2 semaines</li>
+          <li class="ch-reward__item">Badge « Artisan Émérite »</li>
+          <li class="ch-reward__item">Mention dans la newsletter</li>
+          <li class="ch-reward__item">Accès anticipé au thème suivant</li>
+        </ul>
+      </div>
+
+      <div class="card ch-reward">
+        <span class="ch-reward__rank">◆</span>
+        <span class="ch-reward__title">Artisan Reconnu</span>
+        <ul class="ch-reward__list">
+          <li class="ch-reward__item">Profil mis en avant 1 semaine</li>
+          <li class="ch-reward__item">Badge « Artisan Reconnu »</li>
+          <li class="ch-reward__item">Galerie Top 3 permanente</li>
+          <li class="ch-reward__item">Votes bonus au prochain défi</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-band" id="apropos">
+  <div class="container fade-in">
+    <div class="section-tag" style="background:rgba(201,168,76,.15);margin:0 auto 20px;">◆ Rejoignez le défi</div>
+    <h2>Prêt à Créer ?</h2>
+    <p>Soumettez votre vision du Temps Suspendu avant le 30 avril 2026.</p>
+    <div class="cta-band__btns">
+      <a href="rejoindre.html" class="btn-primary">Soumettre mon œuvre</a>
+      <a href="#criteres" class="btn-secondary">Voir toutes les règles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="sec-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+        <p>La plateforme des artistes indépendants. Exposez, vendez et collaborez en toute liberté.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="galerie.html">Galerie</a></li>
+          <li><a href="artistes.html">Artistes</a></li>
+          <li><a href="communaute.html">Communauté</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Défi Mensuel</h4>
+        <ul>
+          <li><a href="challenge.html">Défi en cours</a></li>
+          <li><a href="#recompenses">Récompenses</a></li>
+          <li><a href="#">Archives</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>À propos</h4>
+        <ul>
+          <li><a href="#">Notre mission</a></li>
+          <li><a href="#">Conditions d'utilisation</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 ArtCanvas. Tous droits réservés.</span>
+      <span>Fait avec passion pour les artistes</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+
+<!-- Countdown -->
+<script>
+(function () {
+  var deadline = new Date('2026-04-30T23:59:59+02:00');
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+  function tick() {
+    var diff = deadline - new Date();
+    if (diff <= 0) {
+      var cd = document.querySelector('.ch-countdown');
+      if (cd) cd.innerHTML = '<p style="font-family:Georgia,serif;font-size:1.1rem;color:var(--gold);font-weight:700;letter-spacing:.08em;">SOUMISSIONS CLOSES</p>';
+      return;
+    }
+    var d = document.getElementById('cdDays'),
+        h = document.getElementById('cdHours'),
+        m = document.getElementById('cdMinutes'),
+        s = document.getElementById('cdSeconds');
+    if(d) d.textContent = pad(Math.floor(diff/86400000));
+    if(h) h.textContent = pad(Math.floor((diff%86400000)/3600000));
+    if(m) m.textContent = pad(Math.floor((diff%3600000)/60000));
+    if(s) s.textContent = pad(Math.floor((diff%60000)/1000));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+
+<!-- Nav dots -->
+<nav class="nav-dots" aria-label="Navigation par section"></nav>
+<script src="js/nav-dots.js"></script>
 </body>
 </html>

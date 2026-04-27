@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="index, follow">
+  <title>Galerie — ArtCanvas | Découvrez des œuvres d'artistes indépendants</title>
+  <meta name="description" content="Explorez des centaines d'œuvres originales : peinture, photographie, sculpture, illustration et art digital. Achetez directement auprès des artistes.">
+  <link rel="canonical" href="https://artcanvas.fr/galerie.html">
+  <meta property="og:site_name" content="ArtCanvas">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Galerie — ArtCanvas">
+  <meta property="og:description" content="Explorez des centaines d'œuvres originales d'artistes indépendants.">
+  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html" class="active">Galerie</a></li>
+      <li><a href="artistes.html">Artistes</a></li>
+      <li><a href="challenge.html">Défi Mensuel</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="rejoindre.html" class="btn-primary navbar__cta">Rejoindre</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="section-tag">Galerie</div>
+    <h1>Découvrez des œuvres uniques</h1>
+    <p>Peinture, photographie, sculpture, illustration, art digital — explorez la diversité de la création indépendante.</p>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="section">
+  <div class="container">
+    <!-- Filtres -->
+    <div class="filters fade-in" id="galleryFilters">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="peinture">Peinture</button>
+      <button class="filter-btn" data-filter="photographie">Photographie</button>
+      <button class="filter-btn" data-filter="sculpture">Sculpture</button>
+      <button class="filter-btn" data-filter="illustration">Illustration</button>
+      <button class="filter-btn" data-filter="digital">Art digital</button>
+    </div>
+
+    <!-- Grille -->
+    <div class="grid" id="galleryGrid">
+
+      <!-- 1 -->
+      <div class="card artwork-card grid-item fade-in" data-category="peinture"
+           data-title="Spirales cosmiques" data-artist="Elena Marcov" data-price="1 200 €"
+           data-desc="Acrylique sur toile, 80×80 cm. Une exploration des spirales et cycles de l'univers.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs><radialGradient id="g1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2a0a4a"/><stop offset="100%" stop-color="#0d0d1a"/></radialGradient></defs>
+            <rect width="400" height="300" fill="url(#g1)"/>
+            <path d="M200 150 Q220 120 240 140 Q260 160 240 180 Q220 200 200 180 Q170 155 200 130 Q230 100 270 130 Q310 160 280 200 Q250 240 200 220 Q140 195 140 150 Q140 90 200 80 Q270 70 310 130" stroke="#c9a84c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <circle cx="200" cy="150" r="5" fill="#c9a84c"/>
+            <g fill="#8b2fc9" opacity=".5"><circle cx="80" cy="60" r="2"/><circle cx="320" cy="40" r="1.5"/><circle cx="360" cy="200" r="2.5"/><circle cx="40" cy="240" r="2"/></g>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--violet">Peinture</span><span class="artwork-card__price">1 200 €</span></div>
+          <div class="artwork-card__title">Spirales cosmiques</div>
+          <div class="artwork-card__artist">Elena Marcov</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Spirales cosmiques'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="card artwork-card grid-item fade-in" data-category="photographie"
+           data-title="Architecture nocturne" data-artist="Julien Fabre" data-price="480 €"
+           data-desc="Photographie argentique, tirage Fine Art 60×80 cm. Série 'Béton lumineux'.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#050510"/>
+            <rect x="60"  y="40"  width="80" height="220" rx="4" fill="#0d1117" stroke="#c9a84c" stroke-width="1" opacity=".5"/>
+            <rect x="155" y="80"  width="90" height="180" rx="4" fill="#0d1117" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
+            <rect x="260" y="55"  width="85" height="205" rx="4" fill="#0d1117" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+            <rect x="60"  y="200" width="80" height="60" fill="#c9a84c" opacity=".7"/>
+            <rect x="155" y="175" width="90" height="85" fill="#8b2fc9" opacity=".5"/>
+            <rect x="260" y="215" width="85" height="45" fill="#c9a84c" opacity=".4"/>
+            <g fill="#ffffff" opacity=".8">
+              <rect x="72"  y="55"  width="10" height="6" rx="1"/>
+              <rect x="90"  y="55"  width="10" height="6" rx="1"/>
+              <rect x="165" y="95"  width="10" height="6" rx="1"/>
+              <rect x="185" y="95"  width="10" height="6" rx="1"/>
+              <rect x="270" y="70"  width="10" height="6" rx="1"/>
+              <rect x="290" y="70"  width="10" height="6" rx="1"/>
+            </g>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--blue">Photographie</span><span class="artwork-card__price">480 €</span></div>
+          <div class="artwork-card__title">Architecture nocturne</div>
+          <div class="artwork-card__artist">Julien Fabre</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Architecture nocturne'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="card artwork-card grid-item fade-in" data-category="illustration"
+           data-title="Géométrie sacrée" data-artist="Sofia Herrera" data-price="320 €"
+           data-desc="Illustration numérique imprimée sur papier d'art 50×50 cm. Tirage limité à 20 exemplaires.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#12041e"/><stop offset="100%" stop-color="#1a0030"/></linearGradient></defs>
+            <rect width="400" height="300" fill="url(#g3)"/>
+            <polygon points="200,30 360,250 40,250" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+            <polygon points="200,70 330,240 70,240" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".4"/>
+            <circle cx="200" cy="180" r="70" fill="none" stroke="#8b2fc9" stroke-width="1" opacity=".4"/>
+            <circle cx="200" cy="180" r="45" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".3"/>
+            <line x1="200" y1="30" x2="200" y2="250" stroke="#c9a84c" stroke-width=".5" opacity=".3"/>
+            <line x1="40"  y1="250" x2="360" y2="250" stroke="#c9a84c" stroke-width=".5" opacity=".3"/>
+            <line x1="40"  y1="250" x2="360" y2="30"  stroke="#c9a84c" stroke-width=".5" opacity=".2"/>
+            <circle cx="200" cy="150" r="6" fill="#c9a84c"/>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--green">Illustration</span><span class="artwork-card__price">320 €</span></div>
+          <div class="artwork-card__title">Géométrie sacrée</div>
+          <div class="artwork-card__artist">Sofia Herrera</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Géométrie sacrée'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="card artwork-card grid-item fade-in" data-category="digital"
+           data-title="Horizon céleste" data-artist="Marius Dent" data-price="650 €"
+           data-desc="Art digital, impression sur aluminium brossé 70×100 cm. Signé et numéroté.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#08041a"/><stop offset="60%" stop-color="#1a0533"/><stop offset="100%" stop-color="#0d0d0d"/></linearGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#sky4)"/>
+            <path d="M0 220 Q100 190 200 210 Q300 230 400 200 L400 300 L0 300 Z" fill="#1a2035"/>
+            <circle cx="200" cy="110" r="55" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+            <circle cx="200" cy="110" r="35" fill="rgba(201,168,76,.05)"/>
+            <path d="M200 55 L200 110 M160 80 L200 110 M240 80 L200 110 M200 110 L200 165" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+            <g fill="#c9a84c" opacity=".6"><circle cx="80" cy="50" r="1.5"/><circle cx="130" cy="30" r="2"/><circle cx="290" cy="45" r="1.5"/><circle cx="340" cy="25" r="2"/><circle cx="55" cy="130" r="1"/><circle cx="365" cy="100" r="1.5"/><circle cx="310" cy="80" r="1"/></g>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--gold">Art digital</span><span class="artwork-card__price">650 €</span></div>
+          <div class="artwork-card__title">Horizon céleste</div>
+          <div class="artwork-card__artist">Marius Dent</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Horizon céleste'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="card artwork-card grid-item fade-in" data-category="sculpture"
+           data-title="Figure en mouvement" data-artist="Camille Roux" data-price="2 800 €"
+           data-desc="Bronze patiné, hauteur 45 cm, socle inclus. Tirage unique.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0a0a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient></defs>
+            <rect width="400" height="300" fill="url(#g5)"/>
+            <ellipse cx="200" cy="90" rx="28" ry="32" fill="none" stroke="#c9a84c" stroke-width="2" opacity=".8"/>
+            <path d="M182 120 Q168 170 155 220 M218 120 Q232 170 245 220" stroke="#c9a84c" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7"/>
+            <path d="M158 165 Q200 188 242 165" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" opacity=".6"/>
+            <line x1="120" y1="260" x2="280" y2="260" stroke="#c9a84c" stroke-width="2" opacity=".4"/>
+            <rect x="140" y="255" width="120" height="8" rx="3" fill="#c9a84c" opacity=".2"/>
+            <path d="M60 280 Q130 250 200 265 Q270 280 340 255" stroke="#8b2fc9" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--red">Sculpture</span><span class="artwork-card__price">2 800 €</span></div>
+          <div class="artwork-card__title">Figure en mouvement</div>
+          <div class="artwork-card__artist">Camille Roux</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Figure en mouvement'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="card artwork-card grid-item fade-in" data-category="peinture"
+           data-title="Composition dorée" data-artist="Naomi Klee" data-price="900 €"
+           data-desc="Huile sur toile 60×60 cm. Inspirée des peintres minimalistes du XXe siècle.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#050505"/>
+            <g stroke="#111827" stroke-width="1"><line x1="0" y1="60" x2="400" y2="60"/><line x1="0" y1="120" x2="400" y2="120"/><line x1="0" y1="180" x2="400" y2="180"/><line x1="0" y1="240" x2="400" y2="240"/><line x1="80" y1="0" x2="80" y2="300"/><line x1="160" y1="0" x2="160" y2="300"/><line x1="240" y1="0" x2="240" y2="300"/><line x1="320" y1="0" x2="320" y2="300"/></g>
+            <rect x="80"  y="60"  width="80" height="60" fill="#c9a84c" opacity=".75"/>
+            <rect x="160" y="120" width="80" height="60" fill="#8b2fc9" opacity=".65"/>
+            <rect x="240" y="60"  width="80" height="60" fill="#c9a84c" opacity=".45"/>
+            <rect x="80"  y="180" width="80" height="60" fill="#8b2fc9" opacity=".35"/>
+            <rect x="240" y="180" width="80" height="60" fill="#c9a84c" opacity=".55"/>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--violet">Peinture</span><span class="artwork-card__price">900 €</span></div>
+          <div class="artwork-card__title">Composition dorée</div>
+          <div class="artwork-card__artist">Naomi Klee</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Composition dorée'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="card artwork-card grid-item fade-in" data-category="illustration"
+           data-title="La forêt des rêves" data-artist="Hugo Levert" data-price="280 €"
+           data-desc="Illustration à l'encre de chine et aquarelle numérique, 40×60 cm.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="g7" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#050a14"/><stop offset="100%" stop-color="#0d1a0a"/></linearGradient></defs>
+            <rect width="400" height="300" fill="url(#g7)"/>
+            <g fill="#0d1a0a" stroke="#c9a84c" stroke-width="1" opacity=".6">
+              <rect x="60"  y="120" width="20" height="180"/>
+              <rect x="100" y="90"  width="18" height="210"/>
+              <rect x="145" y="110" width="16" height="190"/>
+              <rect x="185" y="80"  width="20" height="220"/>
+              <rect x="230" y="100" width="18" height="200"/>
+              <rect x="270" y="85"  width="16" height="215"/>
+              <rect x="310" y="115" width="20" height="185"/>
+            </g>
+            <!-- foliage -->
+            <ellipse cx="70"  cy="120" rx="30" ry="25" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".5"/>
+            <ellipse cx="109" cy="90"  rx="28" ry="22" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".4"/>
+            <ellipse cx="153" cy="110" rx="26" ry="20" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".5"/>
+            <ellipse cx="195" cy="80"  rx="30" ry="24" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".6"/>
+            <ellipse cx="239" cy="100" rx="28" ry="22" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".4"/>
+            <ellipse cx="278" cy="85"  rx="26" ry="20" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".5"/>
+            <ellipse cx="320" cy="115" rx="30" ry="24" fill="#0d2010" stroke="#34d399" stroke-width="1" opacity=".4"/>
+            <!-- moon -->
+            <circle cx="320" cy="55" r="22" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+            <circle cx="330" cy="50" r="16" fill="#050a14"/>
+            <!-- fireflies -->
+            <g fill="#c9a84c" opacity=".7"><circle cx="130" cy="180" r="2"/><circle cx="220" cy="160" r="1.5"/><circle cx="290" cy="200" r="2"/><circle cx="165" cy="220" r="1.5"/></g>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--green">Illustration</span><span class="artwork-card__price">280 €</span></div>
+          <div class="artwork-card__title">La forêt des rêves</div>
+          <div class="artwork-card__artist">Hugo Levert</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=La forêt des rêves'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="card artwork-card grid-item fade-in" data-category="photographie"
+           data-title="Portrait au marché" data-artist="Amélie Sorel" data-price="350 €"
+           data-desc="Photographie couleur, tirage pigmentaire 50×70 cm, signé.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#0d0d0d"/>
+            <!-- figure -->
+            <ellipse cx="200" cy="105" rx="35" ry="40" fill="#c9a84c" opacity=".2"/>
+            <ellipse cx="200" cy="105" rx="22" ry="25" fill="#c9a84c" opacity=".4"/>
+            <path d="M168 145 Q150 200 145 270 M232 145 Q250 200 255 270" stroke="#8b2fc9" stroke-width="3" fill="none" stroke-linecap="round" opacity=".5"/>
+            <path d="M150 185 Q200 210 250 185" stroke="#8b2fc9" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".4"/>
+            <!-- background bokeh -->
+            <circle cx="80"  cy="60"  r="18" fill="#c9a84c" opacity=".06"/>
+            <circle cx="330" cy="90"  r="24" fill="#8b2fc9" opacity=".07"/>
+            <circle cx="300" cy="220" r="16" fill="#c9a84c" opacity=".05"/>
+            <circle cx="60"  cy="230" r="20" fill="#8b2fc9" opacity=".06"/>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--blue">Photographie</span><span class="artwork-card__price">350 €</span></div>
+          <div class="artwork-card__title">Portrait au marché</div>
+          <div class="artwork-card__artist">Amélie Sorel</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Portrait au marché'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="card artwork-card grid-item fade-in" data-category="digital"
+           data-title="Nuit électrique" data-artist="Ryo Tanaka" data-price="540 €"
+           data-desc="Art digital, impression Giclée sur toile 80×80 cm. Série 'Tokyo Dreams'.">
+        <div style="overflow:hidden">
+          <svg class="artwork-card__img" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#020208"/>
+            <!-- city silhouette -->
+            <path d="M0 200 L0 140 L30 140 L30 120 L50 120 L50 100 L70 100 L70 90 L90 90 L90 100 L100 100 L100 80 L115 80 L115 95 L130 95 L130 70 L145 70 L145 95 L160 95 L160 110 L180 110 L180 100 L195 100 L195 85 L210 85 L210 100 L225 100 L225 90 L240 90 L240 100 L260 100 L260 85 L275 85 L275 60 L290 60 L290 80 L310 80 L310 95 L325 95 L325 110 L345 110 L345 90 L360 90 L360 110 L380 110 L380 135 L400 135 L400 200 Z" fill="#0d0d1a"/>
+            <!-- neon lights -->
+            <g opacity=".7">
+              <line x1="275" y1="60" x2="290" y2="60" stroke="#8b2fc9" stroke-width="2"/>
+              <line x1="130" y1="70" x2="145" y2="70" stroke="#c9a84c" stroke-width="2"/>
+              <line x1="100" y1="80" x2="115" y2="80" stroke="#60a5fa" stroke-width="2"/>
+            </g>
+            <!-- reflections on ground -->
+            <path d="M0 200 L400 200 L400 300 L0 300 Z" fill="#030308"/>
+            <line x1="140" y1="200" x2="110" y2="290" stroke="#c9a84c" stroke-width="1" opacity=".15"/>
+            <line x1="280" y1="200" x2="250" y2="290" stroke="#8b2fc9" stroke-width="1" opacity=".15"/>
+            <!-- stars -->
+            <g fill="#c9a84c" opacity=".5"><circle cx="40" cy="40" r="1"/><circle cx="350" cy="30" r="1.5"/><circle cx="200" cy="25" r="1"/><circle cx="160" cy="50" r="1"/></g>
+          </svg>
+        </div>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--gold">Art digital</span><span class="artwork-card__price">540 €</span></div>
+          <div class="artwork-card__title">Nuit électrique</div>
+          <div class="artwork-card__artist">Ryo Tanaka</div>
+          <div class="artwork-card__action"><button class="btn-secondary" onclick="event.stopPropagation();window.location.href='mailto:contact@artcanvas.fr?subject=Nuit électrique'">Contacter le vendeur</button></div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="modal-overlay" id="lightbox" role="dialog" aria-modal="true">
+  <div class="modal" id="lightboxModal">
+    <button class="modal__close" id="lightboxClose" aria-label="Fermer">✕</button>
+    <div id="lightboxImg" style="background:#0d0d0d;min-height:300px;display:flex;align-items:center;justify-content:center;"></div>
+    <div class="modal__body">
+      <span class="badge badge--violet" id="lightboxCat">Catégorie</span>
+      <div class="modal__title"  id="lightboxTitle">Titre</div>
+      <div class="modal__artist" id="lightboxArtist">Artiste</div>
+      <div class="modal__price"  id="lightboxPrice">Prix</div>
+      <div class="modal__desc"   id="lightboxDesc">Description</div>
+      <a href="#" class="btn-primary" id="lightboxContact">Contacter le vendeur</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+        <p>La plateforme des artistes indépendants. Exposez, vendez et collaborez en toute liberté.</p>
+      </div>
+      <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="rejoindre.html">Publier ses œuvres</a></li><li><a href="#">Commission 10%</a></li></ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions d'utilisation</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

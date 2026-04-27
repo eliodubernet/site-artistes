@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement sécurisé — ArtCanvas</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR minimal -->
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-mid)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Paiement 100% sécurisé
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE PAIEMENT PREMIUM -->
+<div class="payment-page">
+  <div class="container">
+    <div class="payment-layout">
+
+      <!-- RÉCAPITULATIF DÉTAILLÉ -->
+      <div class="payment-recap fade-in">
+
+        <!-- Badge sécurité en haut du récap -->
+        <div class="security-badge" style="margin-bottom:20px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Paiement <strong>100% sécurisé</strong> · Cryptage TLS · 3D Secure</span>
+        </div>
+
+        <div class="payment-recap__thumb" id="recapThumb">🖼️</div>
+        <div class="payment-recap__title"  id="recapTitre">Chargement…</div>
+        <div class="payment-recap__artist" id="recapArtiste">Artiste</div>
+
+        <!-- Détails étendus -->
+        <div id="recapDetails" style="margin:12px 0;font-size:.82rem;color:var(--text-dim);line-height:1.8"></div>
+
+        <div class="payment-recap__price" id="recapPrix">—</div>
+        <hr class="payment-recap__divider">
+        <div class="payment-recap__row">
+          <span>Sous-total</span>
+          <span id="recapSousTot">—</span>
+        </div>
+        <div class="payment-recap__row">
+          <span>Commission ArtCanvas (10%)</span>
+          <span id="recapComm">—</span>
+        </div>
+        <hr class="payment-recap__divider">
+        <div class="payment-recap__row payment-recap__total">
+          <span>Total</span>
+          <span id="recapTotal">—</span>
+        </div>
+
+        <!-- Bloc garanties -->
+        <div class="guarantee-block">
+          <strong>✓ Satisfait ou remboursé</strong> — Retour accepté sous 14 jours<br>
+          <strong>✓ Certificat d'authenticité</strong> — Fourni par l'artiste<br>
+          <strong>✓ Emballage soigné</strong> — Livraison assurée<br>
+          <strong>✓ Support prioritaire</strong> — Réponse sous 24h
+        </div>
+      </div>
+
+      <!-- FORMULAIRE PREMIUM -->
+      <div class="payment-form-box fade-in">
+        <h2>Finaliser votre achat</h2>
+
+        <!-- Badge sécurité dans le formulaire -->
+        <div class="security-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Vos données bancaires sont chiffrées et jamais stockées
+        </div>
+
+        <div class="form-group">
+          <label for="payNom">Nom complet *</label>
+          <input type="text" id="payNom" placeholder="Elena Marcov" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="payEmail">E-mail (reçu + suivi livraison) *</label>
+          <input type="email" id="payEmail" placeholder="vous@exemple.com" autocomplete="email">
+        </div>
+
+        <!-- Champs Stripe placeholder -->
+        <div class="form-group">
+          <label>Numéro de carte</label>
+          <div class="stripe-field">
+            <span>1234  5678  9012  3456</span>
+            <span>💳</span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Date d'expiration</label>
+            <div class="stripe-field"><span>MM / AA</span></div>
+          </div>
+          <div class="form-group">
+            <label>CVC</label>
+            <div class="stripe-field"><span>•••</span><span>🔒</span></div>
+          </div>
+        </div>
+
+        <!-- Option paiement en 3x -->
+        <div class="split-payment-toggle">
+          <input type="checkbox" id="paiement3x" name="paiement3x">
+          <label for="paiement3x">Payer en <strong>3×</strong> sans frais — via <strong>Alma</strong> <span style="color:var(--text-dim);font-size:.78rem">(disponible dès 200€)</span></label>
+        </div>
+        <div id="split3xInfo" style="display:none;padding:12px;background:rgba(201,168,76,.06);border-radius:8px;font-size:.82rem;color:var(--text-mid);margin-bottom:8px">
+          Vous serez redirigé vers <strong>Alma</strong> pour finaliser votre paiement en 3 mensualités.
+          <br>Frais : 0€ · TAEG 0%.
+        </div>
+
+        <!-- Bouton paiement -->
+        <button class="btn-primary" id="payBtn" style="width:100%;padding:16px;font-size:1rem;border-radius:var(--radius);margin-top:8px">
+          Payer <span id="payBtnMontant">—</span> en toute sécurité →
+        </button>
+
+        <div class="stripe-powered">
+          Propulsé par <strong>Stripe</strong> · paiement 3× par <strong>Alma</strong>
+        </div>
+
+        <div style="text-align:center;margin-top:16px">
+          <a href="javascript:history.back()" style="font-size:.82rem;color:var(--text-dim)">← Retour à l'œuvre</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/artistes.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const p       = new URLSearchParams(window.location.search);
+  const titre   = p.get('titre')   || 'Œuvre';
+  const prix    = parseFloat(p.get('prix')) || 0;
+  const artiste = p.get('artiste') || 'Artiste';
+  const slug    = p.get('slug')    || '';
+
+  /* ── Rédirection automatique si prix < 200€ ── */
+  if (prix > 0 && prix < 200) {
+    window.location.replace(`paiement-standard.html${window.location.search}`);
+    return;
+  }
+
+  /* ── Remplissage ── */
+  const fmt = n => n.toLocaleString('fr-FR', { minimumFractionDigits:2 }) + ' €';
+  const comm   = Math.round(prix * 0.10 * 100) / 100;
+  const total  = Math.round((prix + comm) * 100) / 100;
+  const tiers  = Math.round((total / 3) * 100) / 100;
+
+  document.getElementById('recapTitre').textContent   = titre;
+  document.getElementById('recapArtiste').textContent = `par ${artiste}`;
+  document.getElementById('recapPrix').textContent    = fmt(prix);
+  document.getElementById('recapSousTot').textContent = fmt(prix);
+  document.getElementById('recapComm').textContent    = fmt(comm);
+  document.getElementById('recapTotal').textContent   = fmt(total);
+  document.getElementById('payBtnMontant').textContent = fmt(total);
+  document.title = `Paiement sécurisé ${fmt(total)} — ${titre} — ArtCanvas`;
+
+  /* Détails artiste depuis artistes.js */
+  if (slug && typeof getArtiste === 'function') {
+    const a = getArtiste(slug);
+    if (a) {
+      document.getElementById('recapDetails').innerHTML =
+        `<strong style="color:var(--text-mid)">${a.discipline}</strong> · ${a.ville}<br>
+         ${a.nbOeuvres} œuvres publiées sur ArtCanvas`;
+      document.getElementById('recapPrix').style.color = a.couleur;
+      document.getElementById('recapTotal').style.color = a.couleur;
+      document.getElementById('payBtn').style.background = a.couleur;
+    }
+  }
+
+  /* ── Toggle 3x ── */
+  const toggle3x   = document.getElementById('paiement3x');
+  const info3x     = document.getElementById('split3xInfo');
+  const btnMontant = document.getElementById('payBtnMontant');
+  toggle3x.addEventListener('change', () => {
+    info3x.style.display = toggle3x.checked ? 'block' : 'none';
+    btnMontant.textContent = toggle3x.checked
+      ? `3× ${fmt(tiers)} (Alma)`
+      : fmt(total);
+  });
+
+  /* ── Bouton paiement ── */
+  document.getElementById('payBtn').addEventListener('click', () => {
+    const nom   = document.getElementById('payNom').value.trim();
+    const email = document.getElementById('payEmail').value.trim();
+    if (!nom || !email) {
+      if (!nom)   document.getElementById('payNom').style.borderColor   = '#f87171';
+      if (!email) document.getElementById('payEmail').style.borderColor = '#f87171';
+      return;
+    }
+
+    if (toggle3x.checked) {
+      /* → Redirection Alma (configurez votre merchant ID Alma ici) */
+      alert('Paiement Alma à configurer — ajoutez votre lien Alma dans paiement-premium.html');
+      return;
+    }
+
+    /* → Stripe Payment Link artiste */
+    let stripeLink = '#';
+    if (slug && typeof getArtiste === 'function') {
+      const a = getArtiste(slug);
+      if (a && a.stripeLink && a.stripeLink !== '#') stripeLink = a.stripeLink;
+    }
+
+    if (stripeLink === '#') {
+      alert('Fonctionnalité de paiement à configurer — ajoutez votre Stripe Payment Link dans artistes.js');
+      return;
+    }
+    window.location.href = stripeLink;
+  });
+
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20), { passive:true });
+
+  /* ── Fade-in ── */
+  const io = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('visible'); io.unobserve(x.target); } }), { threshold:0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+});
+</script>
+</body>
+</html>
