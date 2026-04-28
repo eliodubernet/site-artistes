@@ -25,8 +25,8 @@
       .choice-grid { grid-template-columns: 1fr; }
     }
     .choice-card {
-      background: var(--card-bg, rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.08);
+      background: var(--bg2, #f0ece4);
+      border: 1px solid var(--border, rgba(0,0,0,.09));
       border-radius: 20px;
       padding: 48px 36px;
       text-align: center;
@@ -39,9 +39,9 @@
       gap: 16px;
     }
     .choice-card:hover {
-      border-color: var(--gold, #c9a227);
+      border-color: var(--gold, #b5872c);
       transform: translateY(-4px);
-      box-shadow: 0 16px 48px rgba(0,0,0,.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,.1);
     }
     .choice-card__icon {
       font-size: 3rem;
@@ -51,12 +51,12 @@
     .choice-card__title {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--text-main, #fff);
+      color: var(--text, #1c1812);
       margin: 0;
     }
     .choice-card__desc {
       font-size: .9rem;
-      color: var(--text-mid, rgba(255,255,255,.6));
+      color: var(--text-mid, #5e5449);
       line-height: 1.6;
       margin: 0;
     }
@@ -69,7 +69,7 @@
     }
     .choice-card__perks li {
       font-size: .85rem;
-      color: var(--text-mid, rgba(255,255,255,.6));
+      color: var(--text-mid, #5e5449);
       padding: 4px 0;
     }
     .choice-card__perks li::before {
