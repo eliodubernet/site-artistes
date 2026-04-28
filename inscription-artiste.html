@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
       prenom:    document.getElementById('prenom').value,
       nom:       document.getElementById('nom').value,
       email:     document.getElementById('email').value,
-      tel:       document.getElementById('tel').value,
+      tel:       document.getElementById('tel').value.replace(/^\+/, '00').replace(/\s/g, ''),
       ville:     document.getElementById('ville').value,
       specialite:document.getElementById('specialite').value,
       bio:       document.getElementById('bio').value,
