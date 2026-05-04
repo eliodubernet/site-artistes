@@ -125,8 +125,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const price  = card.dataset.price   || '';
       const desc   = card.dataset.desc    || '';
       const cat    = card.dataset.category || '';
+      const slug   = card.dataset.slug    || '';
 
-      // Clone SVG from the card
       const svgEl = card.querySelector('svg');
       lbImg.innerHTML = '';
       if (svgEl) {
@@ -143,6 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
       lbDesc.textContent   = desc;
       lbCat.textContent    = cat.charAt(0).toUpperCase() + cat.slice(1);
       lbContact.href = 'mailto:contact@artcanvas.fr?subject=' + encodeURIComponent(title);
+
+      const lbPortfolio = document.getElementById('lightboxPortfolio');
+      if (lbPortfolio) {
+        lbPortfolio.href = slug ? 'artiste.html?slug=' + slug : 'artistes.html';
+      }
 
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';

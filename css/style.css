@@ -592,6 +592,18 @@ p  { color: var(--text-mid); }
 .modal__desc   { font-size: .9rem; color: var(--text-mid); flex: 1; }
 @media (max-width: 720px) { .modal { grid-template-columns: 1fr; } .modal__img { min-height: 220px; } }
 
+.lightbox-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+@media (max-width: 480px) {
+  .lightbox-actions { flex-direction: column; }
+  .lightbox-actions .btn-primary,
+  .lightbox-actions .btn-secondary { width: 100%; justify-content: center; }
+}
+
 /* ----- Scroll animations -------------------------------- */
 .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .fade-in.visible { opacity: 1; transform: none; }
