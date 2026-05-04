@@ -122,6 +122,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ----- Gallery sort ----------------------------------- */
+  const sortBtns = document.querySelectorAll('.sort-btn');
+  if (sortBtns.length) {
+    const sortGrid = document.getElementById('galleryGrid');
+    if (sortGrid) {
+      sortGrid.querySelectorAll('.grid-item').forEach((el, i) => {
+        el.dataset.index = i;
+      });
+    }
+    sortBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        sortBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (!sortGrid) return;
+        const cards = [...sortGrid.querySelectorAll('.grid-item')];
+        function parsePrice(card) {
+          return parseInt((card.dataset.price || '0').replace(/\s/g, '').replace(/[^\d]/g, ''), 10) || 0;
+        }
+        const sortKey = btn.dataset.sort;
+        cards.sort((a, b) => {
+          if (sortKey === 'price-asc')   return parsePrice(a) - parsePrice(b);
+          if (sortKey === 'price-desc')  return parsePrice(b) - parsePrice(a);
+          if (sortKey === 'name-az')     return (a.dataset.title || '').localeCompare(b.dataset.title || '', 'fr');
+          if (sortKey === 'date-recent') return parseInt(b.dataset.index || 0) - parseInt(a.dataset.index || 0);
+          if (sortKey === 'date-old')    return parseInt(a.dataset.index || 0) - parseInt(b.dataset.index || 0);
+          return parseInt(a.dataset.index || 0) - parseInt(b.dataset.index || 0);
+        });
+        cards.forEach(card => sortGrid.appendChild(card));
+      });
+    });
+  }
+
   /* ----- Communauté search ------------------------------ */
   const communauteSearch = document.getElementById('communauteSearch');
   if (communauteSearch) {
