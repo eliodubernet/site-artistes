@@ -595,6 +595,26 @@
   </div>
 </section>
 
+<!-- VOTE MODAL -->
+<div class="modal-overlay" id="voteOverlay" role="dialog" aria-modal="true" aria-labelledby="voteTitleEl">
+  <div class="modal" id="voteModal" style="max-width:420px;padding:32px 28px">
+    <button class="modal__close" id="voteClose" aria-label="Fermer">✕</button>
+    <div class="section-tag" style="margin-bottom:12px;display:inline-block">◆ Vote Public</div>
+    <h3 id="voteTitleEl" style="margin-bottom:8px;font-family:Georgia,serif;color:var(--text)"></h3>
+    <p id="voteArtistEl" style="color:var(--text-dim);font-size:.88rem;margin-bottom:24px"></p>
+    <p style="font-size:.88rem;margin-bottom:20px;color:var(--text-mid)">Confirmez-vous votre vote pour cette œuvre ? Vous ne pouvez voter qu'une fois par défi.</p>
+    <div id="voteButtons" style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn-primary" id="voteConfirm" style="flex:1;justify-content:center">✓ Confirmer mon vote</button>
+      <button class="btn-secondary" id="voteCancel" style="flex:1;justify-content:center">Annuler</button>
+    </div>
+    <div id="voteSuccess" style="display:none;text-align:center;padding:16px 0">
+      <div style="font-size:2rem;margin-bottom:8px;color:var(--gold)">✦</div>
+      <p style="color:var(--gold);font-weight:700;font-size:1.05rem">Vote enregistré !</p>
+      <p style="font-size:.85rem;color:var(--text-mid);margin-top:8px">Merci pour votre participation. Les résultats seront publiés à la fin du défi.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <footer class="footer" id="sec-footer">
   <div class="container">
@@ -668,5 +688,63 @@
 <!-- Nav dots -->
 <nav class="nav-dots" aria-label="Navigation par section"></nav>
 <script src="js/nav-dots.js"></script>
+
+<script>
+(function () {
+  var overlay    = document.getElementById('voteOverlay');
+  var titleEl    = document.getElementById('voteTitleEl');
+  var artistEl   = document.getElementById('voteArtistEl');
+  var confirmBtn = document.getElementById('voteConfirm');
+  var cancelBtn  = document.getElementById('voteCancel');
+  var closeBtn   = document.getElementById('voteClose');
+  var successEl  = document.getElementById('voteSuccess');
+  var buttonsEl  = document.getElementById('voteButtons');
+  var VOTE_KEY   = 'artcanvas_challenge_vote_2026';
+
+  function openVote(title, artist) {
+    if (!overlay) return;
+    titleEl.textContent  = title;
+    artistEl.textContent = 'par ' + artist;
+    var alreadyVoted = !!localStorage.getItem(VOTE_KEY);
+    successEl.style.display  = alreadyVoted ? 'block' : 'none';
+    buttonsEl.style.display  = alreadyVoted ? 'none'  : 'flex';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVote() {
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.ch-gal-vote').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var card   = btn.closest('.ch-gal-card');
+      var title  = card ? (card.querySelector('.ch-gal-title')  || {}).textContent || '' : '';
+      var artist = card ? (card.querySelector('.ch-gal-artist') || {}).textContent || '' : '';
+      openVote(title, artist);
+    });
+  });
+
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', function () {
+      localStorage.setItem(VOTE_KEY, titleEl.textContent);
+      successEl.style.display = 'block';
+      buttonsEl.style.display = 'none';
+    });
+  }
+  if (cancelBtn) cancelBtn.addEventListener('click', closeVote);
+  if (closeBtn)  closeBtn.addEventListener('click', closeVote);
+  if (overlay) {
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeVote();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeVote();
+  });
+})();
+</script>
 </body>
 </html>
