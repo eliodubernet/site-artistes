@@ -119,7 +119,10 @@
     card.className = 'card artist-card tilt-card grid-item fade-in';
     card.dataset.category = cat;
     card.innerHTML = `
-      <div class="artist-card__avatar">${svg}</div>
+      <div class="artist-card__avatar-wrap">
+        <div class="artist-card__avatar">${svg}</div>
+        ${a.gagnant ? '<span class="artist-card__medal">🏅</span>' : ''}
+      </div>
       <div class="artist-card__name">${a.nom}</div>
       <span class="badge ${a.badgeClass} mb-8">${a.discipline}</span>
       <div class="artist-card__city">📍 ${a.ville}</div>

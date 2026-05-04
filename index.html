@@ -312,30 +312,67 @@
   </div>
 </section>
 
-<!-- ===== COMMENT ÇA MARCHE ===== -->
+<!-- ===== ŒUVRES DE LA SEMAINE ===== -->
 <section class="section section--dark" id="sec-how">
   <div class="container">
     <div class="section-header text-center fade-in">
-      <div class="section-tag">Simple & rapide</div>
-      <h2>Comment ça marche</h2>
-      <p>Trois étapes pour rejoindre une communauté d'artistes en pleine croissance.</p>
+      <div class="section-tag">Chaque lundi</div>
+      <h2>Les œuvres de la semaine</h2>
+      <p>Notre équipe curatoriale met en avant 3 œuvres exceptionnelles chaque semaine.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card card fade-in">
-        <div class="step-num">01</div>
-        <h3>Créer un profil</h3>
-        <p>Remplissez votre profil artiste en quelques minutes. Partagez votre bio, votre discipline et vos inspirations.</p>
+    <div class="works-grid fade-in" id="weeklyWorksGrid">
+
+      <div class="card artwork-card fade-in">
+        <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="wk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0533"/><stop offset="100%" stop-color="#0d1b4b"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#wk1)"/>
+          <ellipse cx="200" cy="150" rx="80" ry="80" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+          <path d="M120 150 Q160 80 200 120 Q240 160 280 100 Q310 60 360 90" stroke="#c9a84c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="200" cy="150" r="8" fill="#c9a84c" opacity=".7"/>
+        </svg>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--violet">Peinture</span><span class="artwork-card__price">1 200 €</span></div>
+          <div class="artwork-card__title">Lumière d'automne</div>
+          <div class="artwork-card__artist">Thomas Girard</div>
+        </div>
       </div>
-      <div class="step-card card fade-in">
-        <div class="step-num">02</div>
-        <h3>Publier ses œuvres</h3>
-        <p>Uploadez vos créations avec description et prix. Votre galerie personnelle est immédiatement visible.</p>
+
+      <div class="card artwork-card fade-in">
+        <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="wk2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#050a14"/><stop offset="100%" stop-color="#0d1a0a"/></linearGradient></defs>
+          <rect width="400" height="300" fill="url(#wk2)"/>
+          <g fill="#0d1a0a" stroke="#c9a84c" stroke-width="1" opacity=".6">
+            <rect x="60" y="120" width="20" height="180"/><rect x="100" y="90" width="18" height="210"/>
+            <rect x="145" y="110" width="16" height="190"/><rect x="185" y="80" width="20" height="220"/>
+          </g>
+          <circle cx="320" cy="55" r="22" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity=".5"/>
+          <circle cx="330" cy="50" r="16" fill="#050a14"/>
+          <g fill="#c9a84c" opacity=".7"><circle cx="130" cy="180" r="2"/><circle cx="220" cy="160" r="1.5"/></g>
+        </svg>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--green">Illustration</span><span class="artwork-card__price">290 €</span></div>
+          <div class="artwork-card__title">Forêt de minuit</div>
+          <div class="artwork-card__artist">Hugo Levert</div>
+        </div>
       </div>
-      <div class="step-card card fade-in">
-        <div class="step-num">03</div>
-        <h3>Vendre & Collaborer</h3>
-        <p>Recevez des demandes d'acheteurs et échangez avec d'autres artistes. 10% de commission sur les ventes uniquement.</p>
+
+      <div class="card artwork-card fade-in">
+        <svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><radialGradient id="wk3" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2a0a4a"/><stop offset="100%" stop-color="#0d0d1a"/></radialGradient></defs>
+          <rect width="400" height="300" fill="url(#wk3)"/>
+          <path d="M200 150 Q220 120 240 140 Q260 160 240 180 Q220 200 200 180 Q170 155 200 130 Q230 100 270 130 Q310 160 280 200 Q250 240 200 220" stroke="#c9a84c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <circle cx="200" cy="150" r="5" fill="#c9a84c"/>
+        </svg>
+        <div class="artwork-card__body">
+          <div class="artwork-card__meta"><span class="badge badge--gold">Art digital</span><span class="artwork-card__price">798 €</span></div>
+          <div class="artwork-card__title">Composition en or</div>
+          <div class="artwork-card__artist">Marius Dent</div>
+        </div>
       </div>
+
+    </div>
+    <div class="text-center mt-40 fade-in">
+      <a href="galerie.html" class="btn-secondary">Voir toute la galerie</a>
     </div>
   </div>
 </section>
@@ -398,15 +435,33 @@
   </div>
 </section>
 
-<!-- ===== CTA FINAL ===== -->
-<section class="cta-band" id="sec-cta">
-  <div class="container fade-in">
-    <div class="section-tag" style="background:rgba(201,168,76,.15);margin:0 auto 20px;">Gratuit pour commencer</div>
-    <h2>Prêt à exposer votre art ?</h2>
-    <p>Rejoignez plus de 1 200 artistes qui exposent, vendent et collaborent sur ArtCanvas.</p>
-    <div class="cta-band__btns">
-      <a href="rejoindre.html" class="btn-primary">Créer mon profil artiste</a>
-      <a href="galerie.html"   class="btn-secondary">Explorer la galerie</a>
+<!-- ===== COMMENT ÇA MARCHE ===== -->
+<section class="section" id="sec-cta" style="background:var(--bg2);">
+  <div class="container">
+    <div class="section-header text-center fade-in">
+      <div class="section-tag">Simple & rapide</div>
+      <h2>Comment ça marche</h2>
+      <p>Trois étapes pour rejoindre une communauté d'artistes en pleine croissance.</p>
+    </div>
+    <div class="steps-grid fade-in">
+      <div class="step-card card fade-in">
+        <div class="step-num">01</div>
+        <h3>Créer un profil</h3>
+        <p>Remplissez votre profil artiste en quelques minutes.</p>
+      </div>
+      <div class="step-card card fade-in">
+        <div class="step-num">02</div>
+        <h3>Publier ses œuvres</h3>
+        <p>Uploadez vos créations avec description et prix. Visibles immédiatement.</p>
+      </div>
+      <div class="step-card card fade-in">
+        <div class="step-num">03</div>
+        <h3>Vendre & Collaborer</h3>
+        <p>Recevez des demandes et échangez avec d'autres artistes. 10% de commission.</p>
+      </div>
+    </div>
+    <div class="text-center mt-40 fade-in">
+      <a href="comment-ca-marche.html" class="btn-primary">En savoir plus →</a>
     </div>
   </div>
 </section>

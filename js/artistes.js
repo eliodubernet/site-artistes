@@ -20,6 +20,7 @@ const ARTISTES = [
     instagram:  'https://instagram.com/elena.marcov',
     shopify:    '',
     stripeLink: '#',
+    gagnant:    true,
     nbOeuvres:  47,
     oeuvres: [
       { titre: 'Spirales cosmiques',   prix: 1200, cat: 'Peinture',    desc: 'Acrylique sur toile, 120×90 cm. Exploration des forces invisibles qui relient les êtres.',   badgeClass: 'badge--violet' },
