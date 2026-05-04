@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="artiste-hero__city">📍 ${artiste.ville}</div>
         <p class="artiste-hero__bio">${artiste.bioLong || artiste.bio}</p>
         <div class="artiste-hero__actions">
-          <a href="mailto:${artiste.email}" class="btn-primary">Contacter le vendeur</a>
+          ${artiste.email ? `<a href="mailto:${artiste.email}" class="btn-primary">Contacter le vendeur</a>` : ''}
           ${shopifyBtn}
           ${instaBtn}
         </div>
@@ -198,12 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
     artiste.oeuvres.forEach(o => {
       const card = document.createElement('div');
       card.className = 'card oeuvre-card fade-in';
+      const achatHref = artiste.email
+        ? `mailto:${artiste.email}?subject=${encodeURIComponent(o.titre)}`
+        : '#';
       card.innerHTML = `
         <span class="badge ${o.badgeClass}">${o.cat}</span>
         <div class="oeuvre-card__title">${o.titre}</div>
         <div class="oeuvre-card__desc">${o.desc}</div>
         <div class="oeuvre-card__price">${o.prix.toLocaleString('fr-FR')} €</div>
-        <a href="mailto:${artiste.email}?subject=${encodeURIComponent(o.titre)}" class="btn-secondary" style="font-size:.8rem;display:inline-flex">Acheter / Contacter</a>`;
+        <a href="${achatHref}" class="btn-secondary" style="font-size:.8rem;display:inline-flex">Acheter / Contacter</a>`;
       gridEl.appendChild(card);
     });
 
