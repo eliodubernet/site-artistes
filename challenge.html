@@ -723,10 +723,83 @@
 
 <script src="js/main.js"></script>
 
+<!-- Challenge data — changement automatique par mois -->
+<script>
+(function () {
+  var CHALLENGES = {
+    '2026-04': {
+      badge:         '◆ Avril 2026 ◆',
+      titre:         'Défi des Artisans',
+      theme:         'Le Temps Suspendu',
+      desc:          "Capturez l'instant figé, l'entre-deux silencieux où le temps retient son souffle. Horloges immobiles, gouttes pétrifiées, regards suspendus entre deux battements. Explorez l'éternité dans l'éphémère.",
+      deadline:      '2026-04-30T23:59:59+02:00',
+      deadlineLabel: '30 Avril',
+      participants:  247,
+      soumissions:   247,
+      phase:         'Création',
+    },
+    '2026-05': {
+      badge:         '◆ Mai 2026 ◆',
+      titre:         'Défi des Artisans',
+      theme:         'La Lumière Intérieure',
+      desc:          "Comment la lumière transforme-t-elle l'espace, les émotions et les êtres ? Explorez la lumière comme métaphore, comme matière et comme guide. Lampes, ombres, auréoles ou clartés matinales — toutes les interprétations sont bienvenues.",
+      deadline:      '2026-05-31T23:59:59+02:00',
+      deadlineLabel: '31 Mai',
+      participants:  0,
+      soumissions:   0,
+      phase:         'Annonce',
+    },
+    '2026-06': {
+      badge:         '◆ Juin 2026 ◆',
+      titre:         'Défi des Artisans',
+      theme:         'Racines & Horizons',
+      desc:          "Entre l'ancrage dans les origines et l'aspiration vers l'ailleurs — représentez la tension créatrice entre héritage et ouverture. Portraits de famille, paysages d'enfance ou visions de terres inconnues.",
+      deadline:      '2026-06-30T23:59:59+02:00',
+      deadlineLabel: '30 Juin',
+      participants:  0,
+      soumissions:   0,
+      phase:         'Annonce',
+    },
+  };
+
+  function getCurrentChallenge() {
+    var now = new Date();
+    var key = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+    return CHALLENGES[key] || CHALLENGES['2026-04'];
+  }
+
+  var ch = getCurrentChallenge();
+
+  /* Expose deadline for countdown script */
+  window.CHALLENGE_DEADLINE = ch.deadline;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var badgeEl = document.querySelector('.ch-badge');
+    if (badgeEl) badgeEl.textContent = ch.badge;
+
+    var themeNameEl = document.querySelector('.ch-theme-grid h2');
+    if (themeNameEl) themeNameEl.innerHTML = ch.theme.replace(' ', '<br>');
+
+    var themeDescEl = document.querySelector('.ch-theme-grid p[style*="italic"]');
+    if (themeDescEl) themeDescEl.textContent = ch.desc;
+
+    var infoVals = document.querySelectorAll('.ch-info__value');
+    if (infoVals[1]) infoVals[1].textContent = ch.participants || '—';
+    if (infoVals[2]) infoVals[2].textContent = ch.deadlineLabel;
+
+    var countEl = document.querySelector('.ch-count');
+    if (countEl) countEl.textContent = ch.soumissions ? ch.soumissions + ' soumissions · Vote ouvert' : 'Soumissions ouvertes';
+
+    var ctaDesc = document.querySelector('#apropos p');
+    if (ctaDesc) ctaDesc.textContent = 'Soumettez votre vision de "' + ch.theme + '" avant le ' + ch.deadlineLabel + ' 2026.';
+  });
+})();
+</script>
+
 <!-- Countdown -->
 <script>
 (function () {
-  var deadline = new Date('2026-04-30T23:59:59+02:00');
+  var deadline = new Date(window.CHALLENGE_DEADLINE || '2026-04-30T23:59:59+02:00');
   var pad = function(n){ return String(n).padStart(2,'0'); };
   function tick() {
     var diff = deadline - new Date();
