@@ -26,7 +26,7 @@
       <li><a href="challenge.html">Défi Mensuel</a></li>
       <li><a href="communaute.html" class="active">Communauté</a></li>
     </ul>
-    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire</a>
+    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire gratuitement</a>
     <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -40,8 +40,6 @@
     <!-- Stats en ligne -->
     <div style="display:flex;justify-content:center;gap:32px;margin-top:32px;flex-wrap:wrap;">
       <div style="text-align:center"><div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--gold);font-weight:700">247</div><div style="font-size:.8rem;color:var(--text-dim)">membres en ligne</div></div>
-      <div style="text-align:center"><div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--gold);font-weight:700">1 840</div><div style="font-size:.8rem;color:var(--text-dim)">discussions</div></div>
-      <div style="text-align:center"><div style="font-family:Georgia,serif;font-size:1.8rem;color:var(--gold);font-weight:700">12 k</div><div style="font-size:.8rem;color:var(--text-dim)">messages</div></div>
     </div>
   </div>
 </section>
@@ -54,40 +52,26 @@
       <h2>Catégories</h2>
     </div>
     <div class="grid grid--4 fade-in">
-      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block;border-top:3px solid #b06de8;">
         <div class="forum-cat__icon">🎨</div>
-        <div class="forum-cat__title">Techniques & Matériaux</div>
+        <div class="forum-cat__title"><span style="display:inline-block;background:rgba(176,109,232,.15);color:#b06de8;padding:2px 12px;border-radius:50px;font-weight:700;font-size:.9rem;margin-bottom:6px;">Techniques</span> & Matériaux</div>
         <div class="forum-cat__count">342 discussions</div>
       </a>
-      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block;border-top:3px solid #60a5fa;">
         <div class="forum-cat__icon">🤝</div>
-        <div class="forum-cat__title">Collaborations & Projets</div>
+        <div class="forum-cat__title"><span style="display:inline-block;background:rgba(96,165,250,.15);color:#60a5fa;padding:2px 12px;border-radius:50px;font-weight:700;font-size:.9rem;margin-bottom:6px;">Collaborations</span> & Projets</div>
         <div class="forum-cat__count">218 discussions</div>
       </a>
-      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block;border-top:3px solid #34d399;">
         <div class="forum-cat__icon">💬</div>
-        <div class="forum-cat__title">Critiques & Retours</div>
+        <div class="forum-cat__title"><span style="display:inline-block;background:rgba(52,211,153,.15);color:#34d399;padding:2px 12px;border-radius:50px;font-weight:700;font-size:.9rem;margin-bottom:6px;">Critiques</span> & Retours</div>
         <div class="forum-cat__count">561 discussions</div>
       </a>
-      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block;border-top:3px solid #b5872c;">
         <div class="forum-cat__icon">🌍</div>
-        <div class="forum-cat__title">Actualités Art</div>
+        <div class="forum-cat__title"><span style="display:inline-block;background:rgba(181,135,44,.15);color:#b5872c;padding:2px 12px;border-radius:50px;font-weight:700;font-size:.9rem;margin-bottom:6px;">Actualités</span> Art</div>
         <div class="forum-cat__count">719 discussions</div>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ŒUVRES DE LA SEMAINE -->
-<section class="section section--dark">
-  <div class="container">
-    <div class="section-header text-center fade-in">
-      <div class="section-tag">Chaque lundi</div>
-      <h2>Œuvres de la semaine</h2>
-      <p>Les 3 œuvres les plus vues cette semaine sur ArtCanvas.</p>
-    </div>
-    <div class="oeuvres-semaine-grid fade-in" id="oeuvresSemaineGrid">
-      <!-- Rempli par JS -->
     </div>
   </div>
 </section>
@@ -544,7 +528,7 @@
       <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
       <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span></div>
   </div>
 </footer>
 
@@ -822,55 +806,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (collabGrid && window.innerWidth < 768) {
     collabGrid.style.gridTemplateColumns = '1fr';
   }
-
-  /* ──────────────────────────────────────────────
-     5. ŒUVRES DE LA SEMAINE (rotation hebdo)
-  ────────────────────────────────────────────── */
-  const OEUVRES_POOL = [
-    { titre:'Lumière d\'automne', artiste:'Thomas Girard', vues:1247, emoji:'🍂' },
-    { titre:'Mandala solaire', artiste:'Sofia Herrera', vues:1189, emoji:'☀️' },
-    { titre:'Forêt de bouleau', artiste:'Hugo Lambert', vues:1034, emoji:'🌲' },
-    { titre:'Série Fibonacci', artiste:'Elena Marcov', vues:987, emoji:'🌀' },
-    { titre:'Éclats de mer', artiste:'Camille Roux', vues:912, emoji:'🌊' },
-    { titre:'Bouquet de pivoine', artiste:'Marie Fleur', vues:876, emoji:'🌸' },
-    { titre:'Architecture oubliée', artiste:'Nadia Solis', vues:834, emoji:'🏛️' },
-    { titre:'Composition en or', artiste:'Marius Dent', vues:798, emoji:'✨' },
-    { titre:'Harmonie végétale', artiste:'Ryo Tanaka', vues:751, emoji:'🌿' },
-  ];
-
-  function getWeekSet() {
-    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-    const weekNum = Math.floor((Date.now() - 3 * 24 * 3600 * 1000) / msPerWeek);
-    const start = (weekNum % 3) * 3;
-    return OEUVRES_POOL.slice(start, start + 3);
-  }
-
-  function renderOeuvresSemaine() {
-    const grid = document.getElementById('oeuvresSemaineGrid');
-    if (!grid) return;
-    getWeekSet().forEach(o => {
-      const card = document.createElement('div');
-      card.className = 'oeuvre-semaine-card fade-in';
-      card.innerHTML = `
-        <div class="oeuvre-semaine-card__thumb">
-          ${o.emoji}
-          <span class="badge badge--gold oeuvre-semaine-card__badge" style="font-size:.7rem">Tendance cette semaine</span>
-        </div>
-        <div class="oeuvre-semaine-card__body">
-          <div class="oeuvre-semaine-card__title">${o.titre}</div>
-          <div class="oeuvre-semaine-card__artist">par ${o.artiste}</div>
-          <div class="oeuvre-semaine-card__views">👁 ${o.vues.toLocaleString('fr-FR')} vues</div>
-        </div>`;
-      grid.appendChild(card);
-    });
-
-    const io2 = new IntersectionObserver(e => e.forEach(x => {
-      if (x.isIntersecting) { x.target.classList.add('visible'); io2.unobserve(x.target); }
-    }), { threshold: 0.1 });
-    grid.querySelectorAll('.fade-in').forEach(el => io2.observe(el));
-  }
-
-  renderOeuvresSemaine();
 
   /* ──────────────────────────────────────────────
      4. THREAD MODAL

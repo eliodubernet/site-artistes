@@ -13,11 +13,11 @@
       { id: 'sec-works',        label: 'Œuvres en vedette' },
       { id: 'sec-how',          label: 'Œuvres de la semaine' },
       { id: 'sec-testimonials', label: 'Témoignages' },
-      { id: 'sec-cta',          label: 'Comment ça marche' },
       { id: 'sec-footer',       label: 'Pied de page' },
     ],
     'challenge.html': [
       { id: 'ch-sec-hero',        label: 'Défi' },
+      { id: 'ch-sec-timeline',    label: 'Phases' },
       { id: 'ch-sec-theme',       label: 'Thème' },
       { id: 'ch-sec-criteres',    label: 'Critères' },
       { id: 'ch-sec-juges',       label: 'Juges' },

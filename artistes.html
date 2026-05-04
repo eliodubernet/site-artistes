@@ -26,7 +26,7 @@
       <li><a href="challenge.html">Défi Mensuel</a></li>
       <li><a href="communaute.html">Communauté</a></li>
     </ul>
-    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire</a>
+    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire gratuitement</a>
     <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -37,6 +37,9 @@
     <div class="section-tag">Artistes</div>
     <h1>Rencontrez les créateurs</h1>
     <p>Peintres, photographes, sculpteurs, illustrateurs et artistes digitaux — des talents du monde entier réunis sur ArtCanvas.</p>
+    <div class="search-bar fade-in" style="margin-top:28px;max-width:440px;margin-left:auto;margin-right:auto;">
+      <input type="search" class="search-bar__input" id="artistesSearch" placeholder="Rechercher un artiste, une discipline, une ville…" aria-label="Rechercher un artiste">
+    </div>
   </div>
 </section>
 
@@ -81,7 +84,7 @@
       <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
       <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span></div>
   </div>
 </footer>
 
@@ -152,6 +155,23 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.1 });
   grid.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+  /* ── Barre de recherche ── */
+  const artistesSearch = document.getElementById('artistesSearch');
+  if (artistesSearch) {
+    artistesSearch.addEventListener('input', () => {
+      const q = artistesSearch.value.toLowerCase().trim();
+      grid.querySelectorAll('.grid-item').forEach(card => {
+        const text = [
+          card.querySelector('.artist-card__name')?.textContent || '',
+          card.querySelector('.badge')?.textContent || '',
+          card.querySelector('.artist-card__city')?.textContent || '',
+          card.querySelector('.artist-card__bio')?.textContent || ''
+        ].join(' ').toLowerCase();
+        card.classList.toggle('hidden', !!q && !text.includes(q));
+      });
+    });
+  }
 
 })();
 </script>
