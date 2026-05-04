@@ -89,9 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Update active button
-        btns.forEach(b => b.classList.remove('active'));
+        btns.forEach(b => {
+          b.classList.remove('active');
+          b.style.removeProperty('--filter-active-color');
+        });
         btn.classList.add('active');
+        const color = btn.dataset.color;
+        if (color) btn.style.setProperty('--filter-active-color', color);
 
         const filter = btn.dataset.filter;
         items.forEach(item => {

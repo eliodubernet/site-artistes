@@ -348,7 +348,12 @@ p  { color: var(--text-mid); }
   transition: all var(--trans);
 }
 .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
-.filter-btn.active { background: var(--gold); border-color: var(--gold); color: #0d0d0d; font-weight: 700; }
+.filter-btn.active {
+  background: var(--filter-active-color, var(--gold));
+  border-color: var(--filter-active-color, var(--gold));
+  color: #fff;
+  font-weight: 700;
+}
 
 @media (max-width: 720px) {
   .filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
