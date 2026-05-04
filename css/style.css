@@ -22,11 +22,12 @@
   --max-w:     1180px;
 }
 
-/* ----- Scrollbar masquée -------------------------------- */
-html {
+/* ----- Scrollbar masquée (tous éléments) ---------------- */
+html, * {
   scrollbar-width: none; /* Firefox */
 }
-html::-webkit-scrollbar {
+html::-webkit-scrollbar,
+*::-webkit-scrollbar {
   display: none; /* Chrome / Safari / Edge */
 }
 

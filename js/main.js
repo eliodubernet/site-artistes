@@ -3,6 +3,49 @@
    Pure vanilla JS — DOMContentLoaded wrapper
    ========================================================= */
 
+/* =========================================================
+   Fast smooth scroll — molette souris
+   ========================================================= */
+(function () {
+  var curr = window.pageYOffset;
+  var dest = window.pageYOffset;
+  var raf  = null;
+  var SPEED = 2.8;   /* multiplicateur de distance par cran de molette */
+  var EASE  = 0.13;  /* facteur lerp : 0 = très smooth/lent, 1 = instantané */
+
+  function step() {
+    document.documentElement.style.scrollBehavior = 'auto';
+    curr += (dest - curr) * EASE;
+    window.scrollTo(0, curr);
+    if (Math.abs(dest - curr) > 0.5) {
+      raf = requestAnimationFrame(step);
+    } else {
+      window.scrollTo(0, dest);
+      curr = dest;
+      raf  = null;
+      document.documentElement.style.scrollBehavior = '';
+    }
+  }
+
+  window.addEventListener('wheel', function (e) {
+    if (e.ctrlKey) return; /* pinch-zoom — ne pas interférer */
+    /* Laisser les éléments scrollables horizontalement gérer eux-mêmes */
+    if (e.target.closest('.filters, .ch-timeline__track, .sort-controls, .members-row')) return;
+    e.preventDefault();
+    var delta = e.deltaY;
+    if (e.deltaMode === 1) delta *= 32;              /* lignes → pixels */
+    if (e.deltaMode === 2) delta *= window.innerHeight; /* pages  → pixels */
+    var maxY = document.documentElement.scrollHeight - window.innerHeight;
+    dest = Math.max(0, Math.min(dest + delta * SPEED, maxY));
+    if (!raf) raf = requestAnimationFrame(step);
+  }, { passive: false });
+
+  /* Resync si scroll via clavier, touch ou ancre */
+  window.addEventListener('scroll', function () {
+    if (!raf) { curr = window.pageYOffset; dest = window.pageYOffset; }
+  }, { passive: true });
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ----- Navbar scroll shadow --------------------------- */
