@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil Artiste — ArtCanvas</title>
+  <meta name="description" content="Profil artiste sur ArtCanvas">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .artiste-hero {
+      padding: 64px 0 48px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+    .artiste-hero__inner {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .artiste-hero__avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .artiste-hero__avatar-wrap svg {
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+    }
+    .artiste-hero__medal {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      font-size: 1.4rem;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,.3));
+    }
+    .artiste-hero__info { flex: 1; min-width: 240px; }
+    .artiste-hero__name {
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      margin: 8px 0;
+      color: var(--text);
+    }
+    .artiste-hero__city { color: var(--text-dim); font-size: .9rem; margin: 8px 0 16px; }
+    .artiste-hero__bio  { margin-bottom: 24px; max-width: 540px; }
+    .artiste-hero__actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .artiste-oeuvres-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .oeuvre-card { padding: 20px; }
+    .oeuvre-card__title {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      margin: 12px 0 6px;
+      color: var(--text);
+    }
+    .oeuvre-card__desc  { font-size: .85rem; color: var(--text-mid); margin-bottom: 12px; }
+    .oeuvre-card__price { font-weight: 700; color: var(--gold); font-size: 1.1rem; margin-bottom: 12px; }
+    .artiste-not-found { padding: 80px 0; text-align: center; }
+    @media (max-width: 900px) { .artiste-oeuvres-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .artiste-oeuvres-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) {
+      .artiste-hero__inner { flex-direction: column; align-items: center; text-align: center; }
+      .artiste-hero__actions { justify-content: center; }
+      .artiste-hero__bio { margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar__inner">
+    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <ul class="navbar__links" id="navLinks">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="galerie.html">Galerie</a></li>
+      <li><a href="artistes.html" class="active">Artistes</a></li>
+      <li><a href="challenge.html">Défi Mensuel</a></li>
+      <li><a href="communaute.html">Communauté</a></li>
+    </ul>
+    <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="artiste-hero" id="artiste-hero-section">
+  <div class="container">
+    <div id="artisteHeroContent">
+      <p style="color:var(--text-dim)">Chargement…</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="artiste-portfolio-section">
+  <div class="container" id="portfolioContainer" style="display:none">
+    <div class="section-header fade-in">
+      <div class="section-tag">Portfolio</div>
+      <h2 id="portfolioTitle">Œuvres</h2>
+    </div>
+    <div id="artisteOeuvresGrid" class="artiste-oeuvres-grid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+        <p>La plateforme des artistes indépendants.</p>
+      </div>
+      <div class="footer__col"><h4>Navigation</h4><ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="artistes.html">Artistes</a></li>
+        <li><a href="communaute.html">Communauté</a></li>
+      </ul></div>
+      <div class="footer__col"><h4>Artistes</h4><ul>
+        <li><a href="rejoindre.html">Rejoindre</a></li>
+        <li><a href="#">Commission 10%</a></li>
+      </ul></div>
+      <div class="footer__col"><h4>À propos</h4><ul>
+        <li><a href="#">Notre mission</a></li>
+        <li><a href="#">Conditions</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 ArtCanvas. Tous droits réservés.</span>
+      <span>Fait avec passion pour les artistes</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/artistes.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params  = new URLSearchParams(window.location.search);
+  const slug    = params.get('slug') || '';
+  const artiste = (typeof getArtiste === 'function') ? getArtiste(slug) : null;
+
+  const heroEl       = document.getElementById('artisteHeroContent');
+  const gridEl       = document.getElementById('artisteOeuvresGrid');
+  const portfolioContainer = document.getElementById('portfolioContainer');
+  const titleEl      = document.getElementById('portfolioTitle');
+
+  if (!artiste) {
+    heroEl.innerHTML = `
+      <div class="artiste-not-found">
+        <p style="font-size:1.1rem;color:var(--text-mid);margin-bottom:20px">Artiste introuvable.</p>
+        <a href="artistes.html" class="btn-secondary">← Retour aux artistes</a>
+      </div>`;
+    return;
+  }
+
+  document.title = artiste.nom + ' — ArtCanvas';
+
+  const medalHTML = artiste.gagnant
+    ? '<span class="artiste-hero__medal" aria-label="Artiste primé">🏅</span>'
+    : '';
+
+  const shopifyBtn = artiste.shopify
+    ? `<a href="${artiste.shopify}" target="_blank" rel="noopener" class="btn-secondary">Voir le portfolio ↗</a>`
+    : `<a href="#artiste-portfolio-section" class="btn-secondary">Voir les œuvres</a>`;
+
+  const instaBtn = artiste.instagram
+    ? `<a href="${artiste.instagram}" target="_blank" rel="noopener" class="btn-secondary" style="font-size:.82rem">Instagram ↗</a>`
+    : '';
+
+  heroEl.innerHTML = `
+    <div class="artiste-hero__inner">
+      <div class="artiste-hero__avatar-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect width="120" height="120" rx="60" fill="${artiste.couleur}" opacity=".15"/>
+          <ellipse cx="60" cy="48" rx="22" ry="25" fill="${artiste.couleur}" opacity=".7"/>
+          <path d="M14 120 Q14 80 60 80 Q106 80 106 120 Z" fill="${artiste.couleur}" opacity=".5"/>
+        </svg>
+        ${medalHTML}
+      </div>
+      <div class="artiste-hero__info">
+        <span class="badge ${artiste.badgeClass}">${artiste.discipline}</span>
+        <div class="artiste-hero__name">${artiste.nom}</div>
+        <div class="artiste-hero__city">📍 ${artiste.ville}</div>
+        <p class="artiste-hero__bio">${artiste.bioLong || artiste.bio}</p>
+        <div class="artiste-hero__actions">
+          <a href="mailto:${artiste.email}" class="btn-primary">Contacter le vendeur</a>
+          ${shopifyBtn}
+          ${instaBtn}
+        </div>
+      </div>
+    </div>`;
+
+  // Portfolio section
+  if (artiste.oeuvres && artiste.oeuvres.length > 0) {
+    portfolioContainer.style.display = '';
+    if (titleEl) titleEl.textContent = artiste.nom + ' — Œuvres';
+
+    artiste.oeuvres.forEach(o => {
+      const card = document.createElement('div');
+      card.className = 'card oeuvre-card fade-in';
+      card.innerHTML = `
+        <span class="badge ${o.badgeClass}">${o.cat}</span>
+        <div class="oeuvre-card__title">${o.titre}</div>
+        <div class="oeuvre-card__desc">${o.desc}</div>
+        <div class="oeuvre-card__price">${o.prix.toLocaleString('fr-FR')} €</div>
+        <a href="mailto:${artiste.email}?subject=${encodeURIComponent(o.titre)}" class="btn-secondary" style="font-size:.8rem;display:inline-flex">Acheter / Contacter</a>`;
+      gridEl.appendChild(card);
+    });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    gridEl.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  }
+});
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>
