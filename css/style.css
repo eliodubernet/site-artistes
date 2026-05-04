@@ -1583,4 +1583,29 @@ p { line-height: 1.78; }
   color: var(--text);
   margin-bottom: 8px;
 }
+
+/* ----- Search bar -------------------------------------- */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.search-bar__input {
+  flex: 1;
+  max-width: 480px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: .9rem;
+  transition: border-color var(--trans);
+  outline: none;
+}
+.search-bar__input:focus { border-color: var(--gold); }
+.search-bar__input::placeholder { color: var(--text-dim); }
+@media (max-width: 600px) {
+  .search-bar__input { max-width: 100%; }
+}
 .etape-item__desc { font-size: .88rem; color: var(--text-mid); line-height: 1.6; }

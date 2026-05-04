@@ -105,6 +105,34 @@ document.addEventListener('DOMContentLoaded', () => {
   initFilters('galleryFilters', 'galleryGrid');
   initFilters('artistFilters',  'artistsGrid');
 
+  /* ----- Gallery search --------------------------------- */
+  const gallerySearch = document.getElementById('gallerySearch');
+  if (gallerySearch) {
+    const galleryItems = document.querySelectorAll('#galleryGrid .artwork-card');
+    gallerySearch.addEventListener('input', () => {
+      const q = gallerySearch.value.toLowerCase().trim();
+      galleryItems.forEach(card => {
+        const text = ((card.dataset.title || '') + ' ' + (card.dataset.artist || '') + ' ' + (card.dataset.category || '')).toLowerCase();
+        card.classList.toggle('hidden', !!q && !text.includes(q));
+      });
+    });
+  }
+
+  /* ----- Communauté search ------------------------------ */
+  const communauteSearch = document.getElementById('communauteSearch');
+  if (communauteSearch) {
+    const threadItems = document.querySelectorAll('#discussions-recentes .thread-item');
+    communauteSearch.addEventListener('input', () => {
+      const q = communauteSearch.value.toLowerCase().trim();
+      threadItems.forEach(item => {
+        const titleEl  = item.querySelector('.thread-item__title');
+        const authorEl = item.querySelector('.thread-item__meta span');
+        const text = ((titleEl?.textContent || '') + ' ' + (authorEl?.textContent || '')).toLowerCase();
+        item.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+    });
+  }
+
   /* ----- Lightbox --------------------------------------- */
   const lightbox      = document.getElementById('lightbox');
   const lightboxClose = document.getElementById('lightboxClose');
