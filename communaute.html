@@ -32,7 +32,7 @@
 </nav>
 
 <!-- PAGE HERO -->
-<section class="page-hero">
+<section class="page-hero" id="com-sec-hero">
   <div class="container">
     <div class="section-tag">Communauté</div>
     <h1>L'espace des créateurs</h1>
@@ -47,29 +47,29 @@
 </section>
 
 <!-- CATÉGORIES -->
-<section class="section section--dark">
+<section class="section section--dark" id="com-sec-categories">
   <div class="container">
     <div class="section-header text-center fade-in">
       <div class="section-tag">Forum</div>
       <h2>Catégories</h2>
     </div>
     <div class="grid grid--4 fade-in">
-      <a href="#discussions-recentes" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
         <div class="forum-cat__icon">🎨</div>
         <div class="forum-cat__title">Techniques & Matériaux</div>
         <div class="forum-cat__count">342 discussions</div>
       </a>
-      <a href="#discussions-recentes" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
         <div class="forum-cat__icon">🤝</div>
         <div class="forum-cat__title">Collaborations & Projets</div>
         <div class="forum-cat__count">218 discussions</div>
       </a>
-      <a href="#discussions-recentes" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
         <div class="forum-cat__icon">💬</div>
         <div class="forum-cat__title">Critiques & Retours</div>
         <div class="forum-cat__count">561 discussions</div>
       </a>
-      <a href="#discussions-recentes" class="forum-cat" style="text-decoration:none;display:block">
+      <a href="#com-sec-discussions" class="forum-cat" style="text-decoration:none;display:block">
         <div class="forum-cat__icon">🌍</div>
         <div class="forum-cat__title">Actualités Art</div>
         <div class="forum-cat__count">719 discussions</div>
@@ -93,7 +93,7 @@
 </section>
 
 <!-- DISCUSSIONS RÉCENTES -->
-<section class="section" id="discussions-recentes">
+<section class="section" id="com-sec-discussions">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-tag">Activité</div>
@@ -383,7 +383,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SECTION INTERACTIVE 1 — Forum avec messages localStorage
      ═══════════════════════════════════════════════════════ -->
-<section class="section" id="forum-interactif">
+<section class="section" id="com-sec-forum">
   <div class="container">
     <div class="section-header fade-in">
       <div class="section-tag">Discussions en direct</div>
@@ -422,7 +422,7 @@
 <!-- ═══════════════════════════════════════════════════════
      SECTION INTERACTIVE 2 — Mise en relation / Collaboration
      ═══════════════════════════════════════════════════════ -->
-<section class="section section--dark" id="collaboration">
+<section class="section section--dark" id="com-sec-collab">
   <div class="container">
     <div class="section-header text-center fade-in">
       <div class="section-tag">Projets custom</div>
@@ -990,6 +990,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<nav class="nav-dots" aria-label="Navigation par section"></nav>
+<script src="js/nav-dots.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

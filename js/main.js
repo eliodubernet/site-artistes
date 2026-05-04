@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ----- Communauté search ------------------------------ */
   const communauteSearch = document.getElementById('communauteSearch');
   if (communauteSearch) {
-    const threadItems = document.querySelectorAll('#discussions-recentes .thread-item');
+    const threadItems = document.querySelectorAll('#com-sec-discussions .thread-item');
     communauteSearch.addEventListener('input', () => {
       const q = communauteSearch.value.toLowerCase().trim();
       threadItems.forEach(item => {

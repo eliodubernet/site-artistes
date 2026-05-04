@@ -1,65 +1,80 @@
 /* =========================================================
    ArtCanvas — nav-dots.js
-   Navigation verticale par points (index.html)
+   Navigation verticale par points — toutes les pages
    ========================================================= */
 
 (function () {
   'use strict';
 
-  /* Sections dans l'ordre d'apparition, avec leur couleur dominante */
-  const SECTIONS = [
-    { id: 'sec-hero',         color: '#b5872c', label: 'Accueil' },
-    { id: 'sec-stats',        color: '#b5872c', label: 'Statistiques' },
-    { id: 'sec-works',        color: '#b5872c', label: 'Œuvres en vedette' },
-    { id: 'sec-how',          color: '#7b1fb5', label: 'Comment ça marche' },
-    { id: 'sec-testimonials', color: '#b5872c', label: 'Témoignages' },
-    { id: 'sec-cta',          color: '#c9a84c', label: 'Rejoindre' },
-    { id: 'sec-footer',       color: '#c9a84c', label: 'Pied de page' },
-  ];
+  var PAGE_SECTIONS = {
+    'index.html': [
+      { id: 'sec-hero',         label: 'Accueil' },
+      { id: 'sec-stats',        label: 'Statistiques' },
+      { id: 'sec-works',        label: 'Œuvres en vedette' },
+      { id: 'sec-how',          label: 'Œuvres de la semaine' },
+      { id: 'sec-testimonials', label: 'Témoignages' },
+      { id: 'sec-cta',          label: 'Comment ça marche' },
+      { id: 'sec-footer',       label: 'Pied de page' },
+    ],
+    'challenge.html': [
+      { id: 'ch-sec-hero',        label: 'Défi' },
+      { id: 'ch-sec-theme',       label: 'Thème' },
+      { id: 'ch-sec-criteres',    label: 'Critères' },
+      { id: 'ch-sec-juges',       label: 'Juges' },
+      { id: 'ch-sec-galerie',     label: 'Galerie' },
+      { id: 'ch-sec-recompenses', label: 'Récompenses' },
+    ],
+    'communaute.html': [
+      { id: 'com-sec-hero',        label: 'Communauté' },
+      { id: 'com-sec-categories',  label: 'Catégories' },
+      { id: 'com-sec-discussions', label: 'Discussions' },
+      { id: 'com-sec-forum',       label: 'Forum' },
+      { id: 'com-sec-collab',      label: 'Collaborations' },
+    ],
+    'galerie.html': [
+      { id: 'gal-sec-hero', label: 'Galerie' },
+      { id: 'gal-sec-grid', label: 'Œuvres' },
+    ],
+  };
 
   document.addEventListener('DOMContentLoaded', function () {
     var container = document.querySelector('.nav-dots');
     if (!container) return;
 
-    /* Filtrer les sections qui existent réellement dans la page */
+    var path = window.location.pathname;
+    var page = path.split('/').pop() || 'index.html';
+    if (!page) page = 'index.html';
+
+    var SECTIONS = PAGE_SECTIONS[page] || PAGE_SECTIONS['index.html'];
+
     var items = SECTIONS.filter(function (s) {
       return !!document.getElementById(s.id);
     });
 
     if (!items.length) return;
 
-    /* Créer un bouton-point par section */
     items.forEach(function (sec) {
       var btn = document.createElement('button');
       btn.className   = 'nav-dot';
-      btn.style.color = sec.color;
       btn.setAttribute('aria-label', sec.label);
       btn.setAttribute('title', sec.label);
-
       btn.addEventListener('click', function () {
         document.getElementById(sec.id).scrollIntoView({ behavior: 'smooth' });
       });
-
       container.appendChild(btn);
       sec.dot = btn;
     });
 
-    /* IntersectionObserver — zone active : bande centrale du viewport */
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var sec = items.find(function (s) { return s.id === entry.target.id; });
         if (sec) sec.intersecting = entry.isIntersecting;
       });
-
-      /* Activer le premier point dont la section est visible */
       var active = items.find(function (s) { return s.intersecting; });
       items.forEach(function (s) {
         if (s.dot) s.dot.classList.toggle('active', s === active);
       });
-    }, {
-      rootMargin: '-30% 0px -30% 0px', /* bande de 40 % au centre */
-      threshold: 0
-    });
+    }, { rootMargin: '-30% 0px -30% 0px', threshold: 0 });
 
     items.forEach(function (sec) {
       io.observe(document.getElementById(sec.id));
