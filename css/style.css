@@ -1646,3 +1646,95 @@ html { scrollbar-width: thin; scrollbar-color: rgba(201,168,76,.55) rgba(0,0,0,.
   .sort-btn { padding: 5px 12px; font-size: .75rem; }
 }
 .etape-item__desc { font-size: .88rem; color: var(--text-mid); line-height: 1.6; }
+
+/* =========================================================
+   RESPONSIVE MOBILE — correctifs complémentaires
+   ========================================================= */
+
+/* ── Navbar ───────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .navbar__inner { gap: 8px; padding: 0 16px; }
+  /* CTA visible réduit sur tablette/mobile large */
+  .navbar__cta {
+    display: inline-flex;
+    font-size: .72rem;
+    padding: 6px 11px;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+}
+@media (max-width: 380px) {
+  /* Sur très petits écrans : CTA dans le menu hamburger suffit */
+  .navbar__cta { display: none; }
+}
+
+/* ── Sections & container ─────────────────────────────── */
+@media (max-width: 720px) {
+  .section, .section--dark { padding: 64px 0; }
+  .cta-band                { padding: 64px 0; }
+  .page-hero               { padding: 56px 0 44px; }
+  .container               { padding: 0 18px; }
+  .section-header          { margin-bottom: 32px; }
+}
+@media (max-width: 480px) {
+  .section, .section--dark { padding: 44px 0; }
+  .container               { padding: 0 14px; }
+  .page-hero               { padding: 40px 0 32px; }
+}
+
+/* ── Boutons — touch target minimum 44px ─────────────── */
+@media (max-width: 720px) {
+  .btn-primary, .btn-secondary { min-height: 44px; }
+}
+@media (max-width: 480px) {
+  /* Boutons pleine largeur dans les hero/CTA band */
+  .hero__cta .btn-primary,
+  .hero__cta .btn-secondary { width: 100%; justify-content: center; }
+}
+
+/* ── Hero title scaling ──────────────────────────────── */
+@media (max-width: 480px) {
+  .hero__overlay  { padding: 48px 16px; }
+  .hero__title    { font-size: clamp(1.8rem, 9vw, 2.8rem); }
+  .hero__subtitle { font-size: .95rem; }
+}
+
+/* ── Modal lightbox ──────────────────────────────────── */
+@media (max-width: 480px) {
+  .modal__body  { padding: 16px 18px; }
+  .modal__title { font-size: 1.15rem; }
+}
+
+/* ── Thread modal ────────────────────────────────────── */
+@media (max-width: 540px) {
+  .thread-modal-overlay { padding: 12px; }
+  .thread-modal         { padding: 20px 16px; max-height: 90vh; }
+}
+
+/* ── Forum thread items ──────────────────────────────── */
+@media (max-width: 540px) {
+  .thread-item          { flex-direction: column; gap: 10px; padding: 14px; }
+  .thread-item__actions { gap: 12px; flex-wrap: wrap; }
+  .forum-cat            { padding: 18px 16px; }
+}
+
+/* ── Confirm box ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  .confirm-box  { padding: 32px 18px; }
+  .confirm-icon { width: 60px; height: 60px; font-size: 1.5rem; }
+}
+
+/* ── Form progress ───────────────────────────────────── */
+@media (max-width: 480px) {
+  .form-progress__dot   { width: 28px; height: 28px; font-size: .7rem; }
+  .form-progress__label { font-size: .65rem; }
+  .form-wrapper         { padding: 0 4px; }
+}
+
+/* ── Stats ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .stat-item { padding: 20px 12px; }
+}
+
+/* ── Pas de scroll horizontal sur le site ────────────── */
+body { overflow-x: hidden; }
