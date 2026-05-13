@@ -429,7 +429,7 @@
 
 <script>
 /* =========================================================
-   Hero — Animation nuit : colline · ville · ciel étoilé
+   Hero — Animation nuit : colline · ville · nuages · aurora
    ========================================================= */
 (function () {
   var canvas = document.getElementById('heroCanvas');
@@ -437,20 +437,38 @@
   var W = 0, H = 0;
 
   /* ── Étoiles ──────────────────────────────── */
-  var N_STARS = 200;
-  var stars   = [];
+  var stars = [];
   function genStars() {
     stars = [];
-    for (var i = 0; i < N_STARS; i++) {
+    for (var i = 0; i < 200; i++) {
       stars.push({
-        x:     Math.random(),
-        y:     Math.random() * 0.68,
-        r:     0.4 + Math.random() * 1.7,
+        x: Math.random(), y: Math.random() * 0.66,
+        r: 0.4 + Math.random() * 1.7,
         phase: Math.random() * Math.PI * 2,
         freq:  0.25 + Math.random() * 1.0,
         base:  0.35 + Math.random() * 0.60,
       });
     }
+  }
+
+  /* ── Nuages ───────────────────────────────── */
+  var CLOUDS = [
+    { bx: 0.10, by: 0.11, wf: 0.22, hf: 0.055, spd:  9 },
+    { bx: 0.47, by: 0.07, wf: 0.30, hf: 0.072, spd: 16 },
+    { bx: 0.78, by: 0.17, wf: 0.20, hf: 0.048, spd:  7 },
+    { bx: 1.15, by: 0.09, wf: 0.26, hf: 0.065, spd: 12 },
+  ];
+  function drawCloud(cx, cy, cw, ch) {
+    ctx.save();
+    ctx.globalAlpha = 0.20;
+    ctx.fillStyle   = '#0c0418';
+    ctx.beginPath();
+    ctx.ellipse(cx,             cy,          cw * 0.50, ch * 0.75, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx + cw * 0.28, cy - ch * 0.20, cw * 0.35, ch * 0.85, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx - cw * 0.24, cy - ch * 0.15, cw * 0.30, ch * 0.72, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx + cw * 0.52, cy + ch * 0.10, cw * 0.25, ch * 0.60, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
   }
 
   /* ── Bâtiments ────────────────────────────── */
@@ -461,19 +479,15 @@
     var x = -15;
     while (x < W + 20) {
       var tall = Math.random() < 0.28;
-      var bw   = 11 + Math.random() * (tall ? 20 : 26);
-      var bh   = tall ? 55 + Math.random() * 95 : 18 + Math.random() * 48;
-      var top  = baseY - bh;
+      var bw = 11 + Math.random() * (tall ? 20 : 26);
+      var bh = tall ? 55 + Math.random() * 95 : 18 + Math.random() * 48;
+      var top = baseY - bh;
       var wins = [];
       for (var wy = top + 7; wy < baseY - 7; wy += 9) {
         for (var wx = x + 4; wx < x + bw - 4; wx += 8) {
-          wins.push({
-            x:     wx,
-            y:     wy,
-            lit:   Math.random() < 0.62,
-            phase: Math.random() * Math.PI * 2,
-            freq:  0.06 + Math.random() * 0.22,
-          });
+          wins.push({ x: wx, y: wy, lit: Math.random() < 0.62,
+                      phase: Math.random() * Math.PI * 2,
+                      freq:  0.06 + Math.random() * 0.22 });
         }
       }
       buildings.push({ x: x, w: bw, top: top, h: bh, wins: wins });
@@ -492,98 +506,42 @@
 
   /* ── Collines ─────────────────────────────── */
   function drawHills() {
-    /* Colline lointaine */
     ctx.beginPath();
-    ctx.moveTo(0, H);
-    ctx.lineTo(0, H * 0.810);
-    ctx.bezierCurveTo(W * 0.12, H * 0.748, W * 0.30, H * 0.710, W * 0.48, H * 0.722);
-    ctx.bezierCurveTo(W * 0.64, H * 0.734, W * 0.82, H * 0.768, W, H * 0.810);
-    ctx.lineTo(W, H);
-    ctx.closePath();
-    ctx.fillStyle = '#081003';
-    ctx.fill();
+    ctx.moveTo(0, H); ctx.lineTo(0, H * 0.810);
+    ctx.bezierCurveTo(W*.12,H*.748, W*.30,H*.710, W*.48,H*.722);
+    ctx.bezierCurveTo(W*.64,H*.734, W*.82,H*.768, W, H*.810);
+    ctx.lineTo(W, H); ctx.closePath();
+    ctx.fillStyle = '#081003'; ctx.fill();
 
-    /* Colline principale (silhouette assise au sommet) */
     ctx.beginPath();
-    ctx.moveTo(0, H);
-    ctx.lineTo(0, H * 0.905);
-    ctx.bezierCurveTo(W * 0.08, H * 0.870, W * 0.22, H * 0.820, W * 0.38, H * 0.766);
-    ctx.bezierCurveTo(W * 0.455, H * 0.738, W * 0.488, H * 0.720, W * 0.50, H * 0.712);
-    ctx.bezierCurveTo(W * 0.512, H * 0.720, W * 0.545, H * 0.738, W * 0.62, H * 0.766);
-    ctx.bezierCurveTo(W * 0.78, H * 0.820, W * 0.92, H * 0.870, W, H * 0.905);
-    ctx.lineTo(W, H);
-    ctx.closePath();
-    ctx.fillStyle = '#050e01';
-    ctx.fill();
+    ctx.moveTo(0, H); ctx.lineTo(0, H * 0.905);
+    ctx.bezierCurveTo(W*.08,H*.870, W*.22,H*.820, W*.38,H*.766);
+    ctx.bezierCurveTo(W*.455,H*.738, W*.488,H*.720, W*.50,H*.712);
+    ctx.bezierCurveTo(W*.512,H*.720, W*.545,H*.738, W*.62,H*.766);
+    ctx.bezierCurveTo(W*.78,H*.820, W*.92,H*.870, W, H*.905);
+    ctx.lineTo(W, H); ctx.closePath();
+    ctx.fillStyle = '#050e01'; ctx.fill();
   }
 
   /* ── Silhouette assise ────────────────────── */
   function drawPerson() {
-    var px = W * 0.50;
-    var py = H * 0.712;
     var sc = Math.min(W, H) / 640;
     ctx.save();
-    ctx.translate(px, py);
+    ctx.translate(W * 0.50, H * 0.712);
     ctx.scale(sc, sc);
     ctx.fillStyle = '#000';
-
-    /* Tête */
-    ctx.beginPath();
-    ctx.arc(6, -46, 8, 0, Math.PI * 2);
-    ctx.fill();
-
-    /* Cou */
-    ctx.beginPath();
-    ctx.moveTo(2, -38); ctx.lineTo(4, -28);
-    ctx.lineTo(9, -28); ctx.lineTo(11, -38);
-    ctx.closePath(); ctx.fill();
-
-    /* Torse (légèrement penché en avant) */
-    ctx.beginPath();
-    ctx.moveTo(2, -28);
-    ctx.bezierCurveTo(-7, -20, -9, -6, -5, 3);
-    ctx.bezierCurveTo(0, 7, 12, 7, 16, 3);
-    ctx.bezierCurveTo(20, -6, 18, -20, 11, -28);
-    ctx.closePath(); ctx.fill();
-
-    /* Jambe gauche */
-    ctx.beginPath();
-    ctx.moveTo(-5, 2);
-    ctx.bezierCurveTo(-12, 9, -22, 16, -28, 20);
-    ctx.bezierCurveTo(-30, 22, -26, 26, -21, 24);
-    ctx.bezierCurveTo(-15, 20, -4, 14, 2, 8);
-    ctx.closePath(); ctx.fill();
-
-    /* Jambe droite */
-    ctx.beginPath();
-    ctx.moveTo(11, 2);
-    ctx.bezierCurveTo(18, 9, 26, 14, 32, 18);
-    ctx.bezierCurveTo(34, 20, 30, 24, 25, 22);
-    ctx.bezierCurveTo(19, 18, 9, 11, 4, 6);
-    ctx.closePath(); ctx.fill();
-
-    /* Bras gauche (coude sur genou) */
-    ctx.beginPath();
-    ctx.moveTo(-2, -20);
-    ctx.bezierCurveTo(-13, -10, -21, 2, -23, 14);
-    ctx.bezierCurveTo(-21, 17, -17, 17, -14, 13);
-    ctx.bezierCurveTo(-12, 5, -4, -5, 2, -15);
-    ctx.closePath(); ctx.fill();
-
-    /* Bras droit */
-    ctx.beginPath();
-    ctx.moveTo(12, -22);
-    ctx.bezierCurveTo(21, -14, 27, -3, 29, 7);
-    ctx.bezierCurveTo(27, 9, 23, 9, 20, 6);
-    ctx.bezierCurveTo(18, -1, 13, -10, 7, -17);
-    ctx.closePath(); ctx.fill();
-
+    ctx.beginPath(); ctx.arc(6,-46,8,0,Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(2,-38); ctx.lineTo(4,-28); ctx.lineTo(9,-28); ctx.lineTo(11,-38); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(2,-28); ctx.bezierCurveTo(-7,-20,-9,-6,-5,3); ctx.bezierCurveTo(0,7,12,7,16,3); ctx.bezierCurveTo(20,-6,18,-20,11,-28); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-5,2); ctx.bezierCurveTo(-12,9,-22,16,-28,20); ctx.bezierCurveTo(-30,22,-26,26,-21,24); ctx.bezierCurveTo(-15,20,-4,14,2,8); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(11,2); ctx.bezierCurveTo(18,9,26,14,32,18); ctx.bezierCurveTo(34,20,30,24,25,22); ctx.bezierCurveTo(19,18,9,11,4,6); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-2,-20); ctx.bezierCurveTo(-13,-10,-21,2,-23,14); ctx.bezierCurveTo(-21,17,-17,17,-14,13); ctx.bezierCurveTo(-12,5,-4,-5,2,-15); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(12,-22); ctx.bezierCurveTo(21,-14,27,-3,29,7); ctx.bezierCurveTo(27,9,23,9,20,6); ctx.bezierCurveTo(18,-1,13,-10,7,-17); ctx.closePath(); ctx.fill();
     ctx.restore();
   }
 
   /* ── Étoile filante ───────────────────────── */
-  var shoot     = null;
-  var nextShoot = 6 + Math.random() * 10;
+  var shoot = null, nextShoot = 6 + Math.random() * 10;
 
   /* ── Boucle principale ────────────────────── */
   var last = 0;
@@ -594,25 +552,34 @@
 
     ctx.clearRect(0, 0, W, H);
 
-    /* Ciel gradient nuit */
+    /* Ciel */
     var sky = ctx.createLinearGradient(0, 0, 0, H);
     sky.addColorStop(0.00, '#020613');
     sky.addColorStop(0.30, '#0b0820');
     sky.addColorStop(0.60, '#180710');
     sky.addColorStop(0.82, '#2c1108');
     sky.addColorStop(1.00, '#180902');
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
 
-    /* Halo ambiant de la ville */
+    /* Aurora — dérive lentement */
+    var ax  = W * (0.35 + 0.20 * Math.sin(t * 0.055));
+    var ay  = H * (0.18 + 0.05 * Math.sin(t * 0.038 + 1.2));
+    var aA  = (0.04 + 0.025 * (0.5 + 0.5 * Math.sin(t * 0.09))).toFixed(3);
+    var aur = ctx.createRadialGradient(ax, ay, 0, ax, ay, W * 0.44);
+    aur.addColorStop(0,   'rgba(88,16,155,' + aA + ')');
+    aur.addColorStop(0.5, 'rgba(44,8,88,0.018)');
+    aur.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = aur; ctx.fillRect(0, 0, W, H * 0.55);
+
+    /* Halo ville (pulse lent) */
     var gy  = H * 0.742;
-    var glo = ctx.createRadialGradient(W * 0.5, gy, 5, W * 0.5, gy, W * 0.72);
-    glo.addColorStop(0,    'rgba(255,148,28,0.24)');
+    var gP  = (0.21 + 0.05 * Math.sin(t * 0.11)).toFixed(2);
+    var glo = ctx.createRadialGradient(W*.5, gy, 5, W*.5, gy, W*.72);
+    glo.addColorStop(0,    'rgba(255,148,28,' + gP + ')');
     glo.addColorStop(0.32, 'rgba(255,95,10,0.10)');
     glo.addColorStop(0.65, 'rgba(190,55,4,0.04)');
     glo.addColorStop(1,    'rgba(0,0,0,0)');
-    ctx.fillStyle = glo;
-    ctx.fillRect(0, H * 0.34, W, H * 0.66);
+    ctx.fillStyle = glo; ctx.fillRect(0, H*.34, W, H*.66);
 
     /* Étoiles */
     for (var i = 0; i < stars.length; i++) {
@@ -624,38 +591,34 @@
       ctx.fill();
     }
 
+    /* Nuages en dérive */
+    for (var ci = 0; ci < CLOUDS.length; ci++) {
+      var cd = CLOUDS[ci];
+      var cw = cd.wf * W, ch = cd.hf * H;
+      var cx = ((cd.bx * W + t * cd.spd) % (W + cw * 2)) - cw;
+      drawCloud(cx, cd.by * H, cw, ch);
+    }
+
     /* Étoile filante */
     nextShoot -= dt;
     if (nextShoot <= 0 && !shoot) {
-      shoot = {
-        x: W * (0.08 + Math.random() * 0.55),
-        y: H * (0.04 + Math.random() * 0.18),
-        vx: W * (0.14 + Math.random() * 0.14),
-        vy: H * (0.06 + Math.random() * 0.05),
-        life: 0, max: 0.55,
-      };
+      shoot = { x: W*(0.08+Math.random()*.55), y: H*(0.04+Math.random()*.18),
+                vx: W*(0.14+Math.random()*.14), vy: H*(0.06+Math.random()*.05),
+                life: 0, max: 0.55 };
       nextShoot = 9 + Math.random() * 13;
     }
     if (shoot) {
       shoot.life += dt;
       var p = shoot.life / shoot.max;
       if (p < 1) {
-        var sx   = shoot.x + shoot.vx * p;
-        var sy   = shoot.y + shoot.vy * p;
-        var tail = 55 * (1 - p);
-        var sa   = (1 - p) * 0.88;
-        var sg   = ctx.createLinearGradient(sx - tail, sy - tail * 0.42, sx, sy);
+        var sx = shoot.x + shoot.vx * p, sy = shoot.y + shoot.vy * p;
+        var tail = 55 * (1 - p), sa = ((1 - p) * 0.88).toFixed(2);
+        var sg = ctx.createLinearGradient(sx-tail, sy-tail*.42, sx, sy);
         sg.addColorStop(0, 'rgba(255,255,210,0)');
-        sg.addColorStop(1, 'rgba(255,255,210,' + sa.toFixed(2) + ')');
-        ctx.beginPath();
-        ctx.moveTo(sx - tail, sy - tail * 0.42);
-        ctx.lineTo(sx, sy);
-        ctx.strokeStyle = sg;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      } else {
-        shoot = null;
-      }
+        sg.addColorStop(1, 'rgba(255,255,210,' + sa + ')');
+        ctx.beginPath(); ctx.moveTo(sx-tail, sy-tail*.42); ctx.lineTo(sx, sy);
+        ctx.strokeStyle = sg; ctx.lineWidth = 1.5; ctx.stroke();
+      } else { shoot = null; }
     }
 
     /* Bâtiments + fenêtres */
@@ -663,27 +626,24 @@
       var bd = buildings[b];
       ctx.fillStyle = '#110902';
       ctx.fillRect(bd.x, bd.top, bd.w, bd.h);
-      for (var w = 0; w < bd.wins.length; w++) {
-        var wn = bd.wins[w];
-        if (!wn.lit) continue;
-        var fa = 0.42 + 0.36 * Math.abs(Math.sin(t * wn.freq + wn.phase));
-        ctx.fillStyle = 'rgba(255,212,95,' + fa.toFixed(2) + ')';
-        ctx.fillRect(wn.x, wn.y, 3, 4);
+      for (var wn = 0; wn < bd.wins.length; wn++) {
+        var win = bd.wins[wn];
+        if (!win.lit) continue;
+        var fa = (0.42 + 0.36 * Math.abs(Math.sin(t * win.freq + win.phase))).toFixed(2);
+        ctx.fillStyle = 'rgba(255,212,95,' + fa + ')';
+        ctx.fillRect(win.x, win.y, 3, 4);
       }
     }
 
-    /* Collines */
+    /* Collines + silhouette */
     drawHills();
-
-    /* Silhouette */
     drawPerson();
 
     /* Vignette */
-    var vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.28, W / 2, H / 2, W * 0.72);
+    var vig = ctx.createRadialGradient(W/2, H/2, H*.28, W/2, H/2, W*.72);
     vig.addColorStop(0, 'rgba(0,0,0,0)');
     vig.addColorStop(1, 'rgba(0,0,0,0.48)');
-    ctx.fillStyle = vig;
-    ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = vig; ctx.fillRect(0, 0, W, H);
 
     requestAnimationFrame(draw);
   }
