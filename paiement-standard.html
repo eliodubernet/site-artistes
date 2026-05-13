@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paiement — ArtCanvas</title>
+  <title>Paiement — 10Sign</title>
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,7 +12,7 @@
 <!-- NAVBAR minimal -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
     <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-mid)">
       🔒 Paiement sécurisé
     </div>
@@ -36,7 +36,7 @@
           <span id="recapSousTot">—</span>
         </div>
         <div class="payment-recap__row">
-          <span>Commission ArtCanvas (10%)</span>
+          <span>Commission 10Sign (10%)</span>
           <span id="recapComm">—</span>
         </div>
         <hr class="payment-recap__divider">
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('recapComm').textContent    = fmt(comm);
   document.getElementById('recapTotal').textContent   = fmt(total);
   document.getElementById('payBtnMontant').textContent = fmt(total);
-  document.title = `Payer ${fmt(total)} — ${titre} — ArtCanvas`;
+  document.title = `Payer ${fmt(total)} — ${titre} — 10Sign`;
 
   /* ── Couleur du récap selon la couleur artiste ── */
   if (slug && typeof getArtiste === 'function') {

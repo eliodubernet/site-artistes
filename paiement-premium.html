@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paiement sécurisé — ArtCanvas</title>
+  <title>Paiement sécurisé — 10Sign</title>
   <meta name="robots" content="noindex">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,7 +12,7 @@
 <!-- NAVBAR minimal -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
     <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text-mid)">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Paiement 100% sécurisé
@@ -48,7 +48,7 @@
           <span id="recapSousTot">—</span>
         </div>
         <div class="payment-recap__row">
-          <span>Commission ArtCanvas (10%)</span>
+          <span>Commission 10Sign (10%)</span>
           <span id="recapComm">—</span>
         </div>
         <hr class="payment-recap__divider">
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('recapComm').textContent    = fmt(comm);
   document.getElementById('recapTotal').textContent   = fmt(total);
   document.getElementById('payBtnMontant').textContent = fmt(total);
-  document.title = `Paiement sécurisé ${fmt(total)} — ${titre} — ArtCanvas`;
+  document.title = `Paiement sécurisé ${fmt(total)} — ${titre} — 10Sign`;
 
   /* Détails artiste depuis artistes.js */
   if (slug && typeof getArtiste === 'function') {
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (a) {
       document.getElementById('recapDetails').innerHTML =
         `<strong style="color:var(--text-mid)">${a.discipline}</strong> · ${a.ville}<br>
-         ${a.nbOeuvres} œuvres publiées sur ArtCanvas`;
+         ${a.nbOeuvres} œuvres publiées sur 10Sign`;
       document.getElementById('recapPrix').style.color = a.couleur;
       document.getElementById('recapTotal').style.color = a.couleur;
       document.getElementById('payBtn').style.background = a.couleur;

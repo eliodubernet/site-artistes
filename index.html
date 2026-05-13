@@ -1,26 +1,26 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <title>ArtCanvas — La plateforme des artistes indépendants</title>
-  <meta name="description" content="ArtCanvas réunit des artistes talentueux pour exposer, vendre et créer ensemble. Rejoignez une communauté artistique passionnée.">
-  <link rel="canonical" href="https://artcanvas.fr/index.html">
+  <title>10Sign — La plateforme des artistes indépendants</title>
+  <meta name="description" content="10Sign réunit des artistes talentueux pour exposer, vendre et créer ensemble. Rejoignez une communauté artistique passionnée.">
+  <link rel="canonical" href="https://10sign.fr/index.html">
   <!-- Open Graph -->
-  <meta property="og:site_name" content="ArtCanvas">
+  <meta property="og:site_name" content="10Sign">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ArtCanvas — La plateforme des artistes indépendants">
-  <meta property="og:description" content="ArtCanvas réunit des artistes talentueux pour exposer, vendre et créer ensemble.">
-  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <meta property="og:title" content="10Sign — La plateforme des artistes indépendants">
+  <meta property="og:description" content="10Sign réunit des artistes talentueux pour exposer, vendre et créer ensemble.">
+  <meta property="og:image" content="https://10sign.fr/og-image.jpg">
   <!-- Schema.org -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "ArtCanvas",
+    "name": "10Sign",
     "description": "Plateforme artistique pour artistes indépendants",
-    "url": "https://artcanvas.fr"
+    "url": "https://10sign.fr"
   }
   </script>
   <link rel="stylesheet" href="css/style.css">
@@ -30,12 +30,12 @@
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
     <ul class="navbar__links" id="navLinks">
       <li><a href="index.html" class="active">Accueil</a></li>
       <li><a href="galerie.html">Galerie</a></li>
       <li><a href="artistes.html">Artistes</a></li>
-      <li><a href="challenge.html">Défi Mensuel</a></li>
+      <li><a href="challenge.html">Événement Mensuel</a></li>
       <li><a href="communaute.html">Communauté</a></li>
     </ul>
     <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire gratuitement</a>
@@ -47,79 +47,23 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="sec-hero">
-  <div class="hero__bg"></div>
-  <div class="hero__inner container">
-    <div class="hero__text">
-      <div class="hero__eyebrow">
-        <span class="hero__eyebrow-dot"></span>
-        <span class="hero__eyebrow-text">Plateforme artistique indépendante</span>
-      </div>
-      <h1 class="hero__title">
-        L'espace où<br>
-        l'art <span>prend vie</span>
-      </h1>
-      <p class="hero__subtitle">
-        Ici, les acheteurs trouvent l'art rare.<br>
-        Les artistes trouvent leur premier public.
-      </p>
-      <div class="hero__cta">
-        <a href="galerie.html" class="btn-primary">Découvrir la galerie</a>
-        <a href="comment-ca-marche.html" class="btn-secondary">Comment ça marche</a>
-      </div>
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero__overlay">
+    <div class="hero__eyebrow">
+      <span class="hero__eyebrow-dot"></span>
+      <span class="hero__eyebrow-text">Plateforme artistique indépendante</span>
     </div>
-    <div class="hero__art">
-      <!-- SVG artistique animé -->
-      <svg width="480" height="420" viewBox="0 0 480 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation:float 6s ease-in-out infinite">
-        <defs>
-          <radialGradient id="hglow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#8b2fc9" stop-opacity=".25"/>
-            <stop offset="100%" stop-color="#8b2fc9" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="hblur"><feGaussianBlur stdDeviation="12"/></filter>
-        </defs>
-        <!-- Glow bg -->
-        <ellipse cx="240" cy="210" rx="200" ry="180" fill="url(#hglow)" filter="url(#hblur)"/>
-        <!-- Main canvas frame -->
-        <rect x="80" y="60" width="320" height="260" rx="8" fill="#111827" stroke="#c9a84c" stroke-width="2"/>
-        <rect x="90" y="70" width="300" height="240" rx="6" fill="#1a2035"/>
-        <!-- Abstract painting on canvas -->
-        <rect x="90" y="70" width="300" height="240" rx="6">
-          <animate attributeName="fill" values="#1a2035;#1e1840;#1a2035" dur="8s" repeatCount="indefinite"/>
-        </rect>
-        <!-- Brushstrokes -->
-        <path d="M120 160 Q180 120 240 150 Q300 180 360 140" stroke="#c9a84c" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
-        <path d="M110 200 Q160 175 230 190 Q290 205 370 180" stroke="#8b2fc9" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".7"/>
-        <path d="M130 240 Q200 220 270 240 Q330 258 380 235" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
-        <!-- Color blobs -->
-        <ellipse cx="170" cy="160" rx="28" ry="22" fill="#c9a84c" opacity=".2"/>
-        <ellipse cx="290" cy="200" rx="35" ry="25" fill="#8b2fc9" opacity=".2"/>
-        <ellipse cx="220" cy="230" rx="22" ry="18" fill="#c9a84c" opacity=".15"/>
-        <!-- Brush tool -->
-        <g transform="translate(320,290) rotate(-30)">
-          <rect x="-4" y="-45" width="8" height="55" rx="3" fill="#aaaaaa"/>
-          <ellipse cx="0" cy="-45" rx="5" ry="3" fill="#888"/>
-          <path d="M-4 10 Q0 18 4 10" fill="#c9a84c"/>
-        </g>
-        <!-- Palette circles -->
-        <circle cx="140" cy="350" r="12" fill="#c9a84c"/>
-        <circle cx="170" cy="350" r="12" fill="#8b2fc9"/>
-        <circle cx="200" cy="350" r="12" fill="#60a5fa"/>
-        <circle cx="230" cy="350" r="12" fill="#f87171"/>
-        <circle cx="260" cy="350" r="12" fill="#34d399"/>
-        <!-- Stars / sparkles -->
-        <g fill="#c9a84c" opacity=".6">
-          <circle cx="60"  cy="100" r="2.5"/>
-          <circle cx="420" cy="80"  r="2"/>
-          <circle cx="430" cy="300" r="2.5"/>
-          <circle cx="50"  cy="320" r="2"/>
-          <circle cx="400" cy="170" r="1.5"/>
-          <circle cx="75"  cy="250" r="2"/>
-        </g>
-        <!-- Easel legs -->
-        <line x1="120" y1="320" x2="90"  y2="400" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-        <line x1="360" y1="320" x2="390" y2="400" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-        <line x1="240" y1="320" x2="240" y2="410" stroke="#555" stroke-width="3" stroke-linecap="round"/>
-      </svg>
+    <h1 class="hero__title">
+      L'espace où<br>
+      l'art <span>prend vie</span>
+    </h1>
+    <p class="hero__subtitle">
+      Ici, les acheteurs trouvent l'art rare.<br>
+      Les artistes trouvent leur premier public.
+    </p>
+    <div class="hero__cta">
+      <a href="galerie.html" class="btn-primary">Découvrir la galerie</a>
+      <a href="comment-ca-marche.html" class="btn-secondary">Comment ça marche</a>
     </div>
   </div>
 </section>
@@ -387,7 +331,7 @@
     <div class="testimonials-grid">
 
       <div class="testimonial-card card fade-in">
-        <blockquote>ArtCanvas a changé ma façon d'appréhender la vente de mon art. En trois mois, j'ai vendu sept pièces et rencontré des collaborateurs incroyables.</blockquote>
+        <blockquote>10Sign a changé ma façon d'appréhender la vente de mon art. En trois mois, j'ai vendu sept pièces et rencontré des collaborateurs incroyables.</blockquote>
         <div class="testimonial-author">
           <svg width="44" height="44" viewBox="0 0 44 44" style="border-radius:50%">
             <rect width="44" height="44" fill="#1a2035"/>
@@ -417,7 +361,7 @@
       </div>
 
       <div class="testimonial-card card fade-in">
-        <blockquote>Je cherchais un endroit élégant pour exposer mes illustrations. ArtCanvas correspond exactement à l'image que je veux donner à mon travail.</blockquote>
+        <blockquote>Je cherchais un endroit élégant pour exposer mes illustrations. 10Sign correspond exactement à l'image que je veux donner à mon travail.</blockquote>
         <div class="testimonial-author">
           <svg width="44" height="44" viewBox="0 0 44 44" style="border-radius:50%">
             <rect width="44" height="44" fill="#1a2035"/>
@@ -440,7 +384,7 @@
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+        <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
         <p>La plateforme des artistes indépendants. Exposez, vendez et collaborez en toute liberté.</p>
       </div>
       <div class="footer__col">
@@ -471,7 +415,7 @@
       </div>
     </div>
     <div class="footer__bottom">
-      <span>© 2026 ArtCanvas. Tous droits réservés.</span>
+      <span>© 2026 10Sign. Tous droits réservés.</span>
     </div>
   </div>
 </footer>
@@ -482,5 +426,273 @@
 <nav class="nav-dots" aria-label="Navigation par section"></nav>
 
 <script src="js/nav-dots.js"></script>
+
+<script>
+/* =========================================================
+   Hero — Animation nuit : colline · ville · ciel étoilé
+   ========================================================= */
+(function () {
+  var canvas = document.getElementById('heroCanvas');
+  var ctx    = canvas.getContext('2d');
+  var W = 0, H = 0;
+
+  /* ── Étoiles ──────────────────────────────── */
+  var N_STARS = 200;
+  var stars   = [];
+  function genStars() {
+    stars = [];
+    for (var i = 0; i < N_STARS; i++) {
+      stars.push({
+        x:     Math.random(),
+        y:     Math.random() * 0.68,
+        r:     0.4 + Math.random() * 1.7,
+        phase: Math.random() * Math.PI * 2,
+        freq:  0.25 + Math.random() * 1.0,
+        base:  0.35 + Math.random() * 0.60,
+      });
+    }
+  }
+
+  /* ── Bâtiments ────────────────────────────── */
+  var buildings = [];
+  function genBuildings() {
+    buildings = [];
+    var baseY = H * 0.742;
+    var x = -15;
+    while (x < W + 20) {
+      var tall = Math.random() < 0.28;
+      var bw   = 11 + Math.random() * (tall ? 20 : 26);
+      var bh   = tall ? 55 + Math.random() * 95 : 18 + Math.random() * 48;
+      var top  = baseY - bh;
+      var wins = [];
+      for (var wy = top + 7; wy < baseY - 7; wy += 9) {
+        for (var wx = x + 4; wx < x + bw - 4; wx += 8) {
+          wins.push({
+            x:     wx,
+            y:     wy,
+            lit:   Math.random() < 0.62,
+            phase: Math.random() * Math.PI * 2,
+            freq:  0.06 + Math.random() * 0.22,
+          });
+        }
+      }
+      buildings.push({ x: x, w: bw, top: top, h: bh, wins: wins });
+      x += bw + 1 + Math.random() * 3;
+    }
+  }
+
+  /* ── Resize ───────────────────────────────── */
+  function resize() {
+    var rect = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width  = Math.round(rect.width  || window.innerWidth);
+    H = canvas.height = Math.round(rect.height || window.innerHeight);
+    genBuildings();
+  }
+  window.addEventListener('resize', resize);
+
+  /* ── Collines ─────────────────────────────── */
+  function drawHills() {
+    /* Colline lointaine */
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+    ctx.lineTo(0, H * 0.810);
+    ctx.bezierCurveTo(W * 0.12, H * 0.748, W * 0.30, H * 0.710, W * 0.48, H * 0.722);
+    ctx.bezierCurveTo(W * 0.64, H * 0.734, W * 0.82, H * 0.768, W, H * 0.810);
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    ctx.fillStyle = '#081003';
+    ctx.fill();
+
+    /* Colline principale (silhouette assise au sommet) */
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+    ctx.lineTo(0, H * 0.905);
+    ctx.bezierCurveTo(W * 0.08, H * 0.870, W * 0.22, H * 0.820, W * 0.38, H * 0.766);
+    ctx.bezierCurveTo(W * 0.455, H * 0.738, W * 0.488, H * 0.720, W * 0.50, H * 0.712);
+    ctx.bezierCurveTo(W * 0.512, H * 0.720, W * 0.545, H * 0.738, W * 0.62, H * 0.766);
+    ctx.bezierCurveTo(W * 0.78, H * 0.820, W * 0.92, H * 0.870, W, H * 0.905);
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    ctx.fillStyle = '#050e01';
+    ctx.fill();
+  }
+
+  /* ── Silhouette assise ────────────────────── */
+  function drawPerson() {
+    var px = W * 0.50;
+    var py = H * 0.712;
+    var sc = Math.min(W, H) / 640;
+    ctx.save();
+    ctx.translate(px, py);
+    ctx.scale(sc, sc);
+    ctx.fillStyle = '#000';
+
+    /* Tête */
+    ctx.beginPath();
+    ctx.arc(6, -46, 8, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* Cou */
+    ctx.beginPath();
+    ctx.moveTo(2, -38); ctx.lineTo(4, -28);
+    ctx.lineTo(9, -28); ctx.lineTo(11, -38);
+    ctx.closePath(); ctx.fill();
+
+    /* Torse (légèrement penché en avant) */
+    ctx.beginPath();
+    ctx.moveTo(2, -28);
+    ctx.bezierCurveTo(-7, -20, -9, -6, -5, 3);
+    ctx.bezierCurveTo(0, 7, 12, 7, 16, 3);
+    ctx.bezierCurveTo(20, -6, 18, -20, 11, -28);
+    ctx.closePath(); ctx.fill();
+
+    /* Jambe gauche */
+    ctx.beginPath();
+    ctx.moveTo(-5, 2);
+    ctx.bezierCurveTo(-12, 9, -22, 16, -28, 20);
+    ctx.bezierCurveTo(-30, 22, -26, 26, -21, 24);
+    ctx.bezierCurveTo(-15, 20, -4, 14, 2, 8);
+    ctx.closePath(); ctx.fill();
+
+    /* Jambe droite */
+    ctx.beginPath();
+    ctx.moveTo(11, 2);
+    ctx.bezierCurveTo(18, 9, 26, 14, 32, 18);
+    ctx.bezierCurveTo(34, 20, 30, 24, 25, 22);
+    ctx.bezierCurveTo(19, 18, 9, 11, 4, 6);
+    ctx.closePath(); ctx.fill();
+
+    /* Bras gauche (coude sur genou) */
+    ctx.beginPath();
+    ctx.moveTo(-2, -20);
+    ctx.bezierCurveTo(-13, -10, -21, 2, -23, 14);
+    ctx.bezierCurveTo(-21, 17, -17, 17, -14, 13);
+    ctx.bezierCurveTo(-12, 5, -4, -5, 2, -15);
+    ctx.closePath(); ctx.fill();
+
+    /* Bras droit */
+    ctx.beginPath();
+    ctx.moveTo(12, -22);
+    ctx.bezierCurveTo(21, -14, 27, -3, 29, 7);
+    ctx.bezierCurveTo(27, 9, 23, 9, 20, 6);
+    ctx.bezierCurveTo(18, -1, 13, -10, 7, -17);
+    ctx.closePath(); ctx.fill();
+
+    ctx.restore();
+  }
+
+  /* ── Étoile filante ───────────────────────── */
+  var shoot     = null;
+  var nextShoot = 6 + Math.random() * 10;
+
+  /* ── Boucle principale ────────────────────── */
+  var last = 0;
+  function draw(ts) {
+    var t  = ts / 1000;
+    var dt = Math.min(t - last, 0.05);
+    last   = t;
+
+    ctx.clearRect(0, 0, W, H);
+
+    /* Ciel gradient nuit */
+    var sky = ctx.createLinearGradient(0, 0, 0, H);
+    sky.addColorStop(0.00, '#020613');
+    sky.addColorStop(0.30, '#0b0820');
+    sky.addColorStop(0.60, '#180710');
+    sky.addColorStop(0.82, '#2c1108');
+    sky.addColorStop(1.00, '#180902');
+    ctx.fillStyle = sky;
+    ctx.fillRect(0, 0, W, H);
+
+    /* Halo ambiant de la ville */
+    var gy  = H * 0.742;
+    var glo = ctx.createRadialGradient(W * 0.5, gy, 5, W * 0.5, gy, W * 0.72);
+    glo.addColorStop(0,    'rgba(255,148,28,0.24)');
+    glo.addColorStop(0.32, 'rgba(255,95,10,0.10)');
+    glo.addColorStop(0.65, 'rgba(190,55,4,0.04)');
+    glo.addColorStop(1,    'rgba(0,0,0,0)');
+    ctx.fillStyle = glo;
+    ctx.fillRect(0, H * 0.34, W, H * 0.66);
+
+    /* Étoiles */
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var a = s.base * (0.52 + 0.48 * Math.sin(t * s.freq + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,248,220,' + a.toFixed(2) + ')';
+      ctx.fill();
+    }
+
+    /* Étoile filante */
+    nextShoot -= dt;
+    if (nextShoot <= 0 && !shoot) {
+      shoot = {
+        x: W * (0.08 + Math.random() * 0.55),
+        y: H * (0.04 + Math.random() * 0.18),
+        vx: W * (0.14 + Math.random() * 0.14),
+        vy: H * (0.06 + Math.random() * 0.05),
+        life: 0, max: 0.55,
+      };
+      nextShoot = 9 + Math.random() * 13;
+    }
+    if (shoot) {
+      shoot.life += dt;
+      var p = shoot.life / shoot.max;
+      if (p < 1) {
+        var sx   = shoot.x + shoot.vx * p;
+        var sy   = shoot.y + shoot.vy * p;
+        var tail = 55 * (1 - p);
+        var sa   = (1 - p) * 0.88;
+        var sg   = ctx.createLinearGradient(sx - tail, sy - tail * 0.42, sx, sy);
+        sg.addColorStop(0, 'rgba(255,255,210,0)');
+        sg.addColorStop(1, 'rgba(255,255,210,' + sa.toFixed(2) + ')');
+        ctx.beginPath();
+        ctx.moveTo(sx - tail, sy - tail * 0.42);
+        ctx.lineTo(sx, sy);
+        ctx.strokeStyle = sg;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      } else {
+        shoot = null;
+      }
+    }
+
+    /* Bâtiments + fenêtres */
+    for (var b = 0; b < buildings.length; b++) {
+      var bd = buildings[b];
+      ctx.fillStyle = '#110902';
+      ctx.fillRect(bd.x, bd.top, bd.w, bd.h);
+      for (var w = 0; w < bd.wins.length; w++) {
+        var wn = bd.wins[w];
+        if (!wn.lit) continue;
+        var fa = 0.42 + 0.36 * Math.abs(Math.sin(t * wn.freq + wn.phase));
+        ctx.fillStyle = 'rgba(255,212,95,' + fa.toFixed(2) + ')';
+        ctx.fillRect(wn.x, wn.y, 3, 4);
+      }
+    }
+
+    /* Collines */
+    drawHills();
+
+    /* Silhouette */
+    drawPerson();
+
+    /* Vignette */
+    var vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.28, W / 2, H / 2, W * 0.72);
+    vig.addColorStop(0, 'rgba(0,0,0,0)');
+    vig.addColorStop(1, 'rgba(0,0,0,0.48)');
+    ctx.fillStyle = vig;
+    ctx.fillRect(0, 0, W, H);
+
+    requestAnimationFrame(draw);
+  }
+
+  /* ── Init ─────────────────────────────────── */
+  genStars();
+  resize();
+  requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>

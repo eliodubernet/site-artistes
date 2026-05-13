@@ -1,29 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="index, follow">
-  <title>Communauté — ArtCanvas | Forum des artistes indépendants</title>
-  <meta name="description" content="Rejoignez la communauté ArtCanvas : échangez sur vos techniques, trouvez des collaborateurs, partagez vos inspirations avec d'autres artistes.">
-  <link rel="canonical" href="https://artcanvas.fr/communaute.html">
-  <meta property="og:site_name" content="ArtCanvas">
+  <title>Communauté — 10Sign | Forum des artistes indépendants</title>
+  <meta name="description" content="Rejoignez la communauté 10Sign : échangez sur vos techniques, trouvez des collaborateurs, partagez vos inspirations avec d'autres artistes.">
+  <link rel="canonical" href="https://10sign.fr/communaute.html">
+  <meta property="og:site_name" content="10Sign">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Communauté — ArtCanvas">
-  <meta property="og:description" content="Rejoignez la communauté ArtCanvas et échangez avec d'autres artistes.">
-  <meta property="og:image" content="https://artcanvas.fr/og-image.jpg">
+  <meta property="og:title" content="Communauté — 10Sign">
+  <meta property="og:description" content="Rejoignez la communauté 10Sign et échangez avec d'autres artistes.">
+  <meta property="og:image" content="https://10sign.fr/og-image.jpg">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
     <ul class="navbar__links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="galerie.html">Galerie</a></li>
       <li><a href="artistes.html">Artistes</a></li>
-      <li><a href="challenge.html">Défi Mensuel</a></li>
+      <li><a href="challenge.html">Événement Mensuel</a></li>
       <li><a href="communaute.html" class="active">Communauté</a></li>
     </ul>
     <a href="choisir.html" class="btn-primary navbar__cta">S'inscrire gratuitement</a>
@@ -512,7 +512,7 @@
   <div class="container fade-in">
     <div class="section-tag" style="margin:0 auto 20px;">Rejoindre la communauté</div>
     <h2>Participez aux échanges</h2>
-    <p>Créez votre profil et rejoignez plus de 1 200 artistes actifs sur ArtCanvas.</p>
+    <p>Créez votre profil et rejoignez plus de 1 200 artistes actifs sur 10Sign.</p>
     <div class="cta-band__btns">
       <a href="rejoindre.html" class="btn-primary">Créer mon profil</a>
     </div>
@@ -523,12 +523,12 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
-      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">10<strong>Sign</strong></a><p>La plateforme des artistes indépendants.</p></div>
       <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
       <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
       <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span></div>
+    <div class="footer__bottom"><span>© 2026 10Sign. Tous droits réservés.</span></div>
   </div>
 </footer>
 
@@ -545,14 +545,14 @@
 
 <script>
 /* =========================================================
-   ArtCanvas — Communauté interactive (localStorage)
+   10Sign — Communauté interactive (localStorage)
    ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Clés localStorage ── */
-  const LS_MESSAGES = 'artcanvas_messages';
-  const LS_COLLABS  = 'artcanvas_collabs';
-  const LS_FEEDBACK = 'artcanvas_feedback';
+  const LS_MESSAGES = '10sign_messages';
+  const LS_COLLABS  = '10sign_collabs';
+  const LS_FEEDBACK = '10sign_feedback';
 
   /* ── Formatte une date relative ── */
   function relativeTime(iso) {
@@ -762,7 +762,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* Réactions */
-    const userReactions = JSON.parse(localStorage.getItem('artcanvas_user_reactions') || '{}');
+    const userReactions = JSON.parse(localStorage.getItem('10sign_user_reactions') || '{}');
     grid.querySelectorAll('.reaction-btn').forEach(btn => {
       const idx   = parseInt(btn.dataset.idx);
       const emoji = btn.dataset.emoji;
@@ -775,7 +775,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fbs[idx].reactions[emoji] = (fbs[idx].reactions[emoji] || 0) + (alreadyReacted ? -1 : 1);
         userReactions[key] = !alreadyReacted;
         saveFeedbacks(fbs);
-        localStorage.setItem('artcanvas_user_reactions', JSON.stringify(userReactions));
+        localStorage.setItem('10sign_user_reactions', JSON.stringify(userReactions));
         btn.querySelector('span').textContent = fbs[idx].reactions[emoji];
         btn.classList.toggle('reacted', !!userReactions[key]);
       });

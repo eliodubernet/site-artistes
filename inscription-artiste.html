@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscription artiste — ArtCanvas</title>
-  <meta name="description" content="Créez votre profil artiste complet sur ArtCanvas : informations, portfolio, personnalisation et liens.">
+  <title>Inscription artiste — 10Sign</title>
+  <meta name="description" content="Créez votre profil artiste complet sur 10Sign : informations, portfolio, personnalisation et liens.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
   <div class="navbar__inner">
-    <a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a>
+    <a href="index.html" class="navbar__logo">10<strong>Sign</strong></a>
     <ul class="navbar__links" id="navLinks">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="galerie.html">Galerie</a></li>
@@ -222,7 +222,7 @@
 
           <div class="form-checkbox">
             <input type="checkbox" id="cgu" name="cgu" required>
-            <label for="cgu">J'accepte les <a href="#">conditions d'utilisation</a> d'ArtCanvas et autorise la publication de mon profil.</label>
+            <label for="cgu">J'accepte les <a href="#">conditions d'utilisation</a> d'10Sign et autorise la publication de mon profil.</label>
           </div>
           <div class="form-error" id="cgu-error" style="display:none;margin-top:4px">Veuillez accepter les conditions.</div>
 
@@ -259,12 +259,12 @@
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
-      <div class="footer__brand"><a href="index.html" class="navbar__logo">Art<strong>Canvas</strong></a><p>La plateforme des artistes indépendants.</p></div>
+      <div class="footer__brand"><a href="index.html" class="navbar__logo">10<strong>Sign</strong></a><p>La plateforme des artistes indépendants.</p></div>
       <div class="footer__col"><h4>Navigation</h4><ul><li><a href="index.html">Accueil</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="artistes.html">Artistes</a></li><li><a href="communaute.html">Communauté</a></li></ul></div>
       <div class="footer__col"><h4>Artistes</h4><ul><li><a href="rejoindre.html">Rejoindre</a></li><li><a href="#">Commission 10%</a></li></ul></div>
       <div class="footer__col"><h4>À propos</h4><ul><li><a href="#">Notre mission</a></li><li><a href="#">Conditions</a></li><li><a href="#">Contact</a></li></ul></div>
     </div>
-    <div class="footer__bottom"><span>© 2026 ArtCanvas. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
+    <div class="footer__bottom"><span>© 2026 10Sign. Tous droits réservés.</span><span>Fait avec passion pour les artistes</span></div>
   </div>
 </footer>
 
@@ -426,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
       shopify:   document.getElementById('shopify').value,
       createdAt: new Date().toISOString()
     };
-    localStorage.setItem('artcanvas_profil', JSON.stringify(profil));
+    localStorage.setItem('10sign_profil', JSON.stringify(profil));
 
     const submitBtn = document.getElementById('submitBtn');
     if (submitBtn) submitBtn.disabled = true;

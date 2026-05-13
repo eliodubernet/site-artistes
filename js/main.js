@@ -1,5 +1,5 @@
-/* =========================================================
-   ArtCanvas — main.js
+﻿/* =========================================================
+   10Sign — main.js
    Pure vanilla JS — DOMContentLoaded wrapper
    ========================================================= */
 
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lbPrice.textContent  = price;
       lbDesc.textContent   = desc;
       lbCat.textContent    = cat.charAt(0).toUpperCase() + cat.slice(1);
-      lbContact.href = 'mailto:contact@artcanvas.fr?subject=' + encodeURIComponent(title);
+      lbContact.href = 'mailto:contact@10sign.fr?subject=' + encodeURIComponent(title);
 
       const lbPortfolio = document.getElementById('lightboxPortfolio');
       if (lbPortfolio) {

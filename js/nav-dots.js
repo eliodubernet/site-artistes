@@ -1,5 +1,5 @@
-/* =========================================================
-   ArtCanvas — nav-dots.js
+﻿/* =========================================================
+   10Sign — nav-dots.js
    Navigation verticale par points — toutes les pages
    ========================================================= */
 
@@ -16,7 +16,7 @@
       { id: 'sec-footer',       label: 'Pied de page' },
     ],
     'challenge.html': [
-      { id: 'ch-sec-hero',        label: 'Défi' },
+      { id: 'ch-sec-hero',        label: 'Événement' },
       { id: 'ch-sec-timeline',    label: 'Phases' },
       { id: 'ch-sec-theme',       label: 'Thème' },
       { id: 'ch-sec-criteres',    label: 'Critères' },
