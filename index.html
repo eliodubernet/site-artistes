@@ -75,7 +75,7 @@
       <span class="hero__eyebrow-dot"></span>
       <span class="hero__eyebrow-text">Plateforme artistique indépendante</span>
     </div>
-    <h1 class="hero__title">
+    <h1 class="hero__title" style="visibility:hidden">
       L'espace où<br>
       l'art <span>prend vie</span>
     </h1>
@@ -745,6 +745,152 @@
 
   requestAnimationFrame(step);
 })();
+</script>
+
+<script>
+/* ── Typewriter — titre hero lettre par lettre ── */
+(function () {
+  var h = document.querySelector('.hero__title');
+  if (!h) return;
+
+  /* Petit délai pour laisser le canvas démarrer */
+  setTimeout(function () {
+    h.innerHTML = '';
+    h.style.visibility = 'visible';
+
+    var n1 = document.createTextNode('');
+    var br = document.createElement('br');
+    var n2 = document.createTextNode('');
+    var sp = document.createElement('span');
+    var n3 = document.createTextNode('');
+    sp.appendChild(n3);
+
+    h.appendChild(n1);
+
+    var D = 62, t = 0;
+
+    /* Ligne 1 */
+    "L’espace où".split('').forEach(function (c) {
+      setTimeout(function () { n1.nodeValue += c; }, t);
+      t += D;
+    });
+
+    /* Pause + ajout des éléments de la ligne 2 */
+    setTimeout(function () { h.appendChild(br); h.appendChild(n2); h.appendChild(sp); }, t);
+    t += D * 2;
+
+    /* Ligne 2 — texte normal */
+    "l’art ".split('').forEach(function (c) {
+      setTimeout(function () { n2.nodeValue += c; }, t);
+      t += D;
+    });
+
+    /* Ligne 2 — texte doré dans le span */
+    "prend vie".split('').forEach(function (c) {
+      setTimeout(function () { n3.nodeValue += c; }, t);
+      t += D;
+    });
+
+  }, 520);
+})();
+</script>
+
+<script>
+/* ── Three.js particules dorées — chargement différé ── */
+window.addEventListener('load', function () {
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = function () {
+    (function () {
+      var hero = document.querySelector('.hero');
+      if (!hero || typeof THREE === 'undefined') return;
+
+      var W = hero.offsetWidth  || window.innerWidth;
+      var H = hero.offsetHeight || window.innerHeight;
+
+      /* Renderer transparent — Canvas 2D visible en dessous */
+      var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false });
+      renderer.setSize(W, H);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setClearColor(0x000000, 0);
+
+      var cv = renderer.domElement;
+      cv.style.cssText = 'position:absolute;inset:0;z-index:1;pointer-events:none;';
+      var ref = document.getElementById('heroCanvas');
+      hero.insertBefore(cv, ref ? ref.nextSibling : hero.firstChild);
+
+      /* Scène + caméra */
+      var scene  = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(70, W / H, 0.1, 80);
+      camera.position.z = 5;
+
+      /* Particules */
+      var COUNT = 260;
+      var geo = new THREE.BufferGeometry();
+      var pos = new Float32Array(COUNT * 3);
+      var col = new Float32Array(COUNT * 3);
+      var vel = new Float32Array(COUNT * 3);
+
+      var palette = [
+        [0.710, 0.529, 0.173],
+        [0.788, 0.659, 0.298],
+        [0.910, 0.839, 0.627],
+      ];
+
+      for (var i = 0; i < COUNT; i++) {
+        pos[i*3]   = (Math.random() - 0.5) * 14;
+        pos[i*3+1] = (Math.random() - 0.5) * 10;
+        pos[i*3+2] = (Math.random() - 0.5) *  6;
+        var c = palette[i % 3];
+        col[i*3] = c[0]; col[i*3+1] = c[1]; col[i*3+2] = c[2];
+        vel[i*3]   = (Math.random() - 0.5) * 0.004;
+        vel[i*3+1] = (Math.random() - 0.5) * 0.003 - 0.001;
+        vel[i*3+2] = (Math.random() - 0.5) * 0.002;
+      }
+
+      geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      geo.setAttribute('color',    new THREE.BufferAttribute(col, 3));
+
+      var mat = new THREE.PointsMaterial({
+        vertexColors: true, size: 0.042,
+        transparent: true,  opacity: 0.50,
+        sizeAttenuation: true, depthWrite: false,
+      });
+
+      scene.add(new THREE.Points(geo, mat));
+
+      window.addEventListener('resize', function () {
+        W = hero.offsetWidth || window.innerWidth;
+        H = hero.offsetHeight || window.innerHeight;
+        camera.aspect = W / H;
+        camera.updateProjectionMatrix();
+        renderer.setSize(W, H);
+      });
+
+      var tk = 0;
+      (function loop() {
+        requestAnimationFrame(loop);
+        tk += 0.007;
+        for (var i = 0; i < COUNT; i++) {
+          pos[i*3]   += vel[i*3];
+          pos[i*3+1] += vel[i*3+1];
+          pos[i*3+2] += vel[i*3+2];
+          if (pos[i*3]   >  7) pos[i*3]   = -7;
+          if (pos[i*3]   < -7) pos[i*3]   =  7;
+          if (pos[i*3+1] >  5) pos[i*3+1] = -5;
+          if (pos[i*3+1] < -5) pos[i*3+1] =  5;
+        }
+        geo.attributes.position.needsUpdate = true;
+        camera.position.x = Math.sin(tk * 0.18) * 0.25;
+        camera.position.y = Math.cos(tk * 0.14) * 0.18;
+        camera.lookAt(0, 0, 0);
+        mat.opacity = 0.42 + 0.13 * Math.sin(tk * 0.35);
+        renderer.render(scene, camera);
+      })();
+    })();
+  };
+  document.head.appendChild(s);
+});
 </script>
 </body>
 </html>
