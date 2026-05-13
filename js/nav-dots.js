@@ -76,7 +76,9 @@
 
     var path = window.location.pathname;
     var page = path.split('/').pop() || 'index.html';
-    if (!page) page = 'index.html';
+    /* Vercel cleanUrls=true supprime l'extension — on la restitue */
+    if (page && page.indexOf('.html') === -1) page = page + '.html';
+    if (!page || page === '.html') page = 'index.html';
 
     var SECTIONS = PAGE_SECTIONS[page] || PAGE_SECTIONS['index.html'];
 
