@@ -524,10 +524,11 @@
   }
 
   /* ── Silhouette assise ────────────────────── */
-  function drawPerson() {
+  function drawPerson(t) {
     var sc = Math.min(W, H) / 640;
+    var breathe = Math.sin(t * 0.28) * 1.8;
     ctx.save();
-    ctx.translate(W * 0.50, H * 0.712);
+    ctx.translate(W * 0.50, H * 0.712 + breathe);
     ctx.scale(sc, sc);
     ctx.fillStyle = '#000';
     ctx.beginPath(); ctx.arc(6,-46,8,0,Math.PI*2); ctx.fill();
@@ -637,7 +638,7 @@
 
     /* Collines + silhouette */
     drawHills();
-    drawPerson();
+    drawPerson(t);
 
     /* Vignette */
     var vig = ctx.createRadialGradient(W/2, H/2, H*.28, W/2, H/2, W*.72);

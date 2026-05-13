@@ -1315,12 +1315,9 @@ p { line-height: 1.78; }
   border-radius: 4px;
 }
 
-/* ----- Scrollbar dorée — fenêtre principale (toutes pages) */
-html::-webkit-scrollbar          { width: 6px; }
-html::-webkit-scrollbar-track    { background: rgba(0,0,0,.07); }
-html::-webkit-scrollbar-thumb    { background: rgba(201,168,76,.55); border-radius: 3px; }
-html::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,.85); }
-html { scrollbar-width: thin; scrollbar-color: rgba(201,168,76,.55) rgba(0,0,0,.07); }
+/* ----- Scrollbar navigateur masquée — nav-dots latéraux */
+html::-webkit-scrollbar { display: none; }
+html { scrollbar-width: none; }
 
 /* ═══════════════════════════════════════════════════════
    THREAD MODAL

@@ -35,6 +35,39 @@
       { id: 'gal-sec-hero', label: 'Galerie' },
       { id: 'gal-sec-grid', label: 'Œuvres' },
     ],
+    'artistes.html': [
+      { id: 'art-sec-hero', label: 'Artistes' },
+      { id: 'art-sec-grid', label: 'Catalogue' },
+      { id: 'art-sec-cta',  label: 'Rejoindre' },
+    ],
+    'artiste.html': [
+      { id: 'artiste-hero-section',      label: 'Profil' },
+      { id: 'artiste-portfolio-section', label: 'Œuvres' },
+    ],
+    'choisir.html': [
+      { id: 'cho-sec-hero',  label: 'Inscription' },
+      { id: 'cho-sec-choix', label: 'Choisir' },
+    ],
+    'comment-ca-marche.html': [
+      { id: 'ccm-sec-hero',   label: 'Guide' },
+      { id: 'ccm-sec-etapes', label: 'Étapes' },
+      { id: 'ccm-sec-eco',    label: 'Tarification' },
+      { id: 'ccm-sec-cta',    label: 'Commencer' },
+    ],
+    'inscription.html': [
+      { id: 'insc-sec-hero', label: 'Inscription' },
+      { id: 'insc-sec-form', label: 'Formulaire' },
+    ],
+    'mise-en-avant.html': [
+      { id: 'mea-sec-hero',     label: 'Visibilité' },
+      { id: 'mea-sec-formules', label: 'Formules' },
+      { id: 'mea-sec-eco',      label: 'Comment ça marche' },
+      { id: 'mea-sec-cta',      label: 'Contact' },
+    ],
+    'rejoindre.html': [
+      { id: 'rej-sec-hero', label: 'Rejoindre' },
+      { id: 'rej-sec-form', label: 'Inscription' },
+    ],
   };
 
   document.addEventListener('DOMContentLoaded', function () {
