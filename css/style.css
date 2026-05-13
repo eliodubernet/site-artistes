@@ -1318,12 +1318,12 @@ p { line-height: 1.78; }
   border-radius: 4px;
 }
 
-/* ----- Scrollbar fine et dorée -------------------------- */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(201,168,76,.28); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,.52); }
-* { scrollbar-width: thin; scrollbar-color: rgba(201,168,76,.28) var(--bg); }
+/* ----- Scrollbar fine et dorée (fenêtre principale) ----- */
+html::-webkit-scrollbar { display: block; width: 5px; }
+html::-webkit-scrollbar-track { background: var(--bg); }
+html::-webkit-scrollbar-thumb { background: rgba(201,168,76,.28); border-radius: 3px; }
+html::-webkit-scrollbar-thumb:hover { background: rgba(201,168,76,.52); }
+html { scrollbar-width: thin; scrollbar-color: rgba(201,168,76,.28) var(--bg); }
 
 /* ═══════════════════════════════════════════════════════
    THREAD MODAL

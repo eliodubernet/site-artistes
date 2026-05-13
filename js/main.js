@@ -10,8 +10,8 @@
   var curr = window.pageYOffset;
   var dest = window.pageYOffset;
   var raf  = null;
-  var SPEED = 2.8;   /* multiplicateur de distance par cran de molette */
-  var EASE  = 0.13;  /* facteur lerp : 0 = très smooth/lent, 1 = instantané */
+  var SPEED = 4.0;   /* multiplicateur de distance par cran de molette */
+  var EASE  = 0.18;  /* facteur lerp : 0 = très smooth/lent, 1 = instantané */
 
   function step() {
     document.documentElement.style.scrollBehavior = 'auto';
